@@ -38,9 +38,12 @@ gem 'jquery-rails'
 
 # CSS Frameworks
 gem 'twitter-bootstrap-rails'
+gem 'webpacker', '~> 2.0'
+
 
 # Templating
 gem 'haml-rails'
+
 
 # Authentication && Authorization
 gem 'devise'
@@ -64,3 +67,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "foreman"
