@@ -1,2 +1,58 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+/ = stylesheet_pack_tag 'onboarding/register/register'
+
+
+/ %div{:flex => "100", :layout => "column"}
+/   .body-container
+/     %div{:flex => "100", :layout => "row", "layout-xs" => "column"}
+/       .form-column{:flex => "25", "flex-xs" => "100", :layout => "column"}
+/         .progress-container
+/           .progress-block.active 1. Questions
+/           .progress-block 2. Coverage
+/           .progress-block 3. Payment
+/           .progress-block 4. Signature
+/           .progress-block 5. Confirmation
+/       .form-column{:flex => "75", "flex-xs" => "100", :layout => "column"}
+/         .form-container
+/           %h1 The Basics.
+/           / dev note: deal breaker - if 'Yes' selected, throw error message saying 'Sorry, we do not offer coverage to smokers.'
+/           .form-row
+/             %md-input-container.md-block{:flex => "50", "flex-sm" => "75", "flex-xs" => "100"}
+/               %label Do you use tobacco products?
+/               %md-select{"ng-model" => "smoke"}
+/                 %md-option{:value => "No"} No
+/                 %md-option{:value => "Yes"} Yes
+/             .learn-more Learn More
+/           /
+/             dev note: deal breaker - if 'Yes' selected, throw error message saying 'Sorry, we do not offer coverage to to individuals
+/             with pre-existing health conditions.'
+/           .form-row
+/             %md-input-container.md-block{:flex => "50", "flex-sm" => "75", "flex-xs" => "100"}
+/               %label Do you have pre-existing health conditions?
+/               %md-select{"ng-model" => "smoke"}
+/                 %md-option{:value => "No"} No
+/                 %md-option{:value => "Yes"} Yes
+/             .learn-more Learn More
+/           .form-row
+/             %md-input-container.md-block{:flex => "50", "flex-sm" => "75", "flex-xs" => "100"}
+/               %label Gender
+/               %md-select{"ng-model" => "gender"}
+/                 %md-option{:value => "Male"} Male
+/                 %md-option{:value => "Female"} Female
+/           / dev note: deal breaker - if age is under 18 or over 65, throw error message saying 'Sorry but we do not offer coverage to individuals of your age.'
+/           .form-row
+/             %md-input-container.md-block{:flex => "50", "flex-sm" => "75", "flex-xs" => "100"}
+/               %label Birthday (MM-DD-YYYY)
+/               %input{"ng-model" => "birthday"}/
+/               / format validation MM-DD-YYYY
+/           / dev note: deal breaker if BMI index is too high
+/           .form-row
+/             %div{:flex => "50", "flex-sm" => "75", "flex-xs" => "100", :layout => "row"}
+/               %md-input-container.md-block{:flex => "50", :layout => "column"}
+/                 %label Height (Inches)
+/                 %input{"ng-model" => "height"}/
+/                 / format validation 2 numbers only
+/               %md-input-container.md-block{:flex => "50", :layout => "column"}
+/                 %label Weight (Pounds)
+/                 %input{"ng-model" => "weight"}/
+/                 / format validation 2 or 3 numbers only
+/           %md-button.md-primary{"ui-sref" => "quote"} Next

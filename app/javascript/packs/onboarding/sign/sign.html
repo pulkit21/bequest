@@ -1,0 +1,31 @@
+<div layout="column" flex="100">
+
+  <div class="body-container">
+    <div layout="row" flex="100">
+
+      <div class="form-column" layout="column" flex="25" flex-xs="100">
+        <div class="progress-container">
+          <div class="progress-block complete">1. Questions</div>
+          <div class="progress-block complete">2. Coverage</div>
+          <div class="progress-block complete">3. Payment</div>
+          <div class="progress-block active">4. Signature</div>
+          <div class="progress-block">5. Confirmation</div>
+        </div>
+      </div>
+
+      <div layout="column" flex="75" flex-xs="100">
+        <div class="form-container">
+          <h1>The Signature.</h1>
+          <p>Click the <i class="bold">Sign Documents</i> button below to receive an email with a link to sign your documents.</p>
+          <p class="margin-bottom-50">Once the documents have been electronically signed, you will be directed to a confirmation page.</p>
+
+          <md-button ui-sref="confirm" class="md-primary margin-bottom-50">Sign Documents</md-button>
+          
+          <!-- dev note: the following inputs will need to be placed into a pdf or word doc contract template and sent to docusign via api with an e-sign overlay template applied and emailed:
+          first name, last name, street, city, state, zip, age, gender, height, weight, term, coverage, premium. -->
+        </div>
+      </div>
+    </div>
+  </div>=
+
+</div>

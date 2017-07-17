@@ -15,6 +15,8 @@ const extensionGlob = `**/*{${settings.extensions.join(',')}}*`
 const entryPath = join(settings.source_path, settings.source_entry_path)
 const packPaths = sync(join(entryPath, extensionGlob))
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   entry: packPaths.reduce(
     (map, entry) => {
@@ -36,6 +38,17 @@ module.exports = {
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Website Starter',
+      template: 'app/javascript/packs/onboarding/about/about.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true
+      }
+    }),
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
     new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
     new ManifestPlugin({

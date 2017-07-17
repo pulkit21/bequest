@@ -1,0 +1,86 @@
+<div layout="column" flex="100">
+
+  <div class="body-container">
+    <div layout="row" layout-xs="column" flex="100">
+
+      <div class="form-column" layout="column" flex="25" flex-xs="100">
+        <div class="progress-container">
+          <div class="progress-block active">1. Questions</div>
+          <div class="progress-block">2. Coverage</div>
+          <div class="progress-block">3. Payment</div>
+          <div class="progress-block">4. Signature</div>
+          <div class="progress-block">5. Confirmation</div>
+        </div>
+      </div>
+
+      <div class="form-column" layout="column" flex="75" flex-xs="100">
+        <div class="form-container">
+          <h1>The Basics.</h1>
+
+          <!-- dev note: deal breaker - if 'Yes' selected, throw error message saying 'Sorry, we do not offer coverage to smokers.' -->
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Do you use tobacco products?</label>
+              <md-select ng-model="smoke">
+                <md-option value="No">No</md-option>
+                <md-option value="Yes">Yes</md-option>
+              </md-select>
+            </md-input-container>
+            <div class="learn-more">Learn More</div>
+          </div>
+
+          <!-- dev note: deal breaker - if 'Yes' selected, throw error message saying 'Sorry, we do not offer coverage to to individuals
+            with pre-existing health conditions.' -->
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Do you have pre-existing health conditions?</label>
+              <md-select ng-model="smoke">
+                <md-option value="No">No</md-option>
+                <md-option value="Yes">Yes</md-option>
+              </md-select>
+            </md-input-container>
+            <div class="learn-more">Learn More</div>
+          </div>
+
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Gender</label>
+              <md-select ng-model="gender">
+                <md-option value="Male">Male</md-option>
+                <md-option value="Female">Female</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+
+          <!-- dev note: deal breaker - if age is under 18 or over 65, throw error message saying 'Sorry but we do not offer coverage to individuals of your age.' -->
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Birthday (MM-DD-YYYY)</label>
+              <input ng-model="birthday">
+              <!-- format validation MM-DD-YYYY -->
+            </md-input-container>
+          </div>
+
+          <!-- dev note: deal breaker if BMI index is too high -->
+          <div class="form-row">
+            <div layout="row" flex="50" flex-sm="75" flex-xs="100">
+              <md-input-container layout="column" flex="50" class="md-block">
+                <label>Height (Inches)</label>
+                <input ng-model="height">
+                <!-- format validation 2 numbers only -->
+              </md-input-container>
+              <md-input-container layout="column" flex="50" class="md-block">
+                <label>Weight (Pounds)</label>
+                <input ng-model="weight">
+                <!-- format validation 2 or 3 numbers only -->
+              </md-input-container>
+            </div>
+          </div>
+
+          <md-button ui-sref="quote" class="md-primary">Next</md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

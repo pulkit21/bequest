@@ -1,0 +1,85 @@
+<div layout="column" flex="100">
+
+  <div class="body-container">
+    <div layout="row" layout-xs="column" flex="100">
+
+      <div class="form-column" layout="column" flex="25" flex-xs="100">
+        <div class="progress-container">
+          <div class="progress-block complete">1. Questions</div>
+          <div class="progress-block complete">2. Coverage</div>
+          <div class="progress-block active">3. Payment</div>
+          <div class="progress-block">4. Signature</div>
+          <div class="progress-block">5. Confirmation</div>
+        </div>
+      </div>
+
+      <div class="form-column" layout="column" flex="75" flex-xs="100">
+        <div class="form-container">
+          <h1>The Payment.</h1>
+
+          <h1>$50 per month</h1>
+
+          <div class="form-row">
+            <!-- dev note: payment will increase by 10% for each frequency increment:
+            annual = payment multiplied by 100%, semi-annual = 110%, quarterly = 120%, monthly = 130%.
+            round to the nearest dollar. -->
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Payment Frequency</label>
+              <md-select ng-model="paymentFrequency">
+                <md-option value="Annual">Annual</md-option>
+                <md-option value="Semi-Annual">Semi-Annual</md-option>
+                <md-option value="Quarterly">Quarterly</md-option>
+                <md-option value="Monthly">Monthly</md-option>
+              </md-select>
+            </md-input-container>
+            <div class="input-sub">Your monthly premium will increase by 10% for each reduction in payment frequency.</div>
+            <div class="learn-more">Learn More</div>
+          </div>
+
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Name on Card</label>
+              <input ng-model="cardName">
+            </md-input-container>
+          </div>
+
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Card number</label>
+              <input ng-model="cardNumber">
+              <!-- format validation 16? numbers only -->
+            </md-input-container>
+          </div>
+
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Expiration date (MM/YY)</label>
+              <input ng-model="cardExpiration">
+            </md-input-container>
+            <!-- format validation -->
+          </div>
+
+          <div class="form-row">
+            <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+              <label>Security number</label>
+              <input ng-model="cardSecurity">
+              <!-- format validation 3 or 4 numbers only -->
+            </md-input-container>
+          </div>
+
+          <div class="form-row">
+            <md-checkbox ng-model="termsAgree" aria-label="">
+              I agree to the terms and service.
+            </md-checkbox>
+          </div>
+          <br>
+          
+          <!-- dev note: clicking next will trigger the validation of information with paypal. throw error message if credit card is not charged successfully. -->
+          <md-button ui-sref="quote" class="md-secondary">Back</md-button>
+          <md-button ui-sref="sign" class="md-primary">Next</md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
