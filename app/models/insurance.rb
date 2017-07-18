@@ -6,6 +6,8 @@ class Insurance < ApplicationRecord
   validates_presence_of :tobacco_product, :health_condition, :gender, :birthday, :terms_and_services, :payment_frequency
   validates :height, :weight, :coverage_amount, presence: true, numericality: true
 
+  enum gender: ["male", "female"]
+  enum payment_frequency: ["annual", "semi-annual", "quarterly", "monthly"]
   # --------------------------------------------------------------------------
   # State Machine
   # --------------------------------------------------------------------------

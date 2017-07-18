@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170718070658) do
   create_table "insurances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "tobacco_product"
     t.boolean "health_condition"
-    t.boolean "gender"
+    t.integer "gender"
     t.date "birthday"
     t.integer "height"
     t.integer "weight"

@@ -3,7 +3,7 @@ class CreateInsurances < ActiveRecord::Migration[5.1]
     create_table :insurances, id: :uuid do |t|
       t.boolean :tobacco_product
       t.boolean :health_condition
-      t.boolean :gender
+      t.integer :gender
       t.date :birthday
       t.integer :height
       t.integer :weight
