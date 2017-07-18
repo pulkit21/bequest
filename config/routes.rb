@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # root 'home#index'
+  root 'home#landing'
 
   get '*insure',  to: "home#index"
   # get 'register',  to: "home#index"

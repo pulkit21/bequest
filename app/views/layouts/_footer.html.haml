@@ -1,0 +1,19 @@
+.footer
+  .footer-row{:flex => "100", :layout => "row", "layout-xs" => "column"}
+    .footer-column{:flex => "25", "flex-xs" => "100", :layout => "column"}
+      %a{"ui-sref" => "about"} About
+      %a{:target => "_blank", "ui-sref" => "blog"} Blog
+      %a{"ui-sref" => "careers"} Careers
+    .footer-column{:flex => "25", "flex-xs" => "100", :layout => "column"}
+      %a{"ui-sref" => "terms"} Terms
+      %a{"ui-sref" => "Privacy"} Privacy
+      %a{"ui-sref" => "Compare"} Compare
+    .footer-column{:flex => "25", "flex-xs" => "100", :layout => "column"}
+      %a{"ui-sref" => "support"} Support
+      %a{"ui-sref" => "press"} Press
+      %a{"ui-sref" => "contact"} Contact
+    .footer-column{:flex => "25", "flex-xs" => "100", :layout => "column"}
+      %a © 2017 Bequest Life Inc
+      %a{"ui-sref" => ""} Stay Connected
+      %a{"ui-sref" => ""} Social icons
+      / <img src="./img/favicon-white-small.png" class="footer-img">
