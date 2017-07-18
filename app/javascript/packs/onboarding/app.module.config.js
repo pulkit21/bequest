@@ -1,8 +1,9 @@
 defaultModuleConfig.$inject = [
   '$stateProvider',
-  '$urlRouterProvider'
+  '$urlRouterProvider',
+  '$locationProvider'
 ];
-function defaultModuleConfig($stateProvider, $urlRouterProvider) {
+function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
   $stateProvider
 
@@ -115,8 +116,8 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider) {
       template: `<header></header>
                  <blog></blog>
                  <footer></footer>`
-    })
-    ;
+    });
+    $locationProvider.html5Mode(true);
 }
 
 // defaultModuleRun.$inject = ['$location', '$rootScope', '$window'];
