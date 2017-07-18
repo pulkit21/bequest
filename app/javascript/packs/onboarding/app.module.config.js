@@ -7,10 +7,6 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvid
   $urlRouterProvider.otherwise('/');
   $stateProvider
 
-    .state('landing', {
-      url: '/',
-      template: `<landing></landing>`
-    })
 
     .state('register', {
       url: '/register',

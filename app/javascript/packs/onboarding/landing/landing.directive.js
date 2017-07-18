@@ -1,4 +1,4 @@
-// import './landing.scss';
+import './landing.scss';
 
 function landingDirective() {
   return {

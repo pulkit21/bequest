@@ -7,7 +7,7 @@ import angularMaterialIcons from 'angular-material-icons';
 import 'angular-material/angular-material.css';
 
 import {defaultModuleConfig} from './app.module.config';
-// import landingModule from './landing/landing.module';
+import landingModule from './landing/landing.module';
 import quoteModule from './quote/quote.module';
 import termsModule from './terms/terms.module';
 import contactModule from './contact/contact.module';
@@ -21,8 +21,8 @@ import paymentModule from './payment/payment.module';
 import supportModule from './support/support.module';
 import pressModule from './press/press.module';
 import signModule from './sign/sign.module';
-// import headerModule from './header/header.module';
-// import footerModule from './footer/footer.module';
+import headerModule from './header/header.module';
+import footerModule from './footer/footer.module';
 import confirmModule from './confirm/confirm.module';
 import registerModule from './register/register.module';
 
@@ -30,7 +30,7 @@ angular.module('bdi-landing', [
   uiRouter,
   ngMaterial,
   angularMaterialIcons,
-  // landingModule,
+  landingModule,
   quoteModule,
   termsModule,
   contactModule,
@@ -44,8 +44,8 @@ angular.module('bdi-landing', [
   supportModule,
   pressModule,
   signModule,
-  // headerModule,
-  // footerModule,
+  headerModule,
+  footerModule,
   confirmModule,
   registerModule
 ])
