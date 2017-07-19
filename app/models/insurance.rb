@@ -1,10 +1,15 @@
 class Insurance < ApplicationRecord
   include AASM
 
-  belongs_to :user
-
-  validates_presence_of :tobacco_product, :health_condition, :gender, :birthday, :terms_and_services, :payment_frequency
-  validates :height, :weight, :coverage_amount, presence: true, numericality: true
+  validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
+  validates_presence_of :gender, :birthday, if: :idle?
+  validates :height, :weight, presence: true, numericality: true, if: :idle?
+  after_create :change_state_to_question
+  # validates :coverage_amount, presence: true, numericality: true, if: :question?
+  # validates_presence_of :tobacco_product, :health_condition, :gender, :birthday, :terms_and_services, :payment_frequency
+  # validates :height, :weight, :coverage_amount, presence: true, numericality: true
+  validate :body_mass_index, on: :create
+  validate :check_current_age, on: :create
 
   enum gender: ["male", "female"]
   enum payment_frequency: ["annual", "semi-annual", "quarterly", "monthly"]
@@ -12,26 +17,70 @@ class Insurance < ApplicationRecord
   # State Machine
   # --------------------------------------------------------------------------
   aasm do
-    state :question, initial: true
+    state :idle, initial: true
+    state :question
     state :coverage
     state :payment
     state :signature
     state :confirmation
 
+    after_all_transitions :log_status_change
+
+    event :ques do
+      transitions from: :idle, to: :question
+    end
+
     event :cover do
-      transitions :from => :question, :to => :coverage
+      transitions from: :question, to: :coverage
     end
 
     event :pay do
-      transitions :from => [:question, :coverage], :to => :payment
+      before do
+        instance_eval do
+          validates_presence_of :terms_and_services, :payment_frequency
+        end
+      end
+      transitions from: :coverage, to: :payment
     end
 
     event :sign do
-      transitions :from => [:question, :coverage, :payment], :to => :signature
+      transitions from: :payment , to: :signature
     end
 
     event :confirm do
-      transitions :from => [:question, :coverage, :payment, :signature], :to => :confirmation
+      transitions from: :signature, to: :confirmation
     end
   end
+
+  def log_status_change
+    puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
+
+  #######
+  private
+  #######
+
+  def body_mass_index
+    if height && weight
+      body_mass = 703 * (height.to_f / (weight * weight))
+      if body_mass > 30
+        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
+      end
+    end
+  end
+
+  def check_current_age
+    if birthday
+      current_date = Time.now.utc.to_date
+      current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
+      if current_age < 18 || current_age >= 65
+        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
+      end
+    end
+  end
+
+  def change_state_to_question
+    self.ques!
+  end
+
 end
