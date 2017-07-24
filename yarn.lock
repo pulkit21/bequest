@@ -105,6 +105,10 @@ angular-material@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.4.tgz#27de35646f54ccd320080af0c708e1b438af87f6"
 
+angular-resource@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.5.tgz#d1e712ab01afa5d2ec649f5e471673a704f2be40"
+
 angular-storage@0.0.15:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/angular-storage/-/angular-storage-0.0.15.tgz#005d64808982848d949725e2b2bf90a1dd27afc1"
@@ -115,9 +119,15 @@ angular-ui-router@^1.0.3:
   dependencies:
     "@uirouter/core" "5.0.3"
 
-angular@>=1.3.0, angular@^1.6.5:
+angular@>=1.3.0, angular@^1.0, angular@^1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
+
+angularjs-rails-resource@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/angularjs-rails-resource/-/angularjs-rails-resource-2.2.2.tgz#cb9ab72b514e40424ce51d391659ee128730f2d3"
+  dependencies:
+    angular "^1.0"
 
 ansi-html@0.0.7:
   version "0.0.7"
