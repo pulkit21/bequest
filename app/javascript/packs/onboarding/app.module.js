@@ -27,6 +27,7 @@ import confirmModule from './confirm/confirm.module';
 import registerModule from './register/register.module';
 import bequestServices from './services/insurance.service';
 import bequestController from './apply/apply.controller';
+import bequestInterceptor from './services/insurance.interceptor';
 
 angular.module('bdi-landing', [
   uiRouter,
@@ -51,7 +52,8 @@ angular.module('bdi-landing', [
   confirmModule,
   registerModule,
   bequestServices,
-  bequestController
+  bequestController,
+  bequestInterceptor
 ])
 .config(defaultModuleConfig)
 // .run(defaultModuleRun);

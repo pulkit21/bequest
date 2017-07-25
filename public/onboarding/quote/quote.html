@@ -1,46 +1,59 @@
-<div layout="column" flex="100">
+<div>
 
-  <div class="body-container">
-    <div layout="row" layout-xs="column" flex="100">
+  <div layout="column" flex="100">
 
-      <div class="form-column" layout="column" flex="25" flex-xs="100">
-        <div class="progress-container">
-          <div class="progress-block complete">1. Questions</div>
-          <div class="progress-block active">2. Coverage</div>
-          <div class="progress-block">3. Payment</div>
-          <div class="progress-block">4. Signature</div>
-          <div class="progress-block">5. Confirmation</div>
-        </div>
-      </div>
+    <div class="body-container">
+      <div layout="row" layout-xs="column" flex="100">
 
-      <div class="form-column" layout="column" flex="75" flex-xs="100">
-        <div class="form-container">
-          <h1>The Coverage.</h1>
-          <p>Adjust the slider to choose your coverage amount.</p>
-          <div class="learn-more margin-bottom-50">How much do I need?</div>
-
-          <div class="margin-bottom-50">
-            <md-slider-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-              <md-slider flex step="100000" min="100000" max="2000000" ng-model="coverage"></md-slider>
-            </md-slider-container>
+        <div class="form-column" layout="column" flex="25" flex-xs="100">
+          <div class="progress-container">
+            <div class="progress-block complete">1. Questions</div>
+            <div class="progress-block active">2. Coverage</div>
+            <div class="progress-block">3. Payment</div>
+            <div class="progress-block">4. Signature</div>
+            <div class="progress-block">5. Confirmation</div>
           </div>
-
-          <div class="margin-bottom-50">
-            <h1 ng-model="coverage">$100,000 coverage</h1>
-            <p>dev note: term will be 65 subtracted by age</p>
-            <h1 ng-model="term">30 year term</h1>
-            
-            <!-- dev note: payment will be calculated based on age, gender, and coverage only -->
-            <h1 ng-model="premium">$50 per month</h1>
-            
-          </div>
-          <br>
-
-          <md-button ui-sref="apply" class="md-secondary">Back</md-button>
-          <md-button ui-sref="payment" class="md-primary">Next</md-button>
         </div>
+
+        <form layout="column" flex="75" flex-xs="100" name="quoteForm" ng-submit="quoteSubmit(quoteForm)" novalidate>
+          <div class="form-column">
+            <div class="form-container">
+              <h1>The Coverage.</h1>
+              <p>Adjust the slider to choose your coverage amount.</p>
+              <div class="learn-more margin-bottom-50">How much do I need?</div>
+
+              <div class="margin-bottom-50">
+                <md-slider-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                  <md-slider
+                    flex step="100000"
+                    min="100000"
+                    max="2000000"
+                    ng-model="quoteForm.coverage"
+                    required
+                  >
+                  </md-slider>
+                </md-slider-container>
+              </div>
+
+              <div class="margin-bottom-50">
+                <h1 ng-model="coverage">${{coverage}} coverage</h1>
+                <p>dev note: term will be 65 subtracted by age</p>
+                <h1 ng-model="term">30 year term</h1>
+
+                <!-- dev note: payment will be calculated based on age, gender, and coverage only -->
+                <h1 ng-model="premium">$50 per month</h1>
+
+              </div>
+              <br>
+
+              <md-button ui-sref="apply" class="md-secondary">Back</md-button>
+              <md-button class="md-primary" ng-click="quoteSubmit(quoteForm)" ng-disabled="quoteForm.$invalid">Next</md-button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+
   </div>
 
 </div>

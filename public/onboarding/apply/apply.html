@@ -1,4 +1,4 @@
-<div ng-controller="InsuranceController">
+<div>
   <div layout="column" flex="100">
 
     <div class="body-container">
@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <form layout="column" flex="75" flex-xs="100" name="questionForm" ng-submit="questionSubmit()" novalidate>
+        <form layout="column" flex="75" flex-xs="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
           <div class="form-column">
             <div class="form-container">
               <h1>The Basics.</h1>
@@ -24,11 +24,12 @@
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Do you use tobacco products?</label>
                   <md-select
-                    ng-model="tobaccoProduct"
+                    name="tobaccoProduct"
+                    ng-model="insurance.tobaccoProduct"
                     required
                   >
-                    <md-option value="false">No</md-option>
-                    <md-option value="true">Yes</md-option>
+                    <md-option value="0" ng-selected="insurance.tobaccoProduct">No</md-option>
+                    <md-option value="1" ng-selected="insurance.tobaccoProduct">Yes</md-option>
                   </md-select>
                 </md-input-container>
                 <div class="learn-more">Learn More</div>
@@ -40,11 +41,12 @@
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Do you have pre-existing health conditions?</label>
                   <md-select
-                    ng-model="healthCondition"
+                    name="healthCondition"
+                    ng-model="insurance.healthCondition"
                     required
                   >
-                    <md-option value="false">No</md-option>
-                    <md-option value="true">Yes</md-option>
+                    <md-option value="0" ng-selected="insurance.healthCondition">No</md-option>
+                    <md-option value="1" ng-selected="insurance.healthCondition">Yes</md-option>
                   </md-select>
                 </md-input-container>
                 <div class="learn-more">Learn More</div>
@@ -54,7 +56,8 @@
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Gender</label>
                   <md-select
-                    ng-model="gender"
+                    name="gender"
+                    ng-model="insurance.gender"
                     required
                   >
                     <md-option value="male">Male</md-option>
@@ -68,7 +71,8 @@
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Birthday (YYYY-MM-DD)</label>
                   <input
-                    ng-model="birthday"
+                    name="birthday"
+                    ng-model="insurance.birthday"
                     type="date"
                     max="{{currentDate() | date:'yyyy-MM-dd'}}"
                     required
@@ -84,7 +88,7 @@
                   <md-input-container layout="column" flex="50" class="md-block">
                     <label>Height (Inches)</label>
                     <input
-                      ng-model="height"
+                      ng-model="insurance.height"
                       ng-minlength="2"
                       ng-maxlength="3"
                       name="height"
@@ -100,7 +104,7 @@
                   <md-input-container layout="column" flex="50" class="md-block">
                     <label>Weight (Pounds)</label>
                     <input
-                      ng-model="weight"
+                      ng-model="insurance.weight"
                       ng-minlength="2"
                       ng-maxlength="3"
                       name="weight"
@@ -117,7 +121,7 @@
                 <span class="learn-more" ng-if="errors.data.weight_coverage"> {{errors.data.weight_coverage[0]}}</span>
               </div>
 
-              <md-button class="md-primary" ng-click="questionSubmit()" ng-disabled="questionForm.$invalid">Next</md-button>
+              <md-button class="md-primary" ng-click="questionSubmit(insurance)" ng-disabled="questionForm.$invalid">Next</md-button>
               <!-- <md-button ng-click="questionSubmit()" class="md-primary">Next</md-button> -->
               <!-- <md-button ui-sref="quote" class="md-primary">Next</md-button> -->
             </div>
