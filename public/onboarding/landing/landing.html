@@ -1,22 +1,143 @@
-<div layout="column" flex="100">
+<div>
 
-  <div class="title">
+  <div class="family-bg">
     <div class="margin-bottom-30" layout="row" layout-xs="column" flex="100">
-      <div class="container-margin" layout="column" flex="50" flex-xs="100">
-        <div class="title-text">Life insurance in 5 minutes.</div>
-        <p>Save 20% on your premiums. No Exams.</p>
+      <div class="container-margin text-center" layout="column" flex="100" flex-xs="100">
+        <h1 class="white">Affordable life insurance in minutes.</h1>
+        <p>Plans starting at $10 a month. Get coverage instantly with no exams. Adjust and pause your policy as life happens.</p>
+        <md-button ui-sref="apply" class="md-primary landing-button">Apply Today</md-button>
+        <!-- <div id="mc_embed_signup">
+          <form action="//bequestlife.us16.list-manage.com/subscribe/post?u=cd7307720bd59ec1c7e30ef79&amp;id=f478eea267" method="post"
+            id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
 
-        <md-input-container class="md-block">
-          <label>Enter Email Address</label>
-          <input ng-model="email">
-        </md-input-container>
+              <md-input-container layout="column" flex="60" class="md-block landing-input">
+                <label>Email Address</label>
+                <input type="email" value="" name="EMAIL" id="mce-EMAIL" required>
+              </md-input-container>
 
-        <div ui-sref="register" class="title-block" layout="column" flex="33" flex-xs="100">
-          <div class="title-block-text">
-            Get Coverage
-          </div>
-        </div>
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_cd7307720bd59ec1c7e30ef79_f478eea267" tabindex="-1" value="">
+              </div>
 
+              <div class="clear">
+                <md-button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="md-primary landing-button">Subscribe</md-button>
+              </div>
+
+            </div>
+          </form>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-press text-center">
+    <img class="img-press" src="../onboarding/img/press/forbes.png">
+    <img class="img-press" src="../onboarding/img/press/wsj.png">
+    <img class="img-press" src="../onboarding/img/press/fortune.png">
+    <img class="img-press" src="../onboarding/img/press/nerdwallet.png">
+    <img class="img-press" src="../onboarding/img/press/businessinsider.png">
+  </div>
+
+  <div class="landing-white">
+    <div class="container-margin text-center margin-bottom-30" layout="row" layout-xs="column" flex="100">
+      <h1>Peace of mind wherever your mind is.</h1>
+      <p>No matter what life throws at you, we have your back. Live in confidence through family and career events. Protecting
+        your family has never been easier.</p>
+    </div>
+
+    <div layout="row" layout-xs="column" flex="100">
+      <div class="text-center" layout-padding layout="column" flex="100" flex-xs="100">
+        <img src="../onboarding/img/events.png" class="img-events">
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-border">
+    <div class="container-margin text-center" layout="row" layout-xs="column" flex="100">
+      <h1 class="black">Insurance as a service.</h1>
+    </div>
+
+    <div layout="row" layout-xs="column" flex="100">
+
+      <div class="text-center container-margin" layout-padding layout="column" flex="33" flex-xs="100">
+        <ng-md-icon icon="build" class="img-icon"></ng-md-icon>
+        <p class="text-left">Adjust your coverage and premium frequency anytime.</p>
+      </div>
+
+      <div class="text-center container-margin" layout-padding layout="column" flex="33" flex-xs="100">
+        <ng-md-icon icon="pause" class="img-icon"></ng-md-icon>
+        <p class="text-left">Pause your policy anytime and renew in minutes.</p>
+      </div>
+
+      <div class="text-center container-margin" layout-padding layout="column" flex="33" flex-xs="100">
+        <ng-md-icon icon="cake" class="img-icon"></ng-md-icon>
+        <p class="text-left">Flexible term life insurance that lasts until your 65th birthday. </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="landing-freelancer">
+    <div layout="row" layout-xs="column" flex="100">
+      <div class="container-margin text-center" layout-padding layout="column" flex="50" flex-xs="100">
+        <h1>Designed for you.</h1>
+        <p>We are the #1 life insurance provider for millennials and freelancers.</p>
+        <p>Our policy holders understand the importance of time and money which is why they choose Bequest to carry on their
+          legacy.
+        </p>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="50" flex-xs="100">
+        <h1>Smart like you.</h1>
+        <p>Our application process is simple and instant. No exams required.</p>
+        <p>Why get a quote from a middleman? We approve and underwrite your policy ourselves. Know who has you covered.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-gray">
+    <div class="text-center" layout="row" layout-xs="column" flex="100">
+      <h1 class="black">Learn about your insurance needs.</h1>
+    </div>
+    <br>
+    <div layout="row" layout-xs="column" flex="100">
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">Do I need life insurance?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">What are the advantages to term life insurance?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">How much life insurance do I need?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">Can I afford life insurance?</div>
+      </div>
+    </div>
+
+    <div layout="row" layout-xs="column" flex="100">
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">Who can I name as a beneficiary?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">How often should I review my life insurance needs?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">What if I already have life insurance through my employer?</div>
+      </div>
+      <div class="container-margin text-center" layout-padding layout="column" flex="25" flex-xs="100">
+        <div class="question-block">What if I am unemployed?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="family-bg-2">
+    <div class="margin-bottom-30" layout="row" layout-xs="column" flex="100">
+      <div class="container-margin text-center" layout="column" flex="100" flex-xs="100">
+        <h1 class="white">Live in a nest with Bequest.</h1>
+        <br>
+        <md-button ui-sref="apply" class="md-primary landing-button">Apply Today</md-button>
       </div>
     </div>
   </div>
