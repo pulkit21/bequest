@@ -4,12 +4,7 @@ import bequestInterceptor from './insurance.interceptor';
 
 bequestService = angular
   .module('bequest.services',  ['rails', bequestInterceptor])
-  .factory 'InsuranceService', (
-    RailsResource,
-    railsSerializer,
-    $location,
-    insuranceInterceptor
-  ) ->
+  .factory 'InsuranceService', ['RailsResource', 'railsSerializer', '$location', 'insuranceInterceptor', (RailsResource, railsSerializer, $location, insuranceInterceptor) ->
     class Insurance extends RailsResource
       @configure
         url: ('/api/v1/insurances/'),
@@ -17,8 +12,5 @@ bequestService = angular
         interceptors: [insuranceInterceptor]
       constructor: ->
         super(arguments...)
-
-      setSavedStatus: ->
-        debugger
-
+]
 export default bequestService.name;

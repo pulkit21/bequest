@@ -3,7 +3,7 @@ import bequestService from './insurance.service';
 
 bequestInterceptor = angular
   .module('bequest.interceptors', [])
-  .factory 'insuranceInterceptor', ($q) ->
+  .factory 'insuranceInterceptor', ['$q', ($q) ->
     isWatchedHttpMethod = (method) ->
       method in ['get', 'post', 'put']
 
@@ -12,5 +12,5 @@ bequestInterceptor = angular
       result.healthCondition = if result.healthCondition then "1" else "0"
       result.birthday = new Date(result.birthday)
       result
-
+]
 export default bequestInterceptor.name;
