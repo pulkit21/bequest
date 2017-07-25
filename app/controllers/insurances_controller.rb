@@ -30,12 +30,6 @@ class InsurancesController < ApplicationController
 
   end
 
-  def destroy
-    @insurance.destroy
-    head :no_content
-  end
-
-
 
 
 

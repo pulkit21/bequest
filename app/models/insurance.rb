@@ -4,15 +4,18 @@ class Insurance < ApplicationRecord
   validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
   validates_presence_of :gender, :birthday, if: :idle?
   validates :height, :weight, presence: true, numericality: true, if: :idle?
-  after_create :change_state_to_question
+  after_create :change_state_to_question, if: :idle?
   # validates :coverage_amount, presence: true, numericality: true, if: :question?
-  # validates_presence_of :tobacco_product, :health_condition, :gender, :birthday, :terms_and_services, :payment_frequency
+  # validates_presence_of :tobacco_product, :health_condition, ¡:gender, :birthday, :terms_and_services, :payment_frequency
   # validates :height, :weight, :coverage_amount, presence: true, numericality: true
   validate :body_mass_index, on: :create
   validate :check_current_age, on: :create
+  validate :check_coverage_stage, on: :update, if: :question?
+  validates_presence_of :terms_and_services, if: :coverage?
+  validate :check_payment_stage, on: :update, if: :coverage?
 
   enum gender: ["male", "female"]
-  enum payment_frequency: ["annual", "semi-annual", "quarterly", "monthly"]
+  enum payment_frequency: {"annual" => 0, "semi-annual" => 10 , "quarterly" => 20, "monthly" => 30}
   # --------------------------------------------------------------------------
   # State Machine
   # --------------------------------------------------------------------------
@@ -60,6 +63,23 @@ class Insurance < ApplicationRecord
   private
   #######
 
+  def check_coverage_stage
+    if coverage_amount && self.question?
+      self.update_columns(aasm_state: "coverage")
+      puts "#{self.inspect}"
+    else
+      errors.add(:coverage_amount, "Invalide amount.")
+    end
+  end
+
+  def check_payment_stage
+    if payment_frequency && terms_and_services && self.coverage?
+      self.update_columns(aasm_state: "payment")
+    else
+      errors.add(:payment, "Please accept payment frequency.")
+    end
+  end
+
   def body_mass_index
     if height && weight
       body_mass = 703 * (height.to_f / (weight * weight))
@@ -80,7 +100,7 @@ class Insurance < ApplicationRecord
   end
 
   def change_state_to_question
-    self.ques!
+    self.update_columns(aasm_state: "question")
   end
 
 end

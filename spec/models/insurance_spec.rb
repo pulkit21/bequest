@@ -3,9 +3,18 @@ require 'rails_helper'
 RSpec.describe Insurance, type: :model do
 
   it "should create insurance with valid attributes" do
-    insurance = create(:insurance, tobacco_product: false, health_condition: true, gender: 'male', birthday: Date.parse("1989-05-19"), height: 169, weight: 150)
-    expect(insurance).to be_valid
+    insurance = build(:insurance, tobacco_product: false, health_condition: true, gender: 'male', birthday: Date.parse("1989-05-19"), height: 169, weight: 150)
+    expect(insurance.aasm_state).to eq("idle")
+    insurance.save!
+    expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("question")
+    insurance.update(coverage_amount: 123212)
+    expect(insurance.persisted?).to be_truthy
+    expect(insurance.aasm_state).to eq("coverage")
+    insurance.update(terms_and_services: true, payment_frequency: 'annual')
+    expect(insurance.persisted?).to be_truthy
+    expect(insurance.aasm_state).to eq("payment")
+
   end
 
   it "should not create insurance without tobacco product attribute" do
@@ -22,6 +31,35 @@ RSpec.describe Insurance, type: :model do
   it "should not create insurance without gender attribute" do
     insurance = build(:insurance, tobacco_product: false, health_condition: true, gender: '', birthday: Date.parse("1989-05-19"), height: 169, weight: 150)
     expect(insurance.valid?).to be_falsey
+  end
+
+  it "should not update insurance without coverage amount attribute and should not change state to coverage" do
+    insurance = build(:insurance, tobacco_product: false, health_condition: true, gender: 'male', birthday: Date.parse("1989-05-19"), height: 169, weight: 150)
+    insurance.save!
+    expect(insurance.persisted?).to be_truthy
+    expect(insurance.aasm_state).to eq("question")
+    insurance.update(coverage_amount: '')
+    expect(insurance.valid?).to be_falsey
+    expect(insurance.aasm_state).to eq("question")
+  end
+
+  it "should not update insurance without terms & services, payment frequency attributes and should not change state to payment" do
+    insurance = build(:insurance, tobacco_product: false, health_condition: true, gender: 'male', birthday: Date.parse("1989-05-19"), height: 169, weight: 150)
+    insurance.save!
+    expect(insurance.persisted?).to be_truthy
+    expect(insurance.aasm_state).to eq("question")
+    insurance.update(coverage_amount: 12334)
+    expect(insurance.persisted?).to be_truthy
+    expect(insurance.aasm_state).to eq("coverage")
+    insurance.update(terms_and_services: false, payment_frequency: "annual")
+    expect(insurance.valid?).to be_falsey
+    expect(insurance.aasm_state).to eq("coverage")
+    expect(insurance.errors.full_messages.first).to eq("Terms and services can't be blank")
+    insurance.update(terms_and_services: true, payment_frequency: "")
+    expect(insurance.aasm_state).to eq("coverage")
+    expect(insurance.valid?).to be_falsey
+    expect(insurance.errors.full_messages.first).to eq("Payment Please accept payment frequency.")
+    # expect(insurance.persisted?).to be_truthy
   end
 
 
