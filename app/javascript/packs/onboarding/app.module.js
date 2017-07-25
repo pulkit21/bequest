@@ -25,6 +25,9 @@ import headerModule from './header/header.module';
 import footerModule from './footer/footer.module';
 import confirmModule from './confirm/confirm.module';
 import registerModule from './register/register.module';
+import bequestServices from './services/insurance.service';
+import bequestController from './apply/apply.controller';
+import bequestInterceptor from './services/insurance.interceptor';
 
 angular.module('bdi-landing', [
   uiRouter,
@@ -47,7 +50,10 @@ angular.module('bdi-landing', [
   headerModule,
   footerModule,
   confirmModule,
-  registerModule
+  registerModule,
+  bequestServices,
+  bequestController,
+  bequestInterceptor
 ])
 .config(defaultModuleConfig)
 // .run(defaultModuleRun);

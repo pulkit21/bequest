@@ -48,12 +48,26 @@ gem 'haml-rails'
 # Authentication && Authorization
 gem 'devise'
 
+# CORS
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'awesome_print'
+  gem "binding_of_caller"
+  gem 'better_errors', github: 'charliesome/better_errors'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  # Testing Framework
+  gem 'rspec-rails', '~> 3.5'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '4.5.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'guard-rspec'
 end
 
 group :development do
@@ -69,3 +83,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "foreman"
+gem 'aasm'

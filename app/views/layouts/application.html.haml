@@ -1,11 +1,16 @@
 !!! 5
 %html(lang="en")
   %head
+    %base{:href => "/"}
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "Bequest"
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "BDI Life provides self-service life insurance. Answer questions, quote, e-sign, and pay by card. No exams, no hassle.", :name => "description"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title BDI Life | Life insurance in 5 minutes.
+
     = csrf_meta_tags
+    = stylesheet_pack_tag 'onboarding/app'
     / = stylesheet_link_tag "application", :media => "all"
     / = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
     / = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
@@ -19,9 +24,12 @@
 
 
 
-  %body
-    %div{"ui-view" => ""}
-    / = yield
-
+  %body.ng-cloak{"ng-cloak" => ""}
+    / ============== HEADER ==============
+    = render 'layouts/nav'
+    = yield
+    / %div{"ui-view" => ""}
+    / ============== FOOTER ==============
+    = render 'layouts/footer'
     = javascript_pack_tag 'onboarding/app'
-    = stylesheet_pack_tag 'onboarding/app'
+

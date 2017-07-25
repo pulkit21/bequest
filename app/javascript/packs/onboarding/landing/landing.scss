@@ -125,7 +125,7 @@ iframe {
   background: #333;
   position: relative;
 }
-  
+
 .footer-column {
   padding-left: 0px;
   display: block !important;
@@ -305,7 +305,7 @@ iframe {
 
 .quote-text {
   font-size: 35px;
-  line-height: 35px; 
+  line-height: 35px;
   font-weight: 300;
   margin: 50px 0px 0px 0px !important;
   color: #333;
@@ -319,7 +319,7 @@ iframe {
 
 .form-container h1 {
   font-size: 35px;
-  line-height: 35px; 
+  line-height: 35px;
   font-weight: 200;
   margin: 0px 0px 50px 0px;
   color: #333;
@@ -576,7 +576,7 @@ md-checkbox.md-checked .md-icon {
   padding: 150px 30px 100px 30px;
   position: relative;
   z-index: 2;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -596,7 +596,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(2deg);
@@ -652,7 +652,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -672,7 +672,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(-2deg);
@@ -709,7 +709,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 2;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -729,7 +729,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -758,7 +758,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 2;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -778,7 +778,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -806,7 +806,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -826,7 +826,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(-5deg);
@@ -874,7 +874,6 @@ md-checkbox.md-checked .md-icon {
   text-align: right;
   transition: all 0.15s linear;
   border-top: 1px solid #e6eef2;
-  
   &:before,
   &:after {
     background: inherit;
@@ -894,7 +893,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -932,7 +931,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -952,7 +951,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(-2deg);
@@ -979,7 +978,6 @@ md-checkbox.md-checked .md-icon {
   z-index: 1;
   transition: all 0.15s linear;
   border-bottom: 1px solid #e6eef2;
-  
   &:before,
   &:after {
     background: inherit;
@@ -999,7 +997,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1042,7 +1040,6 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   background: #e6eef2;
-  
   &:before,
   &:after {
     background: inherit;
@@ -1062,7 +1059,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1078,7 +1075,6 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   background: #e6eef2;
-  
   &:before,
   &:after {
     background: inherit;
@@ -1098,7 +1094,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 100%;
         transform-origin: 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1148,7 +1144,7 @@ md-checkbox.md-checked .md-icon {
   padding: 50px 30px;
   position: relative;
   z-index: 1;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -1169,7 +1165,7 @@ md-checkbox.md-checked .md-icon {
         transform-origin: 100%;
     border-top: 1px solid #e6eef2;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1185,7 +1181,6 @@ md-checkbox.md-checked .md-icon {
   z-index: 2;
   transition: all 0.15s linear;
   background: #e6eef2;
-  
   &:before,
   &:after {
     background: inherit;
@@ -1205,7 +1200,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1234,7 +1229,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   transition: all 0.15s linear;
-  
+
   &:before,
   &:after {
     background: inherit;
@@ -1254,7 +1249,7 @@ md-checkbox.md-checked .md-icon {
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
   }
-  
+
   &:after {
     bottom: 0;
     -ms-transform: skewY(0deg);
@@ -1292,7 +1287,7 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 }
 
 md-input-container:not([md-no-float]) .md-select-placeholder span:first-child,
-md-input-container label:not(.md-no-float):not(.md-container-ignore), 
+md-input-container label:not(.md-no-float):not(.md-container-ignore),
 md-input-container .md-placeholder {
     font-size: 16px !important;
 }

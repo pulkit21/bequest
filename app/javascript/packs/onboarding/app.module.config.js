@@ -1,56 +1,36 @@
 defaultModuleConfig.$inject = [
   '$stateProvider',
-  '$urlRouterProvider'
+  '$urlRouterProvider',
+  '$locationProvider'
 ];
-function defaultModuleConfig($stateProvider, $urlRouterProvider) {
+function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
   $stateProvider
-
-    .state('landing', {
-      url: '/',
-      template: `<header></header>
-                 <landing></landing>
-                 <footer></footer>`
-    })
-
-
 
 
     .state('register', {
       url: '/register',
-      template: `<header></header>
-                 <register></register>
-                 <footer></footer>`
+      template: `<register></register>`
     })
     .state('sign', {
       url: '/sign',
-      template: `<header></header>
-                 <sign></sign>
-                 <footer></footer>`
+      template: `<sign></sign>`
     })
     .state('apply', {
       url: '/apply',
-      template: `<header></header>
-                 <apply></apply>
-                 <footer></footer>`
+      template: `<apply></apply>`
     })
     .state('payment', {
       url: '/payment',
-      template: `<header></header>
-                 <payment></payment>
-                 <footer></footer>`
+      template: `<payment></payment>`
     })
     .state('quote', {
       url: '/quote',
-      template: `<header></header>
-                 <quote></quote>
-                 <footer></footer>`
+      template: `<quote></quote>`
     })
     .state('confirm', {
       url: '/confirm',
-      template: `<header></header>
-                 <confirm></confirm>
-                 <footer></footer>`
+      template: `<confirm></confirm>`
     })
 
 
@@ -58,65 +38,45 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider) {
 
     .state('contact', {
       url: '/contact',
-      template: `<header></header>
-                 <contact></contact>
-                 <footer></footer>`
+      template: `<contact></contact>`
     })
     .state('about', {
       url: '/about',
-      template: `<header></header>
-                 <about></about>
-                 <footer></footer>`
+      template: `<about></about>`
     })
     .state('careers', {
       url: '/careers',
-      template: `<header></header>
-                 <about></about>
-                 <footer></footer>`
+      template: `<careers></careers>`
     })
     .state('learn', {
       url: '/learn',
-      template: `<header></header>
-                 <learn></learn>
-                 <footer></footer>`
+      template: `<learn></learn>`
     })
     .state('compare', {
       url: '/compare',
-      template: `<header></header>
-                 <compare></compare>
-                 <footer></footer>`
+      template: `<compare></compare>`
     })
     .state('support', {
       url: '/support',
-      template: `<header></header>
-                 <support></support>
-                 <footer></footer>`
+      template: `<support></support>`
     })
     .state('press', {
       url: '/press',
-      template: `<header></header>
-                 <press></press>
-                 <footer></footer>`
+      template: `<press></press>`
     })
     .state('terms', {
       url: '/terms',
-      template: `<header></header>
-                 <terms></terms>
-                 <footer></footer>`
+      template: `<terms></terms>`
     })
     .state('privacy', {
       url: '/privacy',
-      template: `<header></header>
-                 <privacy></privacy>
-                 <footer></footer>`
+      template: `<privacy></privacy>`
     })
     .state('blog', {
       url: '/blog',
-      template: `<header></header>
-                 <blog></blog>
-                 <footer></footer>`
-    })
-    ;
+      template: `<blog></blog>`
+    });
+    $locationProvider.html5Mode(true);
 }
 
 // defaultModuleRun.$inject = ['$location', '$rootScope', '$window'];
