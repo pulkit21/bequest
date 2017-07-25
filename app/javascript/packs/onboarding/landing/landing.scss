@@ -10,7 +10,7 @@ h1 {
   font-weight: 300;
   font-size: 45px;
   line-height: 55px;
-  color: #00aaff;
+  color: #333;
 }
 
 h2 {
@@ -190,13 +190,13 @@ iframe {
 	padding: 100px 30px;
 }
 
-.landing-freelancer {
-  background: url(../img/freelancer.png) no-repeat center center;
+.family-bg-3 {
+  background: url(../img/kitchen.png) no-repeat center center;
 	background-size: cover !important;
-	padding: 100px 30px 120px 30px;
+	padding: 100px 30px 140px 30px;
 }
 
-.landing-freelancer p {
+.family-bg-3 p {
   text-align: left !important;
 }
 
@@ -205,17 +205,33 @@ iframe {
   padding: 0px 30px;
 }
 
+.landing-hexagon {
+  background: url(../img/hexagon_bg_light_2.png) no-repeat center center;
+	background-size: cover !important;
+	padding: 100px 30px 120px 30px;
+}
+
+.landing-hexagon p {
+  text-align: left !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.landing-white p {
+  text-align: left !important;
+  padding: 0px 30px;
+}
+
 .landing-white {
   padding: 100px 30px 120px 30px;
 }
 
 .landing-border {
-  padding: 100px 30px 120px 30px;
-  border-top: 1px solid #e6eef2;
+  padding: 100px 30px 140px 30px;
 }
 
 .landing-gray {
-  padding: 100px 30px 120px 30px;
+  padding: 100px 30px 140px 30px;
   background: #e6eef2;
 }
 
@@ -1357,7 +1373,27 @@ md-select {
 .img-events {
   width: 100%;
   max-width: 800px !important;
-  margin-top: 50px;
+  margin-top: 0px;
+}
+
+.img-favicon {
+  width: 100%;
+  max-width: 200px !important;
+  height: auto;
+  display: inline-block;
+  animation: drift 6000ms infinite linear;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+}
+
+
+.container-block {
+  min-height: 200px;
+  display: inline-block;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .img-freelancer {
@@ -1483,6 +1519,7 @@ md-select {
 
 .container-margin {
   display: block !important;
+  position: relative;
 }
 
 .text-container {
