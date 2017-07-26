@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   end
 
   def apply
-
+    @base_path = '/insurance/'
   end
 
 
