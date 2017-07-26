@@ -1,13 +1,13 @@
 !!! 5
 %html(lang="en")
   %head
-    %base{:href => "/"}
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta{:content => "index,follow", :name => "robots"}/
     %meta{:content => "BDI Life provides self-service life insurance. Answer questions, quote, e-sign, and pay by card. No exams, no hassle.", :name => "description"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title BDI Life | Life insurance in 5 minutes.
+    %base{:href => defined?(@base_path) ? @base_path : "/"}
 
     = csrf_meta_tags
     = stylesheet_pack_tag 'onboarding/app'
@@ -24,12 +24,12 @@
 
 
 
-  %body.ng-cloak{"ng-cloak" => ""}
+  %body
     / ============== HEADER ==============
     = render 'layouts/nav'
     = yield
     / %div{"ui-view" => ""}
     / ============== FOOTER ==============
     = render 'layouts/footer'
-    = javascript_pack_tag 'onboarding/app'
+    / = javascript_pack_tag 'onboarding/app'
 

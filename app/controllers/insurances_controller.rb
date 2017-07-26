@@ -23,6 +23,14 @@ class InsurancesController < ApplicationController
   def chart_data
   end
 
+  def learn
+
+  end
+
+  def blog
+
+  end
+
 
   def update
     if @insurance.update(insurance_params)
