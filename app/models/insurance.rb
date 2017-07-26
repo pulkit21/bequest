@@ -10,9 +10,9 @@ class Insurance < ApplicationRecord
   # validates :height, :weight, :coverage_amount, presence: true, numericality: true
   validate :body_mass_index, on: :create
   validate :check_current_age, on: :create
-  validate :check_coverage_stage, on: :update, if: :question?
   validates_presence_of :terms_and_services, if: :coverage?
   validate :check_payment_stage, on: :update, if: :coverage?
+  validate :check_coverage_stage, on: :update, if: :question?
 
   enum gender: ["male", "female"]
   enum payment_frequency: {"annual" => 0, "semi-annual" => 10 , "quarterly" => 20, "monthly" => 30}
@@ -59,14 +59,38 @@ class Insurance < ApplicationRecord
     puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
   end
 
+  # Current Age
+  def current_age
+    Date.today.year - self.birthday.year
+  end
+
+  # Coverage term age
+  def coverage_term_age
+    65 - current_age
+  end
+
+  # def self.chat_calculation(current_age, current_amount)
+  #   min_age = 18
+  #   min_amount = 100000
+  #   current_age_group =  current_age - min_age
+  #   premium_amount = current_amount / min_amount
+  #   premium_amount = premium_amount - 1
+  #   current_age_group = current_age_group if current_age_group >= 0 && current_age_group <= 64
+  #   exact_percentage = (10 + current_age_group) + (10 * premium_amount)
+  # end
+
   #######
   private
   #######
 
   def check_coverage_stage
-    if coverage_amount && self.question?
-      self.update_columns(aasm_state: "coverage")
-      puts "#{self.inspect}"
+    if coverage_amount && self.question? && coverage_payment
+      if coverage_payment == PremiumChart.data(coverage_amount, self.coverage_term_age)
+        self.update_columns(aasm_state: "coverage")
+        puts "#{self.inspect}"
+      else
+        errors.add(:coverage_payment, "Invalide coverage percentage.")
+      end
     else
       errors.add(:coverage_amount, "Invalide amount.")
     end
@@ -76,7 +100,7 @@ class Insurance < ApplicationRecord
     if payment_frequency && terms_and_services && self.coverage?
       self.update_columns(aasm_state: "payment")
     else
-      errors.add(:payment, "Please accept payment frequency.")
+      errors.add(:terms_and_services, "Please accept terms and services.")
     end
   end
 
@@ -100,7 +124,7 @@ class Insurance < ApplicationRecord
   end
 
   def change_state_to_question
-    self.update_columns(aasm_state: "question")
+    self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
   end
 
 end

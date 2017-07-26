@@ -8,7 +8,7 @@ RSpec.describe Insurance, type: :model do
     insurance.save!
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("question")
-    insurance.update(coverage_amount: 123212)
+    insurance.update(coverage_amount: 1200000, coverage_payment: 139)
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("coverage")
     insurance.update(terms_and_services: true, payment_frequency: 'annual')
@@ -48,7 +48,7 @@ RSpec.describe Insurance, type: :model do
     insurance.save!
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("question")
-    insurance.update(coverage_amount: 12334)
+    insurance.update(coverage_amount: 1200000, coverage_payment: 139)
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("coverage")
     insurance.update(terms_and_services: false, payment_frequency: "annual")
@@ -58,7 +58,7 @@ RSpec.describe Insurance, type: :model do
     insurance.update(terms_and_services: true, payment_frequency: "")
     expect(insurance.aasm_state).to eq("coverage")
     expect(insurance.valid?).to be_falsey
-    expect(insurance.errors.full_messages.first).to eq("Payment Please accept payment frequency.")
+    expect(insurance.errors.full_messages.first).to eq("Terms and services Please accept terms and services.")
     # expect(insurance.persisted?).to be_truthy
   end
 

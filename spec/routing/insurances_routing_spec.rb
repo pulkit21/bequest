@@ -19,8 +19,8 @@ RSpec.describe InsurancesController, type: :routing do
       expect(put: "api/v1/insurances/433f7094-7415-43c8-9331-d431b3048b5a").to route_to("insurances#update", id: "433f7094-7415-43c8-9331-d431b3048b5a", format: :json)
     end
 
-    it "routes to #destroy" do
-      expect(delete: "api/v1/insurances/433f7094-7415-43c8-9331-d431b3048b5a").to route_to("insurances#destroy", id: "433f7094-7415-43c8-9331-d431b3048b5a", format: :json)
-    end
+    # it "routes to #destroy" do
+    #   expect(delete: "api/v1/insurances/433f7094-7415-43c8-9331-d431b3048b5a").to route_to("insurances#destroy", id: "433f7094-7415-43c8-9331-d431b3048b5a", format: :json)
+    # end
   end
 end

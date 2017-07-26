@@ -20,6 +20,9 @@ class InsurancesController < ApplicationController
     end
   end
 
+  def chart_data
+  end
+
 
   def update
     if @insurance.update(insurance_params)
@@ -46,6 +49,8 @@ class InsurancesController < ApplicationController
                               :height,
                               :weight,
                               :coverage_amount,
+                              :coverage_age,
+                              :coverage_payment,
                               :payment_frequency,
                               :terms_and_services,
                               :aasm_state

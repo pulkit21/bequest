@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <form layout="column" flex="75" flex-xs="100" name="quoteForm" ng-submit="quoteSubmit(quoteForm)" novalidate>
+        <form layout="column" flex="75" flex-xs="100" name="quoteForm" ng-submit="quoteSubmit(insurance)" novalidate>
           <div class="form-column">
             <div class="form-container">
               <h1>The Coverage.</h1>
@@ -25,10 +25,12 @@
               <div class="margin-bottom-50">
                 <md-slider-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <md-slider
+                    name="coverageAmount"
                     flex step="100000"
                     min="100000"
                     max="2000000"
-                    ng-model="quoteForm.coverage"
+                    ng-model="insurance.coverageAmount"
+                    ng-change="getPremium(insurance)"
                     required
                   >
                   </md-slider>
@@ -36,18 +38,35 @@
               </div>
 
               <div class="margin-bottom-50">
-                <h1 ng-model="coverage">${{coverage}} coverage</h1>
-                <p>dev note: term will be 65 subtracted by age</p>
-                <h1 ng-model="term">30 year term</h1>
+                <h1
+                  ng-model="insurance.coverageAmount"
+                  ng-if="insurance.coverageAmount"
+                >
+                  ${{insurance.coverageAmount | number : fractionSize }} coverage
+                </h1>
+                <h1
+                  ng-model="insurance.coverageAmount"
+                  ng-if="!insurance.coverageAmount"
+                >
+                  $100,000 coverage
+                </h1>
+                <h1 ng-model="term">{{insurance.coverageAge}} year term</h1>
 
                 <!-- dev note: payment will be calculated based on age, gender, and coverage only -->
-                <h1 ng-model="premium">$50 per month</h1>
+                <h1
+                  name="coveragePayment"
+                  ng-model="insurance.coveragePayment"
+                  ng-if="insurance.coveragePayment"
+                  >
+                  ${{insurance.coveragePayment}} per month
+                </h1>
+                <h1 ng-model="insurance.coveragePayment" ng-if="!insurance.coveragePayment"> $0 per month</h1>
 
               </div>
               <br>
 
               <md-button ui-sref="apply" class="md-secondary">Back</md-button>
-              <md-button class="md-primary" ng-click="quoteSubmit(quoteForm)" ng-disabled="quoteForm.$invalid">Next</md-button>
+              <md-button class="md-primary" ng-click="quoteSubmit(insurance)" ng-disabled="quoteForm.$invalid">Next</md-button>
             </div>
           </div>
         </form>
