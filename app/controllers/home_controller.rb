@@ -11,5 +11,9 @@ class HomeController < ApplicationController
     @base_path = '/insurance/'
   end
 
+  def about
+
+  end
+
 
 end
