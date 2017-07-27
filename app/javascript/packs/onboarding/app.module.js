@@ -28,6 +28,8 @@ import registerModule from './register/register.module';
 import bequestServices from './services/insurance.service';
 import bequestController from './apply/apply.controller';
 import bequestInterceptor from './services/insurance.interceptor';
+import angularPayments from 'angular-payments';
+// import angularPayments from 'angular-stripe';
 
 angular.module('bdi-landing', [
   uiRouter,
@@ -53,9 +55,12 @@ angular.module('bdi-landing', [
   registerModule,
   bequestServices,
   bequestController,
-  bequestInterceptor
+  bequestInterceptor,
+  "angularPayments"
+  // "angular-stripe"
 ])
 .config(defaultModuleConfig)
+
 // .run(defaultModuleRun);
 
 angular

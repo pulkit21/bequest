@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726152651) do
+ActiveRecord::Schema.define(version: 20170727171644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170726152651) do
     t.integer "coverage_age"
     t.decimal "coverage_payment", precision: 15, scale: 2
     t.string "stripe_customer"
+    t.string "stripe_plan_id"
+    t.jsonb "stripe_response"
     t.index ["user_id"], name: "index_insurances_on_user_id"
   end
 

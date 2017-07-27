@@ -1,6 +1,6 @@
 class InsurancesController < ApplicationController
 
-  before_action :set_insurance, only: [:show, :update, :destroy]
+  before_action :set_insurance, only: [:show, :update, :destroy, :stripe]
 
   def index
     @insurances = Insurance.all
@@ -23,14 +23,14 @@ class InsurancesController < ApplicationController
   def chart_data
   end
 
-  def learn
-
+  def stripe
+    @insurance.submit_card_details_in_stripe(params)
+    if @insurance.update(stripe_response: params[:stripe_response], terms_and_services: params[:terms_and_services])
+      render :show, format: :json, status: 201
+    else
+      render json: @insurance.errors, status: :unprocessable_entity
+    end
   end
-
-  def blog
-
-  end
-
 
   def update
     if @insurance.update(insurance_params)

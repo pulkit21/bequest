@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/insurance/apply',  to: "home#apply"
   get '/insurance/quote',  to: "home#apply"
   get '/insurance/payment',  to: "home#apply"
+  get '/insurance/sign',  to: "home#apply"
 
   get '/learn', to: 'home#learn'
   get '/blog', to: 'home#blog'
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       resources :insurances, only: [:index, :show, :create, :update] do
         collection do
           get :chart_data
+          post :stripe
         end
       end
     end

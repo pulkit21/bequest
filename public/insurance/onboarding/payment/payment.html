@@ -13,7 +13,14 @@
         </div>
       </div>
 
-      <form layout="column" flex="75" flex-xs="100" name="paymentForm" ng-submit="paymentSubmit(insurance)" novalidate>
+      <form
+        layout="column"
+        flex="75"
+        flex-xs="100"
+        name="paymentForm"
+        stripe-form="stripeCallback"
+        novalidate
+      >
 
         <div class="form-column">
           <div class="form-container">
@@ -26,7 +33,7 @@
                 <label>Name on Card</label>
                 <input
                   name="cardName"
-                  ng-model="insurance.cardName"
+                  ng-model="cardDetails.cardName"
                   required
                 >
               </md-input-container>
@@ -36,15 +43,18 @@
               <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                 <label>Card number</label>
                 <input
-                  name="cardNumber"
-                  ng-model="insurance.cardNumber"
-                  type="number"
-                  ng-minlength="16"
-                  ng-maxlength="16"
-                  required
-                  >
-                  <span ng-show="paymentForm.cardNumber.$error.minlength" class="learn-more">Card number should be 16 digits.</span>
-                  <span ng-show="paymentForm.cardNumber.$error.maxlength" class="learn-more">Card number should be 16 digits.</span>
+                  type="text"
+                  class="input-block-level"
+                  ng-model="number"
+                  name="number"
+                  payments-validate="card"
+                  payments-format="card"
+                  payments-type-model="type"
+                  payments-length="card"
+                  ng-class="type"
+                >
+                <span ng-show="paymentForm.cardNumber.$error.minlength" class="learn-more">Card number should be 16 digits.</span>
+                <span ng-show="paymentForm.cardNumber.$error.maxlength" class="learn-more">Card number should be 16 digits.</span>
                 <!-- format validation 16? numbers only -->
               </md-input-container>
             </div>
@@ -53,10 +63,12 @@
               <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                 <label>Expiration date (MM/YY)</label>
                 <input
-                  name="cardExpiration"
-                  ng-model="insurance.cardExpiration"
-                  type="number"
-                  required
+                  type="text"
+                  class="input-block-level"
+                  ng-model="expiry"
+                  name="expiry"
+                  payments-validate="expiry"
+                  payments-format="expiry"
                 >
               </md-input-container>
               <!-- format validation -->
@@ -66,21 +78,27 @@
               <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                 <label>Security number</label>
                 <input
-                  name="cardSecurity"
-                  ng-model="insurance.cardSecurity"
-                  type="number"
-                  ng-minlength="3"
-                  ng-maxlength="4"
-                  required
+                  type="text"
+                  class="input-block-level"
+                  ng-model="cvc"
+                  name="cvc"
+                  payments-validate="cvc"
+                  payments-format="cvc"
+                  payments-type-model="type"
                 >
                 <span ng-show="paymentForm.cardSecurity.$error.minlength" class="learn-more">Card security number should not be less than 3 digits.</span>
-                  <span ng-show="paymentForm.cardSecurity.$error.maxlength" class="learn-more">Card security number should be greater than 4 digits.</span>
+                <span ng-show="paymentForm.cardSecurity.$error.maxlength" class="learn-more">Card security number should be greater than 4 digits.</span>
                 <!-- format validation 3 or 4 numbers only -->
               </md-input-container>
             </div>
-
+            <span class="learn-more" ng-if="stripeErrors"> {{stripeErrors}}</span>
             <div class="form-row">
-              <md-checkbox ng-model="termsAgree" aria-label="" required>
+              <md-checkbox
+                name="termsAndServices"
+                ng-model="insurance.termsAndServices"
+                aria-label=""
+                required
+              >
                 I agree to the terms and service.
               </md-checkbox>
             </div>
@@ -88,7 +106,13 @@
 
             <!-- dev note: clicking next will trigger the validation of information with paypal. throw error message if credit card is not charged successfully. -->
             <md-button ui-sref="quote" class="md-secondary">Back</md-button>
-            <md-button class="md-primary" ng-click="paymentSubmit(insurance)" ng-disabled="paymentForm.$invalid">Next</md-button>
+            <md-button
+              type="submit"
+              class="md-primary"
+              ng-disabled="paymentForm.$invalid"
+            >
+              Next
+            </md-button>
             <!-- <md-button ui-sref="sign" class="md-primary">Next</md-button> -->
           </div>
         </div>

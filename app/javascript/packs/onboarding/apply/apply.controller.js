@@ -3,12 +3,14 @@ import bequestServices from '../services/insurance.service';
 
 let bequestController = angular
   .module('applyController', [bequestServices])
-  .controller('InsuranceController', ['$scope', 'InsuranceService', '$location',  function($scope, InsuranceService, $location) {
+  .controller('InsuranceController', ['$scope', 'InsuranceService', '$location', '$http', function($scope, InsuranceService, $location, $http) {
     const amount =  [100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 2000000]
     $scope.errors = [];
+    $scope.stripeErrors = [];
     var chart = null;
     var insuranceId = $location.search()['insurance'];
     $scope.insurance = new InsuranceService({});
+    $scope.cardDetails = {}
     if (insuranceId) {
       InsuranceService.get(insuranceId).then(function(insurance){
         $scope.insurance = insurance;
@@ -109,10 +111,24 @@ let bequestController = angular
       }
     }
 
+    // Handeling Stripe payment
+    $scope.stripeCallback = function(code, result) {
+      if (result.error) {
+        $scope.stripeErrors = result.error.message
+        console.log('it failed! error: ' + result.error.message);
+      } else {
+        var data = {
+          id: $scope.insurance.id,
+          stripe_token: result.id,
+          stripe_response: result,
+          terms_and_services: $scope.insurance.termsAndServices
+        }
 
-    // Submit payment form
-    $scope.paymentSubmit = function() {
-
+        $http.post('/api/v1/insurances/stripe', data).then(function(response) {
+          $scope.insurance = response.data;
+          $location.path('/sign').search('insurance', response.data.id);
+        });
+      }
     }
 
     prepareData();
