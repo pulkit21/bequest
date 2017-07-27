@@ -52,6 +52,7 @@
                 </h1>
                 <h1 ng-model="term">{{insurance.coverageAge}} year term</h1>
 
+
                 <!-- dev note: payment will be calculated based on age, gender, and coverage only -->
                 <h1
                   name="coveragePayment"
@@ -61,7 +62,27 @@
                   ${{insurance.coveragePayment}} per month
                 </h1>
                 <h1 ng-model="insurance.coveragePayment" ng-if="!insurance.coveragePayment"> $0 per month</h1>
-
+              </div>
+              <div class="form-row">
+                <!-- dev note: payment will increase by 10% for each frequency increment:
+                annual = payment multiplied by 100%, semi-annual = 110%, quarterly = 120%, monthly = 130%.
+                round to the nearest dollar. -->
+                <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                  <label>Payment Frequency</label>
+                  <md-select
+                    name="paymentFrequency"
+                    ng-model="insurance.paymentFrequency"
+                    ng-change="getPremiumCharge(insurance)"
+                    required
+                  >
+                    <md-option value="annual">Annual</md-option>
+                    <md-option value="semi">Semi-Annual</md-option>
+                    <md-option value="quarterly">Quarterly</md-option>
+                    <md-option value="monthly">Monthly</md-option>
+                  </md-select>
+                </md-input-container>
+                <div class="input-sub">Your monthly premium will increase by 10% for each reduction in payment frequency.</div>
+                <div class="learn-more">Learn More</div>
               </div>
               <br>
 

@@ -6,7 +6,6 @@ let bequestController = angular
   .controller('InsuranceController', ['$scope', 'InsuranceService', '$location',  function($scope, InsuranceService, $location) {
     const amount =  [100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 2000000]
     $scope.errors = [];
-    $scope.policyAmount = "";
     var chart = null;
     var insuranceId = $location.search()['insurance'];
     $scope.insurance = new InsuranceService({});
@@ -46,15 +45,40 @@ let bequestController = angular
       var current_amount_index = amount.indexOf(quoteForm.coverageAmount)
 
       if(chart) {
-        $scope.insurance.coveragePayment =  chart[quoteForm.coverageAge][current_amount_index];
+        $scope.insurance.coveragePayment =  chart[quoteForm.coverageAge][current_amount_index];;
+      }
+      if (quoteForm.coverageAmount && quoteForm.coveragePayment && quoteForm.paymentFrequency) {
+        premiumCalculator(quoteForm);
       }
     }
 
+    // Calculate the premium payment percentage
+    var premiumCalculator = function(quoteForm) {
+      var current_amount_index = amount.indexOf(quoteForm.coverageAmount)
+      var premiumAmount = chart[quoteForm.coverageAge][current_amount_index];
+
+      if (quoteForm.paymentFrequency === "semi") {
+        quoteForm.coveragePayment = ((10 / premiumAmount) * 100) + premiumAmount
+      }
+      else if (quoteForm.paymentFrequency === "quarterly") {
+        quoteForm.coveragePayment = ((20 / premiumAmount) * 100) + premiumAmount
+      }
+      else if (quoteForm.paymentFrequency === "monthly") {
+        quoteForm.coveragePayment = ((30 / premiumAmount) * 100) + premiumAmount
+      }
+      else {
+        quoteForm.coveragePayment = premiumAmount
+      }
+      quoteForm.coveragePayment = parseFloat(quoteForm.coveragePayment).toFixed(2);
+    }
+
+    // Fetch the Chart to calculate the premium per month
     var prepareData = function() {
       InsuranceService.get('chart_data.json').then(function (response){
         chart = response;
       });
     }
+
 
     // Submit coverage form
     $scope.quoteSubmit = function(quoteForm) {
@@ -72,6 +96,23 @@ let bequestController = angular
         function(error) {
           $scope.errors = error; //Error messages
       });
+    }
+
+    // Change the premium amount according to the payment frequency
+    $scope.getPremiumCharge = function(quoteForm) {
+      if (quoteForm.coverageAmount && quoteForm.coveragePayment) {
+        premiumCalculator(quoteForm);
+      }
+      else {
+        quoteForm.paymentFrequency = "";
+        return false;
+      }
+    }
+
+
+    // Submit payment form
+    $scope.paymentSubmit = function() {
+
     }
 
     prepareData();

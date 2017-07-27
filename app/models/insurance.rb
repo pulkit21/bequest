@@ -15,7 +15,7 @@ class Insurance < ApplicationRecord
   validate :check_coverage_stage, on: :update, if: :question?
 
   enum gender: ["male", "female"]
-  enum payment_frequency: {"annual" => 0, "semi-annual" => 10 , "quarterly" => 20, "monthly" => 30}
+  enum payment_frequency: {"annual" => 0, "semi" => 10 , "quarterly" => 20, "monthly" => 30}
   # --------------------------------------------------------------------------
   # State Machine
   # --------------------------------------------------------------------------
@@ -79,13 +79,64 @@ class Insurance < ApplicationRecord
   #   exact_percentage = (10 + current_age_group) + (10 * premium_amount)
   # end
 
-  #######
-  private
-  #######
+  # #######
+  # private
+  # #######
+
+  # Create customer in Stripe
+  def create_stripe_customer
+    customer = Stripe::Customer.create(email: "bequest@mailinator.com", metadata: {age: self.current_age})
+    self.update_columns(stripe_customer: customer.id)
+  end
+
+  def set_stripe_interval
+    stripe_intervals = {}
+    if self.annual?
+      stripe_intervals = {interval: "year", interval_count: 1}
+    elsif self.semi?
+      stripe_intervals = {interval: "month", interval_count: 6}
+    elsif self.quarterly?
+      stripe_intervals = {interval: "month", interval_count: 3}
+    elsif self.monthly?
+      stripe_intervals = {interval: "month", interval_count: 1}
+    end
+    stripe_intervals
+  end
+
+  def create_stripe_plan
+    plan = Stripe::Plan.create(
+      name: "#{self.payment_frequency.titleize} payment $#{self.coverage_amount} for terms #{self.coverage_term_age} Plan",
+      id: self.id,
+      interval: set_stripe_interval[:interval],
+      interval_count: set_stripe_interval[:interval_count],
+      currency: "usd",
+      amount: 0,
+      metadata: {
+        payment_frequency: self.payment_frequency,
+        coverage_age: self.coverage_age,
+        coverage_amount: self.coverage_amount
+      }
+    )
+    plan
+  end
+
+  def percentage_calculator(amount, age)
+    premium_amount = PremiumChart.data(amount, age)
+    if self.semi?
+      coverage_payment = ((10.to_f / premium_amount) * 100) + premium_amount
+    elsif self.quarterly?
+      coverage_payment = ((20.to_f / premium_amount) * 100) + premium_amount
+    elsif self.monthly?
+      coverage_payment = ((30.to_f / premium_amount) * 100) + premium_amount
+    else
+      coverage_payment =  premium_amount
+    end
+    coverage_payment = coverage_payment.round(2)
+  end
 
   def check_coverage_stage
-    if coverage_amount && self.question? && coverage_payment
-      if coverage_payment == PremiumChart.data(coverage_amount, self.coverage_term_age)
+    if coverage_amount && self.question? && coverage_payment && payment_frequency
+      if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
         self.update_columns(aasm_state: "coverage")
         puts "#{self.inspect}"
       else
@@ -97,7 +148,7 @@ class Insurance < ApplicationRecord
   end
 
   def check_payment_stage
-    if payment_frequency && terms_and_services && self.coverage?
+    if terms_and_services && self.coverage?
       self.update_columns(aasm_state: "payment")
     else
       errors.add(:terms_and_services, "Please accept terms and services.")

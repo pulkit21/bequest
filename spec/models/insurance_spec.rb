@@ -8,10 +8,10 @@ RSpec.describe Insurance, type: :model do
     insurance.save!
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("question")
-    insurance.update(coverage_amount: 1200000, coverage_payment: 139)
+    insurance.update(coverage_amount: 1200000, coverage_payment: 139, payment_frequency: 'annual')
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("coverage")
-    insurance.update(terms_and_services: true, payment_frequency: 'annual')
+    insurance.update(terms_and_services: true)
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("payment")
 
@@ -48,18 +48,14 @@ RSpec.describe Insurance, type: :model do
     insurance.save!
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("question")
-    insurance.update(coverage_amount: 1200000, coverage_payment: 139)
+    insurance.update(coverage_amount: 1200000, coverage_payment: 139, payment_frequency: "annual")
     expect(insurance.persisted?).to be_truthy
     expect(insurance.aasm_state).to eq("coverage")
-    insurance.update(terms_and_services: false, payment_frequency: "annual")
+    insurance.update(terms_and_services: false)
     expect(insurance.valid?).to be_falsey
     expect(insurance.aasm_state).to eq("coverage")
     expect(insurance.errors.full_messages.first).to eq("Terms and services can't be blank")
-    insurance.update(terms_and_services: true, payment_frequency: "")
-    expect(insurance.aasm_state).to eq("coverage")
-    expect(insurance.valid?).to be_falsey
-    expect(insurance.errors.full_messages.first).to eq("Terms and services Please accept terms and services.")
-    # expect(insurance.persisted?).to be_truthy
+    insurance.update(terms_and_services: true)
   end
 
 
