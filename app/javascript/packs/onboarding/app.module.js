@@ -3,8 +3,9 @@ import uiRouter from 'angular-ui-router';
 
 import ngMaterial from 'angular-material';
 import angularMaterialIcons from 'angular-material-icons';
-// import 'style!css!angular-material/angular-material.css';
+
 import 'angular-material/angular-material.css';
+import 'angular-material-icons/angular-material-icons.css';
 
 import {defaultModuleConfig} from './app.module.config';
 import landingModule from './landing/landing.module';
