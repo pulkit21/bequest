@@ -95,4 +95,4 @@ gem 'aasm'
 gem 'stripe'
 
 # DocoSign
-gem 'docusign_rest', path: '/Users/pulkit/.rvm/gems/ruby-2.4.1@bequest/gems/docusign_rest-0.3.2'
+gem 'docusign_rest'
