@@ -4,4 +4,4 @@
 
 = javascript_pack_tag 'onboarding/app'
 :javascript
-  Stripe.setPublishableKey('pk_test_wfdXTmWqqp3rmyRdBtjwFCR2');
+  Stripe.setPublishableKey("#{Rails.application.secrets.stripe_publication_key}");

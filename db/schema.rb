@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727171644) do
+ActiveRecord::Schema.define(version: 20170803135055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
 
   create_table "insurances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "tobacco_product"
@@ -35,6 +50,8 @@ ActiveRecord::Schema.define(version: 20170727171644) do
     t.string "stripe_customer"
     t.string "stripe_plan_id"
     t.jsonb "stripe_response"
+    t.jsonb "docusign_response"
+    t.string "policy"
     t.index ["user_id"], name: "index_insurances_on_user_id"
   end
 

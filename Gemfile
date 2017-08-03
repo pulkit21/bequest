@@ -48,6 +48,12 @@ gem 'haml-rails'
 # Authentication && Authorization
 gem 'devise'
 
+# Amazon AWS
+gem 'aws-sdk', '~> 2'
+
+# Background Job
+gem 'delayed_job_active_record'
+
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -87,3 +93,6 @@ gem 'aasm'
 
 # Payment gateway
 gem 'stripe'
+
+# DocoSign
+gem 'docusign_rest', path: '/Users/pulkit/.rvm/gems/ruby-2.4.1@bequest/gems/docusign_rest-0.3.2'

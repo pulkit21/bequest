@@ -7,10 +7,6 @@ class HomeController < ApplicationController
 
   end
 
-  def apply
-    @base_path = '/insurance/'
-  end
-
   def about
 
   end
@@ -22,6 +18,5 @@ class HomeController < ApplicationController
   def learn
 
   end
-
 
 end

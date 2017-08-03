@@ -1,6 +1,7 @@
 class InsurancesController < ApplicationController
 
-  before_action :set_insurance, only: [:show, :update, :destroy, :stripe]
+  before_action :set_base_path, only: [:apply, :confirm]
+  before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature]
 
   def index
     @insurances = Insurance.all
@@ -41,6 +42,27 @@ class InsurancesController < ApplicationController
 
   end
 
+  def signature
+    @url = {
+        url: @insurance.sign_policy
+      }
+    render json: @url, status: 200
+  end
+
+
+  def apply
+
+  end
+
+  def confirm
+    if params[:event] == "signing_complete"
+      @insurance = Insurance.find(params[:insurance])
+      if @insurance.present?
+        @insurance.get_combined_document(envelope_id: params[:envelope_id], document_id: 1)
+        @insurance.update_columns(aasm_state: "signature")
+      end
+    end
+  end
 
 
 
@@ -63,6 +85,10 @@ class InsurancesController < ApplicationController
                               :terms_and_services,
                               :aasm_state
                             )
+  end
+
+  def set_base_path
+    @base_path = '/insurance/'
   end
 
   def set_insurance

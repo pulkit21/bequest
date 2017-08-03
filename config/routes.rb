@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   # get 'register',  to: "home#index"
-  get '/insurance/apply',  to: "home#apply"
-  get '/insurance/quote',  to: "home#apply"
-  get '/insurance/payment',  to: "home#apply"
-  get '/insurance/sign',  to: "home#apply"
+  get '/insurance/apply',  to: "insurances#apply"
+  get '/insurance/quote',  to: "insurances#apply"
+  get '/insurance/payment',  to: "insurances#apply"
+  get '/insurance/sign',  to: "insurances#apply"
+  get '/insurance/confirm',  to: "insurances#confirm"
 
   get '/learn', to: 'home#learn'
   get '/blog', to: 'home#blog'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
         collection do
           get :chart_data
           post :stripe
+          post :signature
         end
       end
     end
