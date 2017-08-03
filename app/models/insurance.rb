@@ -179,7 +179,7 @@ class Insurance < ApplicationRecord
   # Sign the document using
   def sign_policy
     client = DocusignRest::Client.new
-    file_io = open("https://s3.amazonaws.com/bequest-development/Contract/policy.pdf")
+    file_io = open(Rails.application.secrets.document_url)
     document_envelope_response = client.create_envelope_from_document(
       email: {
         subject: "Coverage Policy",
@@ -355,7 +355,7 @@ class Insurance < ApplicationRecord
         envelope_id: self.docusign_response['envelopeId'],
         name: "Joe Dimaggio",
         email: "bequest@mailinator.com",
-        return_url: "http://localhost:5000/insurance/confirm?insurance=#{self.id}&envelope_id=#{self.docusign_response['envelopeId']}"
+        return_url: "#{ActionMailer::Base.default_url_options[:host]}/insurance/confirm?insurance=#{self.id}&envelope_id=#{self.docusign_response['envelopeId']}"
       )['url']
     url
   end
