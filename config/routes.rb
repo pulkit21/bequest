@@ -22,6 +22,7 @@ Rails.application.routes.draw do
           get :chart_data
           post :stripe
           post :signature
+          post :download_policy
         end
       end
     end

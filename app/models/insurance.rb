@@ -161,16 +161,8 @@ class Insurance < ApplicationRecord
     http = initialize_net_http_ssl(uri)
     request = Net::HTTP::Get.new(uri.request_uri, headers)
     response = http.request(request)
-    aws_credentials = Aws::Credentials.new(Rails.application.secrets.aws_access_key, Rails.application.secrets.aws_secret_key)
-    s3 = Aws::S3::Resource.new(
-          region: Rails.application.secrets.aws_region,
-          credentials: aws_credentials
-        )
-
-    obj = s3.bucket(Rails.application.secrets.s3_bucket).object("Insurances/#{options[:envelope_id]}.pdf")
-    File.open('/', 'rb')do |file|
-      obj.put(body: response.body)
-    end
+    debugger
+    obj = ::AmazonS3Service.new.save_pdf(options[:envelope_id], response)
     self.update_columns(policy: obj.key)
     # Insurance.first.get_combined_document(envelope_id: "45bfa861-509b-4088-8e89-9de255ee6088", document_id: 1)
   end
@@ -441,6 +433,7 @@ class Insurance < ApplicationRecord
 
   def change_state_to_question
     self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
+    PolicyMailer.send_signature_link(self).deliver_now
     self.create_stripe_customer
   end
 

@@ -13,17 +13,24 @@
         </div>
       </div>
 
-      <div layout="column" flex="75" flex-xs="100">
+      <div layout="column" flex="75" flex-xs="100" name="confirmForm">
         <div class="form-container">
           <h1>The Confirmation.</h1>
           <p>Congratulations on your new life insurance policy! You are now covered.</p>
           <p>Your policy and related documents will be mailed to you.</p>
           <p class="margin-bottom-50">If you have any questions, please click the <i class="bold">Contact Us</i> button below.</p>
 
+          <md-button
+            target="_self"
+            ng-href="{{policy}}"
+            class="md-primary"
+            download="file.pdf"
+          >
+            Download Policy
+          </md-button>
           <md-button ui-sref="contact" class="md-primary">Contact Us</md-button>
-
         </div>
-      </div>
+      </form>
     </div>
   </div>
 

@@ -92,6 +92,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.delivery_method = :ses
   config.action_mailer.default_url_options = { host: "https://bequest.herokuapp.com"}
 
   # Do not dump schema after migrations.

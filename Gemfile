@@ -50,6 +50,7 @@ gem 'devise'
 
 # Amazon AWS
 gem 'aws-sdk', '~> 2'
+gem 'aws-ses'
 
 # Background Job
 gem 'delayed_job_active_record'

@@ -1,7 +1,5 @@
 %div.ng-cloak{"ng-cloak" => ""}
-  %div{"ng-controller": "InsuranceController"}
+  %div{"ng-controller": "ConfirmController"}
     %div{"ui-view" => ""}
 
 = javascript_pack_tag 'onboarding/app'
-:javascript
-  Stripe.setPublishableKey("#{Rails.application.secrets.stripe_publication_key}");

@@ -3,9 +3,9 @@ import uiRouter from 'angular-ui-router';
 
 import ngMaterial from 'angular-material';
 import angularMaterialIcons from 'angular-material-icons';
-
+// import 'style!css!angular-material/angular-material.css';
 import 'angular-material/angular-material.css';
-import 'angular-material-icons/angular-material-icons.css';
+import 'angular-material/angular-material.js';
 
 import {defaultModuleConfig} from './app.module.config';
 import landingModule from './landing/landing.module';
@@ -30,6 +30,7 @@ import bequestServices from './services/insurance.service';
 import bequestController from './apply/apply.controller';
 import bequestInterceptor from './services/insurance.interceptor';
 import angularPayments from 'angular-payments';
+import confirmController from './confirm/confirm.controller';
 // import angularPayments from 'angular-stripe';
 
 angular.module('bdi-landing', [
@@ -57,7 +58,8 @@ angular.module('bdi-landing', [
   bequestServices,
   bequestController,
   bequestInterceptor,
-  "angularPayments"
+  "angularPayments",
+  confirmController
   // "angular-stripe"
 ])
 .config(defaultModuleConfig)

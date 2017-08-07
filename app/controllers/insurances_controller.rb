@@ -1,7 +1,7 @@
 class InsurancesController < ApplicationController
 
   before_action :set_base_path, only: [:apply, :confirm]
-  before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature]
+  before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
   def index
     @insurances = Insurance.all
@@ -49,6 +49,15 @@ class InsurancesController < ApplicationController
     render json: @url, status: 200
   end
 
+  def download_policy
+    @insurance.update_columns(aasm_state: "confirmation")
+    @policy_link = ::AmazonS3Service.new.policy_link(@insurance)
+    @policy_link = {
+        url: @policy_link
+      }
+    render json: @policy_link, status: 200
+  end
+
 
   def apply
 
@@ -58,8 +67,10 @@ class InsurancesController < ApplicationController
     if params[:event] == "signing_complete"
       @insurance = Insurance.find(params[:insurance])
       if @insurance.present?
-        @insurance.get_combined_document(envelope_id: params[:envelope_id], document_id: 1)
-        @insurance.update_columns(aasm_state: "signature")
+        unless @insurance.policy.present?
+          @insurance.get_combined_document(envelope_id: params[:envelope_id], document_id: 1)
+          @insurance.update_columns(aasm_state: "signature")
+        end
       end
     end
   end
