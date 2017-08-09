@@ -4,12 +4,16 @@ import angularMaterialIcons from 'angular-material-icons';
 // import 'style!css!angular-material/angular-material.css';
 import 'angular-material/angular-material.css';
 import 'angular-material/angular-material.js';
+import landingModule from './landing/landing.module';
 
-
-angular.module('bequest-landing', [
+window.MODULES = window.MODULES || []
+var modules = [
   ngMaterial,
-  angularMaterialIcons
-])
+  angularMaterialIcons,
+  landingModule
+].concat(window.MODULES)
+
+angular.module('bequest-landing', modules)
 
 // .run(defaultModuleRun);
 

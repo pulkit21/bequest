@@ -1,14 +1,6 @@
-import angular from 'angular';
+
 import uiRouter from 'angular-ui-router';
-
-import ngMaterial from 'angular-material';
-import angularMaterialIcons from 'angular-material-icons';
-// import 'style!css!angular-material/angular-material.css';
-import 'angular-material/angular-material.css';
-import 'angular-material/angular-material.js';
-
 import {defaultModuleConfig} from './app.module.config';
-import landingModule from './landing/landing.module';
 import quoteModule from './quote/quote.module';
 import termsModule from './terms/terms.module';
 import contactModule from './contact/contact.module';
@@ -35,9 +27,6 @@ import confirmController from './confirm/confirm.controller';
 
 angular.module('bdi-landing', [
   uiRouter,
-  ngMaterial,
-  angularMaterialIcons,
-  landingModule,
   quoteModule,
   termsModule,
   contactModule,
@@ -66,5 +55,8 @@ angular.module('bdi-landing', [
 
 // .run(defaultModuleRun);
 
-angular
-  .bootstrap(document, ['bdi-landing']);
+// angular
+//   .bootstrap(document, ['bdi-landing']);
+
+window.MODULES = window.MODULES || []
+window.MODULES.push('bdi-landing');
