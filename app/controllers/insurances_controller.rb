@@ -94,7 +94,8 @@ class InsurancesController < ApplicationController
                               :coverage_payment,
                               :payment_frequency,
                               :terms_and_services,
-                              :aasm_state
+                              :aasm_state,
+                              :driving_license
                             )
   end
 

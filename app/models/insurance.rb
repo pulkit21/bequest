@@ -148,6 +148,7 @@ class Insurance < ApplicationRecord
     http
   end
 
+  # TODO make Docu service
   def get_combined_document(options={})
     headers = {
       "X-DocuSign-Authentication"=>
@@ -169,6 +170,7 @@ class Insurance < ApplicationRecord
 
 
   # Sign the document using
+  # TODO- Add the user specifc data
   def sign_policy
     client = DocusignRest::Client.new
     file_io = open(Rails.application.secrets.document_url)
@@ -406,6 +408,7 @@ class Insurance < ApplicationRecord
   def check_payment_stage
     if terms_and_services && self.coverage?
       self.update_columns(aasm_state: "payment")
+      PolicyMailer.send_signature_link(self).deliver_now
       self.subscribe_customer_to_a_plan
     else
       errors.add(:terms_and_services, "Please accept terms and services.")
@@ -433,7 +436,6 @@ class Insurance < ApplicationRecord
 
   def change_state_to_question
     self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
-    PolicyMailer.send_signature_link(self).deliver_now
     self.create_stripe_customer
   end
 
