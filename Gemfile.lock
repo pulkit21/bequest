@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/charliesome/better_errors.git
-  revision: 40cb4e6f6a4cdd0bc67a21a45bfadf9d325d1305
-  specs:
-    better_errors (2.1.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -337,7 +328,6 @@ DEPENDENCIES
   awesome_print
   aws-sdk (~> 2)
   aws-ses
-  better_errors!
   binding_of_caller
   byebug
   capybara (~> 2.13)
