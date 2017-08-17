@@ -97,3 +97,6 @@ gem 'stripe'
 
 # DocoSign
 gem 'docusign_rest'
+
+# Sentry
+gem "sentry-raven"

@@ -267,6 +267,8 @@ GEM
     selenium-webdriver (3.4.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sentry-raven (2.6.3)
+      faraday (>= 0.7.6, < 1.0)
     sexp_processor (4.9.0)
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
@@ -351,6 +353,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sentry-raven
   shoulda-matchers (~> 3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -363,4 +366,4 @@ DEPENDENCIES
   webpacker (~> 2.0)
 
 BUNDLED WITH
-   1.15.2
+   1.15.3
