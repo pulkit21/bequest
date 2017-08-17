@@ -1,5 +1,11 @@
 body {
   letter-spacing: 0.5px;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  background: #fff;
 }
 
 a {
@@ -8,16 +14,17 @@ a {
 
 h1 {
   font-weight: 300;
-  font-size: 45px;
-  line-height: 55px;
-  color: #333;
+  font-size: 35px;
+  line-height: 45px;
+  color: #806000;
+  margin: 20px 0px;
 }
 
 h2 {
   font-weight: 300;
   font-size: 20px;
   line-height: 26px;
-  color: #333;
+  color: #806000;
 }
 
 h3 {
@@ -25,13 +32,14 @@ h3 {
   font-size: 16px;
   text-transform: uppercase;
   line-height: 26px;
-  color: #333;
+  color: #806000;
 }
 
 p {
-  color: #666;
+  color: #806000;
   font-size: 18px !important;
   line-height: 28px !important;
+  margin: 10px 0px;
 }
 
 p a {
@@ -40,7 +48,7 @@ p a {
 }
 
 p a:hover {
-  color: #333;
+  color: #806000;
 }
 
 .bold {
@@ -67,7 +75,7 @@ iframe {
 }
 
 .black {
-  color: #333 !important;
+  color: #806000 !important;
 }
 
 .margin-bottom-30 {
@@ -78,62 +86,174 @@ iframe {
   margin-bottom: 50px !important;
 }
 
+
+
+body input + label {
+  position: fixed;
+  top: 25px;
+  right: 30px;
+  height: 20px;
+  width: 25px;
+  z-index: 5;
+}
+
+body input + label span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  margin-top: -1px;
+  left: 0;
+  display: block;
+  background: #fff;
+  transition: .3s;
+}
+
+body input + label:hover span {
+  background: #806000 !important;
+}
+
+body input + label span:first-child {
+  top: 3px;
+}
+
+body input + label span:last-child {
+  top: 17px;
+}
+
+body label:hover {
+  cursor: pointer;
+}
+
+body input:checked + label span {
+  opacity: 0;
+  top: 50%;
+}
+
+body input:checked + label span:first-child {
+  opacity: 1;
+  transform: rotate(405deg);
+}
+
+body input:checked + label span:last-child {
+  opacity: 1;
+  transform: rotate(-405deg);
+}
+
+body input ~ nav {
+  background: #fabc00;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 3;
+  transition: .2s;
+  transition-delay: .2s;
+  overflow: hidden;
+}
+
+body input ~ nav > ul {
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  left: 20%;
+  right: 20%;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+body input ~ nav > ul > li {
+  opacity: 0;
+  transition: .2s;
+  transition-delay: 0s;
+}
+
+body input ~ nav > ul > li > a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #806000;
+  font-weight: 500;
+  display: block;
+  padding: 20px;
+  margin: 10px;
+  border-bottom: 1px solid #fadb7d;
+  transition: .2s;
+}
+
+body input ~ nav > ul > li > a:hover {
+  background: #fadb7d;
+}
+
+body input:checked ~ nav {
+  height: 100%;
+  transition-delay: 0s;
+}
+
+body input:checked ~ nav > ul > li {
+  opacity: 1;
+  transition-delay: .2s;
+}
+
+
+
+
+.header {
+  height: 30px;
+  padding: 20px 90px 20px 30px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+
 .header-logo {
+  position: relative;
   transition: all 0.15s linear;
   display: inline-block;
-  padding-top: 8px;
+  z-index: 101;
 }
 
 .header-logo img {
-  height: 20px;
+  height: 30px;
+  width: 30px;
 }
 
 .header-logo:hover {
   cursor: pointer;
 }
 
-.header {
-  width: auto;
-  padding: 20px 30px;
-  position: relative;
-  border-bottom: 1px solid #e6eef2;
-}
-
 .header-link {
   float: right;
+  position: relative;
   display: inline-block;
   transition: all 0.15s linear;
-  width: auto;
-  text-align: center;
-  padding: 10px 15px;
+  padding: 8px 15px;
   margin-left: 10px;
-  color: #333;
-  font-size: 14px;
+  color: #fff;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  border-radius: 3px;
+  z-index: 101 !important;
 }
 
 .header-link:hover {
-  background: #00aaff;
   cursor: pointer;
-  color: #fff;
+  color: #806000;
 }
 
 .footer {
-  padding: 50px 30px;
-  background: #333;
+  padding: 100px 30px;
+  background: #332600;
   position: relative;
-}
-
-.footer-column {
-  padding-left: 0px;
-  display: block !important;
+  text-align: center;
 }
 
 .footer p {
   display: inline-block;
-  color: #999;
+  color: #997300;
   font-size: 12px !important;
   text-transform: uppercase;
   margin: 10px;
@@ -141,8 +261,9 @@ iframe {
 }
 
 .footer a {
+  box-sizing: border-box;
   display: inline-block;
-  color: #999;
+  color: #997300;
   font-size: 12px;
   line-height: 30px;
   font-weight: 500;
@@ -152,36 +273,118 @@ iframe {
 }
 
 .footer a:hover {
-  color: #00aaff;
+  color: #fff;
   cursor: pointer;
 }
 
 .footer i {
-  color: #666;
+  display: block;
+  color: #806000;
   font-size: 12px;
   line-height: 20px;
   font-style: normal;
-  padding: 0px 30px;
 }
 
 .body-container {
   padding: 20px;
 }
 
-.family-bg {
-  background: url(../img/family_bg_dark.png) no-repeat center center;
-	background-size: cover !important;
-	padding: 120px 30px;
+.bg-yellow {
+  position: relative;
+  display: block;
+  padding: 220px 30px 220px 30px;
+  background: #fabc00;
 }
 
-.family-bg p {
+.bg-yellow h1 {
   color: #fff;
-  margin-bottom: 50px;
 }
 
-.family-bg h1,
-.family-bg-2 h1 {
-  color: #ffd400 !important;
+.bg-yellow p {
+  color: #806000;
+  margin-bottom: 30px;
+}
+
+.bg-signup {
+  padding: 100px 30px;
+  background: #fabc00;
+  text-align: center;
+}
+
+.bg-signup p {
+}
+
+.bg-white {
+  position: relative;
+  display: block;
+  padding: 100px 30px;
+}
+
+.bg-brown {
+  position: relative;
+  display: block;
+  padding: 100px 30px;
+  background: #d99100;
+}
+
+.bg-tiles {
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+
+.bg-tile {
+  padding: 150px 30px;
+  background: url(../img/family_yellow.png) no-repeat center center;
+  position: relative;
+  height: 250px;
+}
+
+.bg-tile h1,
+.bg-tile p {
+  color: #fff;
+}
+
+.bg-tile-white {
+  padding: 150px 30px;
+  background: #fff;
+  position: relative;
+  height: 250px;
+}
+
+.bg-tile-gray {
+  padding: 150px 30px;
+  background: #f2efe6;
+  position: relative;
+  height: 250px;
+}
+
+.bg-press {
+  position: relative;
+  display: block;
+  padding: 50px 30px;
+  background: #f2efe6;
+  text-align: center;
+}
+
+.bg-testimonial {
+  position: relative;
+  display: block;
+  padding: 100px 30px;
+  background: #fff;
+  text-align: center;
+}
+
+.bg-family {
+  background: url(../img/family_yellow.png) no-repeat center center;
+	background-size: cover !important;
+  padding: 150px 30px;
+  width: 100%;
+}
+
+.bg-family h1,
+.bg-family p {
+  color: #fff;
 }
 
 .family-bg-2 {
@@ -217,22 +420,13 @@ iframe {
   padding-right: 20px;
 }
 
-.landing-white p {
-  text-align: left !important;
-  padding: 0px 30px;
-}
-
-.landing-white {
-  padding: 100px 30px 120px 30px;
-}
-
 .landing-border {
   padding: 100px 30px 140px 30px;
 }
 
 .landing-gray {
   padding: 100px 30px 140px 30px;
-  background: #e6eef2;
+  background: #f2efe6;
 }
 
 .landing-blue {
@@ -249,20 +443,17 @@ iframe {
 
 }
 
-.landing-press {
-  padding: 50px 30px;
-  background: #e6eef2;
-}
-
 .landing-button {
-  width: 300px;
+  position: relative;
+  display: inline-block;
+
 }
 
 .question-block {
   background: #fafafa;
   min-height: 180px;
   padding: 10px;
-  color: #666;
+  color: #806000;
   font-size: 18px !important;
   line-height: 28px !important;
   transition: all 0.15s linear;
@@ -272,7 +463,7 @@ iframe {
 .question-block:hover {
   cursor: pointer;
   color: #fff;
-  background: #00aaff;
+  background: #fabc00;
 }
 
 .title {
@@ -286,7 +477,7 @@ iframe {
   vertical-align: middle;
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: #806000;
   text-transform: uppercase;
 }
 
@@ -295,7 +486,7 @@ iframe {
 }
 
 .progress-block.active {
-  background: #e6eef2;
+  background: #f2efe6;
 }
 
 .progress-container {
@@ -308,7 +499,7 @@ iframe {
   line-height: 35px;
   font-weight: 300;
   margin: 50px 0px 0px 0px !important;
-  color: #333;
+  color: #806000;
   display: inline-block;
 }
 
@@ -322,7 +513,7 @@ iframe {
   line-height: 35px;
   font-weight: 200;
   margin: 0px 0px 50px 0px;
-  color: #333;
+  color: #806000;
 }
 
 .form-container i {
@@ -330,7 +521,7 @@ iframe {
   font-size: 14px;
   line-height: 20px;
   margin: 0px 0px 50px 0px;
-  color: #333;
+  color: #806000;
   font-style: normal;
 }
 
@@ -357,14 +548,14 @@ iframe {
 
 .learn-more:hover {
   cursor: pointer;
-  color: #333;
+  color: #806000;
 }
 
 .input-sub {
   font-size: 10px;
   font-weight: 500;
   margin: 0px 0px 5px 0px;
-  color: #333;
+  color: #806000;
   text-transform: uppercase;
   padding-left: 5px;
   transition: all 0.15s linear;
@@ -382,6 +573,17 @@ md-slider:hover {
   margin-left: 0px !important;
 }
 
+.md-button.md-landing {
+  color: #806000;
+  background: #fff;
+  transition: all 0.15s linear;
+}
+
+.md-button.md-landing:hover {
+  color: #fff;
+  background: #806000;
+}
+
 .md-button.md-primary {
   color: #fff;
   background: #00aaff;
@@ -389,13 +591,13 @@ md-slider:hover {
 }
 
 .md-button.md-primary:hover {
-  color: #333;
+  color: #806000;
   background: #80d4ff;
 }
 
 .md-button.md-secondary {
-  color: #333;
-  background: #e6eef2;
+  color: #806000;
+  background: #f2efe6;
   transition: all 0.15s linear;
 }
 
@@ -406,7 +608,7 @@ md-slider:hover {
 
 md-checkbox .md-label {
   font-size: 12px;
-  color: #333;
+  color: #806000;
 }
 
 md-checkbox.md-checked .md-ink-ripple {
@@ -464,7 +666,7 @@ md-checkbox.md-checked .md-icon {
   font-size: 18px;
   line-height: 28px;
   font-weight: 300;
-  color: #333;
+  color: #806000;
   text-align: center;
   margin: 0px;
   text-transform: uppercase;
@@ -474,7 +676,7 @@ md-checkbox.md-checked .md-icon {
   font-size: 40px;
   line-height: 50px;
   font-weight: 200;
-  color: #333;
+  color: #806000;
   text-align: center;
   margin: 10px;
 }
@@ -482,7 +684,7 @@ md-checkbox.md-checked .md-icon {
 .pricing-table h3 {
   font-size: 12px;
   line-height: 20px;
-  color: #333;
+  color: #806000;
   text-align: center;
   text-transform: uppercase;
   font-weight: 300;
@@ -496,7 +698,7 @@ md-checkbox.md-checked .md-icon {
 .feature-block {
   font-size: 18px;
   line-height: 28px;
-  color: #333;
+  color: #806000;
   padding: 20px 10px;
   border-bottom: 1px solid #ccc;
   margin: 10px;
@@ -505,7 +707,7 @@ md-checkbox.md-checked .md-icon {
 
 .title-blocks {
   padding: 100px 30px 150px 30px;
-  border-bottom: 1px solid #e6eef2;
+  border-bottom: 1px solid #f2efe6;
 }
 
 .title-block {
@@ -524,7 +726,7 @@ md-checkbox.md-checked .md-icon {
   font-size: 14px;
   line-height: 14px;
   font-weight: 400;
-  color: #333;
+  color: #806000;
   text-align: center;
   text-transform: uppercase;
   transition: all 0.15s linear;
@@ -548,7 +750,7 @@ md-checkbox.md-checked .md-icon {
 .title-how-text {
   font-size: 30px;
   line-height: 40px;
-  color: #333;
+  color: #806000;
   font-weight: 200;
   text-transform: uppercase;
   margin-bottom: 50px;
@@ -556,7 +758,7 @@ md-checkbox.md-checked .md-icon {
 
 .title-login p,
 .title p {
-  color: #333;
+  color: #806000;
 }
 
 .title-2 {
@@ -566,7 +768,7 @@ md-checkbox.md-checked .md-icon {
 .title-2-text {
   font-size: 25px;
   line-height: 35px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   -ms-transform: rotate(0deg);
       transform: rotate(0deg);
@@ -603,14 +805,14 @@ md-checkbox.md-checked .md-icon {
         transform: skewY(2deg);
     -ms-transform-origin: 0 100%;
         transform-origin: 0 100%;
-    border-bottom: 1px solid #e6eef2;
+    border-bottom: 1px solid #f2efe6;
   }
 }
 
 .title-3-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   margin-bottom: 20px;
 }
@@ -627,7 +829,7 @@ md-checkbox.md-checked .md-icon {
   width: 115px;
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   transition: all 0.15s linear;
 }
@@ -694,7 +896,7 @@ md-checkbox.md-checked .md-icon {
 .title-5-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   transition: all 0.15s linear;
 }
@@ -839,7 +1041,7 @@ md-checkbox.md-checked .md-icon {
 .title-8-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   margin-bottom: 30px;
   margin-top: 30px;
@@ -851,7 +1053,7 @@ md-checkbox.md-checked .md-icon {
 }
 
 .title-8-text a:hover {
-  color: #333;
+  color: #806000;
 }
 
 .title-9 {
@@ -863,7 +1065,7 @@ md-checkbox.md-checked .md-icon {
 .title-9-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
 }
 
@@ -873,7 +1075,7 @@ md-checkbox.md-checked .md-icon {
   z-index: 2;
   text-align: right;
   transition: all 0.15s linear;
-  border-top: 1px solid #e6eef2;
+  border-top: 1px solid #f2efe6;
   &:before,
   &:after {
     background: inherit;
@@ -912,7 +1114,7 @@ md-checkbox.md-checked .md-icon {
 .title-10-text {
   font-size: 20px;
   line-height: 30px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   -ms-transform: rotate(-1deg);
       transform: rotate(-1deg);
@@ -964,7 +1166,7 @@ md-checkbox.md-checked .md-icon {
 .title-11-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   transition: all 0.15s linear;
   margin-bottom: 50px;
@@ -977,7 +1179,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 1;
   transition: all 0.15s linear;
-  border-bottom: 1px solid #e6eef2;
+  border-bottom: 1px solid #f2efe6;
   &:before,
   &:after {
     background: inherit;
@@ -1009,7 +1211,7 @@ md-checkbox.md-checked .md-icon {
 
 .features-3 {
   padding: 100px 0px;
-  background: #e6eef2;
+  background: #f2efe6;
 }
 
 .title-13 {
@@ -1019,7 +1221,7 @@ md-checkbox.md-checked .md-icon {
 .title-13-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   -ms-transform: rotate(-2deg);
       transform: rotate(-2deg);
@@ -1039,7 +1241,7 @@ md-checkbox.md-checked .md-icon {
   padding: 150px 0px 150px 0px;
   position: relative;
   z-index: 1;
-  background: #e6eef2;
+  background: #f2efe6;
   &:before,
   &:after {
     background: inherit;
@@ -1074,7 +1276,7 @@ md-checkbox.md-checked .md-icon {
   padding: 100px 0px 150px 0px;
   position: relative;
   z-index: 1;
-  background: #e6eef2;
+  background: #f2efe6;
   &:before,
   &:after {
     background: inherit;
@@ -1107,7 +1309,7 @@ md-checkbox.md-checked .md-icon {
 .title-14-text {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
   margin-top: 50px;
 }
@@ -1119,12 +1321,12 @@ md-checkbox.md-checked .md-icon {
 
 .text-center {
   text-align: center;
-  display: block;
+  display: block !important;
 }
 
 .text-left {
   text-align: left;
-  display: block;
+  display: block !important;
 }
 
 @keyframes drift {
@@ -1163,7 +1365,7 @@ md-checkbox.md-checked .md-icon {
         transform: skewY(5deg);
     -ms-transform-origin: 100%;
         transform-origin: 100%;
-    border-top: 1px solid #e6eef2;
+    border-top: 1px solid #f2efe6;
   }
 
   &:after {
@@ -1180,7 +1382,7 @@ md-checkbox.md-checked .md-icon {
   position: relative;
   z-index: 2;
   transition: all 0.15s linear;
-  background: #e6eef2;
+  background: #f2efe6;
   &:before,
   &:after {
     background: inherit;
@@ -1219,7 +1421,7 @@ md-checkbox.md-checked .md-icon {
 .login-text-2 {
   font-size: 25px;
   line-height: 32px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
 }
 
@@ -1268,7 +1470,7 @@ md-checkbox.md-checked .md-icon {
 .login-text-3 {
   font-size: 14px;
   line-height: 20px;
-  color: #333;
+  color: #806000;
   font-weight: 300;
 }
 
@@ -1299,13 +1501,25 @@ md-input-container {
 md-input-container.landing-input:not([md-no-float]) .md-select-placeholder span:first-child,
 md-input-container.landing-input label:not(.md-no-float):not(.md-container-ignore), 
 md-input-container.landing-input .md-placeholder {
-  color: #80d4ff !important;
-  border-bottom-color: #80d4ff;
-  font-size: 18px !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  padding: 0px 15px;
+  margin-bottom: -8px;
+  height: 30px;
+}
+
+md-input-container {
+  padding: 0 !important;
 }
 
 md-input-container.landing-input .md-input {
-  border-color: #80d4ff !important;
+  border: none !important;
+  background: #806000;
+  border-radius: 2px;
+  padding: 5px 15px;
+  margin-top: -3px;
+  color: #fff;
+  height: 36px;
 }
 
 md-select {
@@ -1340,7 +1554,7 @@ md-select {
 }
 
 .img-title-big.gray svg {
-  fill: #999;
+  fill: #997300;
 }
 
 .img-title-big.green svg {
@@ -1399,7 +1613,7 @@ md-select {
 .img-press {
   height: 20px;
   opacity: 0.3;
-  margin: 20px 30px;
+  margin: 20px 50px 20px 0px;
 }
 
 .img-icon {
@@ -1414,20 +1628,19 @@ md-select {
 }
 
 .img-footer {
-  margin: 10px;
+  margin: 10px 20px 10px 0px;
   display: inline-block;
-  
 }
 
 .img-footer svg {
-  fill: #999;
+  fill: #997300;
   height: 25px;
   width: 25px;
   transition: all 0.15s linear;
 }
 
 .img-footer svg:hover {
-  fill: #00aaff;
+  fill: #fff;
   cursor: pointer;
 }
 
@@ -1464,7 +1677,7 @@ md-select {
 }
 
 .img-title-white {
-  fill: #e6eef2;
+  fill: #f2efe6;
 }
 
 .img-title-white svg,
@@ -1522,5 +1735,115 @@ md-select {
 }
 
 md-slider .md-thumb-text {
-  color: #333;
+  color: #806000;
+}
+
+.inline-block {
+  display: inline-block !important;
+  position: relative;
+}
+
+.block {
+  display: block !important;
+  position: relative;
+  height: 100%;
+}
+
+.clock {
+   width: 200px;
+   height: 200px;
+   background: #fabc00;
+   margin: 0 auto;
+   border-radius: 50%;
+   position: relative;
+   display: block;
+}
+
+.long-hand, .short-hand {
+  width: 2px;
+   background: #fff;
+   position: absolute;
+   top: 100px;
+   left: 100px;
+   -webkit-transform: rotate(-180deg);
+   -moz-transform: rotate(-180deg);
+   -o-transform: rotate(-180deg);
+   transform: rotate(-180deg);
+   -webkit-transform-origin: 0 1px;
+   -moz-transform-origin: 0 1px;
+   -o-transform-origin: 0 1px;
+   transform-origin: 0 1px;
+}
+
+.nut {
+   width: 14px;
+   height: 14px;
+   border-radius: 50%;
+   position: absolute;
+   top: 93px;
+   left: 93px;
+   background: #fff
+}
+
+.short-hand {
+   height: 50px;
+   -webkit-animation: rotation 60s infinite linear;
+   -moz-animation: rotation 60s infinite linear;
+   -o-animation: rotation 60s infinite linear;
+   animation: rotation 60s infinite linear
+}
+.long-hand {
+   height: 80px;
+   -webkit-animation: rotation 10s infinite linear;
+   -moz-animation: rotation 10s infinite linear;
+   -o-animation: rotation 10s infinite linear;
+   animation: rotation 10s infinite linear
+}
+
+@-webkit-keyframes rotation {
+   0% {
+      -webkit-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+   }
+   100% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+   }
+}
+
+@-moz-keyframes rotation {
+   0% {
+      -moz-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+   }
+   100% {
+      -moz-transform: rotate(180deg);
+      transform: rotate(180deg);
+   }
+}
+
+@-o-keyframes rotation {
+   0% {
+      -o-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+   }
+   100% {
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+   }
+}
+
+@keyframes rotation {
+   0% {
+      -webkit-transform: rotate(-180deg);
+      -moz-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+   }
+   100% {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+   }
 }
