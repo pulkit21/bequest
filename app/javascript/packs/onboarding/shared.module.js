@@ -5,15 +5,26 @@ import angularMaterialIcons from 'angular-material-icons';
 import 'angular-material/angular-material.css';
 import 'angular-material/angular-material.js';
 import landingModule from './landing/landing.module';
+import Raven from 'raven-js';
+import ravenAngularPlugin from 'raven-js/dist/plugins/angular.js';
+
+
+Raven
+  .config('https://bcefe27df82e4f8786d927c6c2a668dd@sentry.io/204497')
+  .addPlugin(ravenAngularPlugin, angular)
+  .install();
+// Raven.addPlugin(ravenAngularPlugin, angular);
 
 window.MODULES = window.MODULES || []
 var modules = [
   ngMaterial,
   angularMaterialIcons,
-  landingModule
+  landingModule,
 ].concat(window.MODULES)
 
+
 angular.module('bequest-landing', modules)
+
 
 // .run(defaultModuleRun);
 

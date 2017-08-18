@@ -63,7 +63,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'awesome_print'
   gem "binding_of_caller"
-  gem 'better_errors', github: 'charliesome/better_errors'
+  # gem 'better_errors', github: 'charliesome/better_errors'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
@@ -97,3 +97,6 @@ gem 'stripe'
 
 # DocoSign
 gem 'docusign_rest'
+
+# Sentry
+gem "sentry-raven"
