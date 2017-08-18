@@ -87,7 +87,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { host: "https://bequest.herokuapp.com"}
+  config.action_mailer.default_url_options = { host: "https://bequestlife.com"}
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
