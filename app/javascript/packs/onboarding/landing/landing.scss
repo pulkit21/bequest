@@ -1,11 +1,7 @@
+html,
 body {
-  letter-spacing: 0.5px;
   height: 100%;
-}
-
-html {
-  height: 100%;
-  background: #fff;
+  background: #fff !important;
 }
 
 a {
@@ -346,7 +342,7 @@ body input:checked ~ nav > ul > li {
 .bg-landing {
   position: relative;
   display: block;
-  padding: 220px 50px;
+  padding: 220px 0px;
   background: url(../img/bg-landing.png) no-repeat center center;
 }
 
@@ -357,7 +353,7 @@ body input:checked ~ nav > ul > li {
 .bg-purple {
   position: relative;
   display: block;
-  padding: 100px 50px;
+  padding: 100px 0px;
   background: #8000ff;
 }
 
@@ -367,7 +363,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-signup {
-  padding: 50px;
+  padding: 50px 0px;
   background: #8000ff;
   text-align: center;
 }
@@ -380,21 +376,21 @@ body input:checked ~ nav > ul > li {
 .bg-white {
   position: relative;
   display: block;
-  padding: 100px 50px;
+  padding: 100px 0px;
   background: #fff;
 }
 
 .bg-gray {
   position: relative;
   display: block;
-  padding: 100px 50px;
+  padding: 100px 0px;
   background: #f2f2f2;
 }
 
 .bg-press {
   position: relative;
   display: block;
-  padding: 50px;
+  padding: 50px 0px;
   background: #f2f2f2;
   text-align: center;
 }
@@ -402,7 +398,7 @@ body input:checked ~ nav > ul > li {
 .bg-testimonial {
   position: relative;
   display: block;
-  padding: 100px 30px;
+  padding: 100px 0px;
   background: #fff;
   text-align: center;
 }
@@ -410,23 +406,6 @@ body input:checked ~ nav > ul > li {
 .landing-button {
   position: relative;
   display: inline-block;
-}
-
-.question-block {
-  background: #fafafa;
-  min-height: 180px;
-  padding: 10px;
-  color: #8000ff;
-  font-size: 18px !important;
-  line-height: 28px !important;
-  transition: all 0.15s linear;
-  text-align: left;
-}
-
-.question-block:hover {
-  cursor: pointer;
-  color: #fff;
-  background: #8000ff;
 }
 
 .title {
