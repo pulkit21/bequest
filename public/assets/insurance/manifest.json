@@ -11,7 +11,6 @@
   "onboarding/contact/contact.js": "http://0.0.0.0:8080/assets/insurance/onboarding/contact/contact.js",
   "onboarding/footer/footer.js": "http://0.0.0.0:8080/assets/insurance/onboarding/footer/footer.js",
   "onboarding/header/header.js": "http://0.0.0.0:8080/assets/insurance/onboarding/header/header.js",
-  "onboarding/index.js": "http://0.0.0.0:8080/assets/insurance/onboarding/index.js",
   "onboarding/landing/landing.css": "http://0.0.0.0:8080/assets/insurance/onboarding/landing/landing.css",
   "onboarding/landing/landing.js": "http://0.0.0.0:8080/assets/insurance/onboarding/landing/landing.js",
   "onboarding/learn/learn.js": "http://0.0.0.0:8080/assets/insurance/onboarding/learn/learn.js",
