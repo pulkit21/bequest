@@ -1,5 +1,7 @@
 class InsurancesController < ApplicationController
 
+  before_action :check_insurance, only: [:apply]
+  before_action :set_user, only: [:create]
   before_action :set_base_path, only: [:apply, :confirm]
   before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
@@ -13,7 +15,7 @@ class InsurancesController < ApplicationController
   end
 
   def create
-    @insurance = Insurance.new(insurance_params)
+    @insurance = @user.insurances.new(insurance_params)
     if @insurance.save
       render :show, status: 201
     else
@@ -25,11 +27,15 @@ class InsurancesController < ApplicationController
   end
 
   def stripe
-    @insurance.submit_card_details_in_stripe(params)
-    if @insurance.update(stripe_response: params[:stripe_response], terms_and_services: params[:terms_and_services])
-      render :show, format: :json, status: 201
+    @stripe_response = @insurance.submit_card_details_in_stripe(params)
+    if !@stripe_response[:error_status]
+      if @insurance.update(stripe_response: params[:stripe_response], terms_and_services: params[:terms_and_services])
+        render :show, format: :json, status: 201
+      else
+        render json: @insurance.errors, status: :unprocessable_entity
+      end
     else
-      render json: @insurance.errors, status: :unprocessable_entity
+      render json: {error: @stripe_response[:message]} , status: :unprocessable_entity
     end
   end
 
@@ -60,7 +66,12 @@ class InsurancesController < ApplicationController
 
 
   def apply
-
+    @user = User.find(params[:user])
+    if @user.present?
+      if @user.insurances.present?
+        redirect_to user_exist_path
+      end
+    end
   end
 
   def confirm
@@ -81,6 +92,16 @@ class InsurancesController < ApplicationController
   #######
   private
   #######
+
+  def check_insurance
+    unless params[:user].present?
+      render_404
+    end
+  end
+
+  def set_user
+    @user = User.find(params[:insurance][:user_id])
+  end
 
   def insurance_params
     params.require(:insurance).permit(:tobacco_product,

@@ -92,6 +92,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "foreman"
 gem 'aasm'
 
+# Admin Dashboard
+gem 'activeadmin'
+
 # Payment gateway
 gem 'stripe'
 
@@ -100,3 +103,11 @@ gem 'docusign_rest'
 
 # Sentry
 gem "sentry-raven"
+
+# Zipcode
+gem 'my_zipcode_gem'
+
+#Phone Numbers
+gem 'phonelib'
+
+gem 'mocha', group: :test
