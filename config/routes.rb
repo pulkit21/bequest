@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", confirmations: "confirmations"  }
 
   root 'home#landing'
 
@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get '/learn', to: 'home#learn'
   get '/blog', to: 'home#blog'
   get '/about', to: 'home#about'
-  get '/confirmation', to: 'home#confirmation'
+  get '/confirm_email', to: 'home#confirm_email'
+  get '/user_exist', to: 'home#user_exist'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

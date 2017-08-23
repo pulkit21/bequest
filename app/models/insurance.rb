@@ -1,6 +1,8 @@
 class Insurance < ApplicationRecord
   include AASM
 
+  belongs_to :user
+
   validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
   validates_presence_of :gender, :birthday, if: :idle?
   validates :height, :weight, presence: true, numericality: true, if: :idle?
@@ -122,21 +124,22 @@ class Insurance < ApplicationRecord
         coverage_amount: self.coverage_amount
       }
     )
-    self.update_columns(stripe_plan_id: plan.id)
+    self.update_columns(stripe_plan_id: plan.id, stripe_plan_response: plan)
   end
 
   # STEP 2: Create customer in Stripe
   def create_stripe_customer
-    customer = Stripe::Customer.create(email: "bequest@mailinator.com", metadata: {age: self.current_age})
+    customer = Stripe::Customer.create(email: self.user.email, metadata: {age: self.current_age})
     self.update_columns(stripe_customer: customer.id)
   end
 
   # STEP 3: Subscribe a customer to a plan
   def subscribe_customer_to_a_plan
-    Stripe::Subscription.create(
+    subscribe = Stripe::Subscription.create(
       customer: self.stripe_customer,
       plan: self.stripe_plan_id,
     )
+    self.update_columns(stripe_subscription_response: subscribe)
   end
 
   def initialize_net_http_ssl(uri)
@@ -176,7 +179,6 @@ class Insurance < ApplicationRecord
     http = initialize_net_http_ssl(uri)
     request = Net::HTTP::Get.new(uri.request_uri, headers)
     response = http.request(request)
-    debugger
     obj = ::AmazonS3Service.new.save_pdf(options[:envelope_id], response)
     self.update_columns(policy: obj.key)
     # Insurance.first.get_combined_document(envelope_id: "45bfa861-509b-4088-8e89-9de255ee6088", document_id: 1)
@@ -196,8 +198,8 @@ class Insurance < ApplicationRecord
       signers: [
         {
           embedded: true,
-          name: "Joe Dimaggio",
-          email: "bequest@mailinator.com",
+          name: self.user.full_name,
+          email: self.user.email,
           role_name: 'Issuer',
           sign_here_tabs: [
             {
@@ -218,7 +220,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '155',
               y_position: '132',
-              value: "[self.user.full_name]"
+              value: self.user.full_name
             },
             {
               label: "ADDRESS OF INSURED",
@@ -231,7 +233,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '165',
               y_position: '156',
-              value: "[self.user.address]"
+              value: self.user.address
             },
             {
               label: "CONTRACT NUMBER",
@@ -244,7 +246,7 @@ class Insurance < ApplicationRecord
               x_position: '160',
               y_position: '181',
               page_number: 2,
-              value: "[self.user.contact]"
+              value: ActiveSupport::NumberHelper.number_to_phone(self.user.phone_number, country_code: 1)
             },
             {
               label: "COVERAGE AMOUNT",
@@ -257,7 +259,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '160',
               y_position: '205',
-              value: "[$#{add_commas_to_numbers(self.coverage_amount)}]"
+              value: "$#{add_commas_to_numbers(self.coverage_amount)}"
             },
             {
               label: "PREMIUM PAYMENT",
@@ -270,7 +272,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '160',
               y_position: '229',
-              value: "[$#{self.coverage_payment} #{self.payment_frequency.upcase}]"
+              value: "$#{self.coverage_payment} #{self.payment_frequency.upcase}"
             },
             {
               label: "INSURED ISSUE AGE",
@@ -283,7 +285,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '155',
               y_position: '253',
-              value: "[#{self.current_age}]"
+              value: "#{self.current_age}"
             },
             {
               label: "GENDER",
@@ -296,7 +298,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '110',
               y_position: '278',
-              value: "[#{self.gender.capitalize}]"
+              value: "#{self.gender.capitalize}"
             },
             {
               label: "PAYABLE TO",
@@ -309,7 +311,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '125',
               y_position: '303',
-              value: "[AGE 65]"
+              value: "AGE 65"
             },
             {
               label: "EFFECTIVE DATE",
@@ -322,7 +324,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '140',
               y_position: '327',
-              value: "[#{self.effective_date}]"
+              value: "#{self.effective_date}"
             },
             {
               label: "MATURITY DATE",
@@ -335,7 +337,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '140',
               y_position: '351',
-              value: "[#{self.maturity_date}]"
+              value: "#{self.maturity_date}"
             },
             {
               label: "DATE",
@@ -361,11 +363,19 @@ class Insurance < ApplicationRecord
     self.update_columns(docusign_response: document_envelope_response)
     url = client.get_recipient_view(
         envelope_id: self.docusign_response['envelopeId'],
-        name: "Joe Dimaggio",
-        email: "bequest@mailinator.com",
+        name: self.user.full_name,
+        email: self.user.email,
         return_url: "#{ActionMailer::Base.default_url_options[:host]}/insurance/confirm?insurance=#{self.id}&envelope_id=#{self.docusign_response['envelopeId']}"
       )['url']
     url
+  end
+
+  def docs_status
+    if self.aasm_state == "confirmation"
+      true
+    else
+      false
+    end
   end
 
   #########################################################################################################################

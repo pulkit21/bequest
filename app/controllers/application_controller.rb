@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   protected
   #########
 
+  def render_404
+    render file: Rails.root.join("public", "404"), layout: false, status: "404"
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :address, :city, :state, :zipcode, :phone_number])
   end

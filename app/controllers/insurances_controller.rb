@@ -1,5 +1,7 @@
 class InsurancesController < ApplicationController
 
+  before_action :check_insurance, only: [:apply]
+  before_action :set_user, only: [:create]
   before_action :set_base_path, only: [:apply, :confirm]
   before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
@@ -13,7 +15,7 @@ class InsurancesController < ApplicationController
   end
 
   def create
-    @insurance = Insurance.new(insurance_params)
+    @insurance = @user.insurances.new(insurance_params)
     if @insurance.save
       render :show, status: 201
     else
@@ -64,7 +66,12 @@ class InsurancesController < ApplicationController
 
 
   def apply
-
+    @user = User.find(params[:user])
+    if @user.present?
+      if @user.insurances.present?
+        redirect_to user_exist_path
+      end
+    end
   end
 
   def confirm
@@ -85,6 +92,16 @@ class InsurancesController < ApplicationController
   #######
   private
   #######
+
+  def check_insurance
+    unless params[:user].present?
+      render_404
+    end
+  end
+
+  def set_user
+    @user = User.find(params[:insurance][:user_id])
+  end
 
   def insurance_params
     params.require(:insurance).permit(:tobacco_product,

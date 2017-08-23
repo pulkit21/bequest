@@ -28,13 +28,14 @@ let bequestController = angular
         return false;
       }
 
+      $scope.insurance.user_id = $location.search().user;
       $scope.insurance.save()
       // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
-          $scope.insurance = response;
-          $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
+          $location.url('/quote').search('insurance', response.id);
+          // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {

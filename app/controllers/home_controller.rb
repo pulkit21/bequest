@@ -20,6 +20,14 @@ class HomeController < ApplicationController
 
   end
 
+  def confirm_email
+
+  end
+
+  def user_exist
+
+  end
+
   #######
   private
   #######

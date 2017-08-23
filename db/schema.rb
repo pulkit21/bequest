@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823135416) do
+ActiveRecord::Schema.define(version: 20170823160842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20170823135416) do
     t.jsonb "docusign_response"
     t.string "policy"
     t.string "driving_license"
+    t.jsonb "stripe_plan_response"
+    t.jsonb "stripe_subscription_response"
     t.index ["user_id"], name: "index_insurances_on_user_id"
   end
 

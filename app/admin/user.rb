@@ -25,15 +25,30 @@ index do
   column :city
   column :state
   column :zipcode
-  column :gender
-  column :age
-  column :coverage_area
-  column :payment_amount
-  column :payment_frequesncy
-  column :last_page_completed
-  column :payment_received
-  column :documents_signed
-  actions
+  column :gender do |user|
+    user.insurances.first.gender
+  end
+  column :age  do |user|
+    user.insurances.first.current_age
+  end
+  column :coverage_amount  do |user|
+    user.insurances.first.coverage_amount if user.insurances.first.coverage_amount.present?
+  end
+  column :payment_amount  do |user|
+    user.insurances.first.coverage_payment if user.insurances.first.coverage_payment.present?
+  end
+  column :payment_frequency  do |user|
+    user.insurances.first.payment_frequency.upcase if user.insurances.first.payment_frequency.present?
+  end
+  column :last_page_completed  do |user|
+    user.insurances.first.aasm_state
+  end
+  column :payment_received  do |user|
+  end
+  column :documents_signed  do |user|
+    user.insurances.first.docs_status
+  end
+  # actions
   end
 
   filter :email
