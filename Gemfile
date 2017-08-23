@@ -92,6 +92,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "foreman"
 gem 'aasm'
 
+# Admin Dashboard
+gem 'activeadmin'
+
 # Payment gateway
 gem 'stripe'
 
