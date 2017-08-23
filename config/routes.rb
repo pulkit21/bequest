@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  devise_for :users, controllers: { registrations: "registrations" }
+
   root 'home#landing'
 
   # get 'register',  to: "home#index"
@@ -11,8 +14,8 @@ Rails.application.routes.draw do
   get '/learn', to: 'home#learn'
   get '/blog', to: 'home#blog'
   get '/about', to: 'home#about'
+  get '/confirmation', to: 'home#confirmation'
 
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope :api, defaults: { format: :json }  do

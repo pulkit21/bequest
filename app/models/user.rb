@@ -1,12 +1,39 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :insurances
+  validates_presence_of :first_name, :last_name, :address, :city, :state, :zipcode
+  validates :phone_number, phone: true
+
+  before_create :check_valid_zipcode
+
+
+  # Check for the zipcode policy coverage
+  def check_valid_zipcode
+    zip_code = State.find_by_abbr("NY").zipcodes.find_by_code(self.zipcode)
+    if zip_code.present? && zip_code.inactive?
+      errors.add(:zipcode, "Sorry, we do not offer coverage to individuals in your zip code.")
+      raise ActiveRecord::Rollback
+    elsif !zip_code.present?
+      errors.add(:zipcode, "Invalid zipcode!")
+      raise ActiveRecord::Rollback
+    end
+  end
+
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def full_address
+    "#{address}, #{city}, #{state}"
+  end
+
+  # Signup without password
+  def password_required?
+    new_record? ? false : super
   end
 end

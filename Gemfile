@@ -100,3 +100,11 @@ gem 'docusign_rest'
 
 # Sentry
 gem "sentry-raven"
+
+# Zipcode
+gem 'my_zipcode_gem'
+
+#Phone Numbers
+gem 'phonelib'
+
+gem 'mocha', group: :test
