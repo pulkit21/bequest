@@ -82,8 +82,22 @@ class Insurance < ApplicationRecord
 
   # Submit the credit/debit card details for the customer in stripe
   def submit_card_details_in_stripe(params)
+    status = {
+      error_status: true,
+      message: nil
+    }
     customer = Stripe::Customer.retrieve(self.stripe_customer)
-    customer.sources.create(source: params[:stripe_token])
+    begin
+      customer.sources.create(source: params[:stripe_token])
+      status[:error_status] = false
+      status
+    rescue Stripe::CardError => e
+      status[:message] = e
+      return status
+    rescue => e
+      status[:message] = e
+      return status
+    end
   end
 
   #######################################################################################################################

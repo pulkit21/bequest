@@ -25,11 +25,15 @@ class InsurancesController < ApplicationController
   end
 
   def stripe
-    @insurance.submit_card_details_in_stripe(params)
-    if @insurance.update(stripe_response: params[:stripe_response], terms_and_services: params[:terms_and_services])
-      render :show, format: :json, status: 201
+    @stripe_response = @insurance.submit_card_details_in_stripe(params)
+    if !@stripe_response[:error_status]
+      if @insurance.update(stripe_response: params[:stripe_response], terms_and_services: params[:terms_and_services])
+        render :show, format: :json, status: 201
+      else
+        render json: @insurance.errors, status: :unprocessable_entity
+      end
     else
-      render json: @insurance.errors, status: :unprocessable_entity
+      render json: {error: @stripe_response[:message]} , status: :unprocessable_entity
     end
   end
 

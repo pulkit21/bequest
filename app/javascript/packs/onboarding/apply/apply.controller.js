@@ -127,6 +127,9 @@ let bequestController = angular
         $http.post('/api/v1/insurances/stripe', data).then(function(response) {
           $scope.insurance = response.data;
           $location.path('/sign').search('insurance', response.data.id);
+        }, function(response) {
+          console.log('it failed! error: ' + response.data.error);
+          $scope.stripeErrors = response.data.error;
         });
       }
     }
