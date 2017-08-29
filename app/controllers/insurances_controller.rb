@@ -1,5 +1,5 @@
 class InsurancesController < ApplicationController
-
+  before_action :set_header_footer, only: []
   before_action :check_insurance, only: [:apply]
   before_action :set_user, only: [:create]
   before_action :set_base_path, only: [:apply, :confirm]
@@ -92,6 +92,10 @@ class InsurancesController < ApplicationController
   #######
   private
   #######
+
+  def set_header_footer
+    @header_footer_on = true
+  end
 
   def check_insurance
     unless params[:user].present?

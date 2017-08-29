@@ -34,11 +34,14 @@
 
   %body
     / ============== HEADER ==============
-    = render 'layouts/nav'
+    - if defined?(@header_footer_on)
+      = render 'layouts/nav'
+
     = yield
     / %div{"ui-view" => ""}
     / ============== FOOTER ==============
-    = render 'layouts/footer'
+    - if defined?(@header_footer_on)
+      = render 'layouts/footer'
     / = javascript_pack_tag 'onboarding/main'
     / = javascript_pack_tag 'onboarding/app'
     = javascript_pack_tag 'onboarding/shared'
