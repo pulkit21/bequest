@@ -23,11 +23,12 @@ h2 {
 }
 
 h3 {
-  font-weight: 500;
-  font-size: 16px;
-  text-transform: uppercase;
-  line-height: 26px;
+  font-size: 25px;
+  line-height: 35px;
+  font-weight: 300;
   color: #333;
+  padding: 0px 20px 50px 20px;
+  display: block;
 }
 
 p {
@@ -248,6 +249,21 @@ body input:checked ~ nav > ul > li {
  
 }
 
+.header-alt {
+  padding: 20px 20px;
+  text-align: center;
+}
+
+.header-alt img {
+  height: 50px;
+  width: 50px;
+  padding: 20px 0px;
+}
+
+.header-alt img:hover {
+  cursor: pointer;
+}
+
 
 .header {
   height: 30px;
@@ -449,6 +465,9 @@ body input:checked ~ nav > ul > li {
   padding-bottom: 30px;
 }
 
+.form-container {
+  padding-bottom: 100px;
+}
 
 .form-container h1 {
   font-size: 35px;
@@ -538,13 +557,12 @@ md-slider:hover {
 
 .md-button.md-primary {
   color: #fff;
-  background: #00aaff;
+  background: #8000ff;
   transition: all 0.15s linear;
 }
 
 .md-button.md-primary:hover {
-  color: #8000ff;
-  background: #80d4ff;
+  background: #aa00ff;
 }
 
 .md-button.md-secondary {
@@ -1428,16 +1446,16 @@ md-checkbox.md-checked .md-icon {
 
 md-input-container:not(.md-input-invalid).md-input-focused md-select md-select-value,
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: #00aaff !important;
+    border-color: #8000ff !important;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused md-select span,
 md-input-container:not(.md-input-invalid).md-input-focused label {
-    color: #00aaff !important;
+    color: #8000ff !important;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: #00aaff !important;
+    border-color: #8000ff !important;
 }
 
 md-input-container:not([md-no-float]) .md-select-placeholder span:first-child,
@@ -1450,28 +1468,18 @@ md-input-container {
   margin: 0px 0px 0px 0px !important;
 }
 
-md-input-container.landing-input:not([md-no-float]) .md-select-placeholder span:first-child,
-md-input-container.landing-input label:not(.md-no-float):not(.md-container-ignore), 
-md-input-container.landing-input .md-placeholder {
-  color: #fff !important;
+md-input-container:not([md-no-float]) .md-select-placeholder span:first-child,
+md-input-container label:not(.md-no-float):not(.md-container-ignore), 
+md-input-container .md-placeholder {
   font-size: 16px !important;
-  padding: 0px 15px;
-  margin-bottom: -8px;
-  height: 30px;
+  height: 20px;
 }
 
 md-input-container {
-  padding: 0 !important;
 }
 
-md-input-container.landing-input .md-input {
-  border: none !important;
+md-input-container .md-input {
   background: #8000ff;
-  border-radius: 2px;
-  padding: 5px 15px;
-  margin-top: -3px;
-  color: #fff;
-  height: 36px;
 }
 
 md-select {

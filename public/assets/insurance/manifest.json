@@ -18,7 +18,6 @@
   "onboarding/press/press.js": "http://0.0.0.0:8080/assets/insurance/onboarding/press/press.js",
   "onboarding/privacy/privacy.js": "http://0.0.0.0:8080/assets/insurance/onboarding/privacy/privacy.js",
   "onboarding/quote/quote.js": "http://0.0.0.0:8080/assets/insurance/onboarding/quote/quote.js",
-  "onboarding/register/register.js": "http://0.0.0.0:8080/assets/insurance/onboarding/register/register.js",
   "onboarding/services/insurance.js": "http://0.0.0.0:8080/assets/insurance/onboarding/services/insurance.js",
   "onboarding/shared.css": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.css",
   "onboarding/shared.js": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.js",
