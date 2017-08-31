@@ -13,6 +13,7 @@ h1 {
   font-size: 40px;
   line-height: 50px;
   color: #333333;
+  font-family: 'Metamorphous', cursive;
 }
 
 h2 {
@@ -27,8 +28,8 @@ h3 {
   line-height: 35px;
   font-weight: 300;
   color: #333;
-  padding: 0px 20px 50px 20px;
   display: block;
+  font-family: 'Metamorphous', cursive;
 }
 
 p {
@@ -266,13 +267,15 @@ body input:checked ~ nav > ul > li {
 
 
 .header {
-  height: 30px;
-  padding: 20px 100px 20px 50px;
+  height: auto;
+  padding: 16px 100px 15px 50px;
   position: fixed;
+  background: #fff;
   top: 0;
   right: 0;
   left: 0;
   z-index: 100;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .header-logo {
@@ -283,8 +286,8 @@ body input:checked ~ nav > ul > li {
 }
 
 .header-logo img {
-  height: 30px;
-  width: 30px;
+  height: 34px;
+  width: 34px;
 }
 
 .header-logo:hover {
@@ -355,31 +358,48 @@ body input:checked ~ nav > ul > li {
   padding: 20px;
 }
 
+.block-margin {
+  margin: 50px 0px 100px 0px;
+}
+
 .bg-landing {
   position: relative;
   display: block;
-  padding: 200px 0px 220px 0px;
-  background: url(../img/bg-landing.png) no-repeat center center;
+  padding: 100px 0px 0px 0px;
+  background: #fff;
 }
 
 .bg-landing h1 {
-  margin: 0;
+  margin: 0px 0px 0px 0px ;
+}
+
+.bg-landing-2 {
+  text-align: center;
+  display: block;
+  padding: 150px 0px;
+  background: url(../img/bg-landing-2.png) no-repeat center center; 
+}
+
+.bg-landing-2 h1,
+.bg-landing-2 p {
+  color: #fff;
 }
 
 .bg-purple {
   position: relative;
   display: block;
-  padding: 100px 0px;
-  background: #8000ff;
+  padding: 150px 0px;
+  background: #8000ff; 
 }
 
 .bg-purple h1,
+.bg-purple h3,
 .bg-purple p {
   color: #fff;
 }
 
 .bg-signup {
-  padding: 50px 0px;
+  padding: 100px 0px;
   background: #8000ff;
   text-align: center;
 }
@@ -392,14 +412,14 @@ body input:checked ~ nav > ul > li {
 .bg-white {
   position: relative;
   display: block;
-  padding: 100px 0px;
+  padding: 150px 0px;
   background: #fff;
 }
 
 .bg-gray {
   position: relative;
   display: block;
-  padding: 100px 0px;
+  padding: 150px 0px;
   background: #f2f2f2;
 }
 
@@ -1501,6 +1521,12 @@ md-select {
 
 /* FEATURES */
 
+.img-family {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: -3px;
+}
+
 .img-xsmall {
   width: 100%;
   max-width: 120px !important;
@@ -1571,7 +1597,7 @@ md-select {
 }
 
 .img-press {
-  height: 20px;
+  height: 16px;
   opacity: 0.3;
   margin: 20px 50px 20px 0px;
 }
