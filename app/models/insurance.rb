@@ -4,9 +4,10 @@ class Insurance < ApplicationRecord
   belongs_to :user
 
   validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
-  validates_presence_of :gender, :birthday, if: :idle?
+  validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
   validates :height, :weight, presence: true, numericality: true, if: :idle?
   after_create :change_state_to_question, if: :idle?
+  validates :phone_number, phone: true, if: :idle?
   # validates :coverage_amount, presence: true, numericality: true, if: :question?
   # validates_presence_of :tobacco_product, :health_condition, ¡:gender, :birthday, :terms_and_services, :payment_frequency
   # validates :height, :weight, :coverage_amount, presence: true, numericality: true
@@ -54,6 +55,10 @@ class Insurance < ApplicationRecord
 
   def log_status_change
     puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
+
+  def full_address
+    "#{address}, #{city}, #{state}"
   end
 
   # Current Age
@@ -233,7 +238,7 @@ class Insurance < ApplicationRecord
               font_color: "Gold",
               x_position: '165',
               y_position: '156',
-              value: self.user.address
+              value: self.full_address
             },
             {
               label: "CONTRACT NUMBER",
@@ -246,7 +251,7 @@ class Insurance < ApplicationRecord
               x_position: '160',
               y_position: '181',
               page_number: 2,
-              value: ActiveSupport::NumberHelper.number_to_phone(self.user.phone_number, country_code: 1)
+              value: ActiveSupport::NumberHelper.number_to_phone(self.phone_number, country_code: 1)
             },
             {
               label: "COVERAGE AMOUNT",
@@ -417,7 +422,7 @@ class Insurance < ApplicationRecord
   end
 
   def check_coverage_stage
-    if coverage_amount && self.question? && coverage_payment && payment_frequency
+    if coverage_amount.present? && self.question? && coverage_payment.present? && payment_frequency.present?
       if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
         self.update_columns(aasm_state: "coverage")
         create_stripe_plan
@@ -430,7 +435,7 @@ class Insurance < ApplicationRecord
   end
 
   def check_payment_stage
-    if terms_and_services && self.coverage?
+    if terms_and_services.present? && self.coverage?
       self.update_columns(aasm_state: "payment")
       PolicyMailer.send_signature_link(self).deliver_now
       self.subscribe_customer_to_a_plan
@@ -440,7 +445,7 @@ class Insurance < ApplicationRecord
   end
 
   def body_mass_index
-    if height && weight
+    if height.present? && weight.present?
       body_mass = 703 * (height.to_f / (weight * weight))
       if body_mass > 30
         errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
@@ -449,7 +454,7 @@ class Insurance < ApplicationRecord
   end
 
   def check_current_age
-    if birthday
+    if birthday.present?
       current_date = Time.now.utc.to_date
       current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
       if current_age < 18 || current_age >= 65

@@ -2,7 +2,7 @@ class InsurancesController < ApplicationController
   before_action :set_header_footer, only: []
   before_action :check_insurance, only: [:apply]
   before_action :set_user, only: [:create]
-  before_action :set_base_path, only: [:apply, :confirm]
+  before_action :set_base_path, only: [:apply, :confirm, :quote]
   before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
   def index
@@ -74,6 +74,10 @@ class InsurancesController < ApplicationController
     end
   end
 
+  def quote
+    # @insurance = Insurance.find(params[:insurance])
+  end
+
   def confirm
     if params[:event] == "signing_complete"
       @insurance = Insurance.find(params[:insurance])
@@ -98,9 +102,9 @@ class InsurancesController < ApplicationController
   end
 
   def check_insurance
-    unless params[:user].present?
-      render_404
-    end
+    # unless params[:user].present?
+    #   render_404
+    # end
   end
 
   def set_user
@@ -120,7 +124,12 @@ class InsurancesController < ApplicationController
                               :payment_frequency,
                               :terms_and_services,
                               :aasm_state,
-                              :driving_license
+                              :driving_license,
+                              :address,
+                              :city,
+                              :state,
+                              :zipcode,
+                              :phone_number
                             )
   end
 

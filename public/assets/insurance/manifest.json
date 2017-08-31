@@ -1,5 +1,6 @@
 {
   "application.js": "http://0.0.0.0:8080/assets/insurance/application.js",
+  "bg-landing.png": "http://0.0.0.0:8080/assets/insurance/bg-landing.png",
   "onboarding/about/about.js": "http://0.0.0.0:8080/assets/insurance/onboarding/about/about.js",
   "onboarding/app.js": "http://0.0.0.0:8080/assets/insurance/onboarding/app.js",
   "onboarding/apply/apply.js": "http://0.0.0.0:8080/assets/insurance/onboarding/apply/apply.js",
@@ -17,6 +18,7 @@
   "onboarding/press/press.js": "http://0.0.0.0:8080/assets/insurance/onboarding/press/press.js",
   "onboarding/privacy/privacy.js": "http://0.0.0.0:8080/assets/insurance/onboarding/privacy/privacy.js",
   "onboarding/quote/quote.js": "http://0.0.0.0:8080/assets/insurance/onboarding/quote/quote.js",
+  "onboarding/register/register.js": "http://0.0.0.0:8080/assets/insurance/onboarding/register/register.js",
   "onboarding/services/insurance.js": "http://0.0.0.0:8080/assets/insurance/onboarding/services/insurance.js",
   "onboarding/shared.css": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.css",
   "onboarding/shared.js": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.js",

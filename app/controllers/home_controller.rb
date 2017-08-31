@@ -24,6 +24,10 @@ class HomeController < ApplicationController
 
   end
 
+  def insurance_coverage
+
+  end
+
   def user_exist
 
   end

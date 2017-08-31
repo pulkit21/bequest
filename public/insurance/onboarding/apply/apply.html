@@ -68,6 +68,49 @@
 
               <div class="form-row">
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                  <label>Street Address</label>
+                  <input
+                    ng-model="insurance.address"
+                    required
+                  >
+                </md-input-container>
+              </div>
+
+              <div class="form-row">
+                <div layout="row" flex="50" flex-sm="75" flex-xs="100">
+                  <md-input-container layout="column" flex="70" class="md-block">
+                    <label>City</label>
+                    <input
+                      ng-model="insurance.city"
+                      required
+                    >
+                  </md-input-container>
+                  <md-input-container layout="column" flex="30" class="md-block">
+                    <label>State</label>
+                    <md-select
+                      ng-model="insurance.state"
+                      required
+                    >
+                      <md-option value="NC">NC</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                  <label>Phone Number</label>
+                  <input
+                    ng-model="insurance.phoneNumber"
+                    type="number"
+                    required
+                  >
+                </md-input-container>
+                <span class="learn-more" ng-if="errors.data.phone_number"> Phone Number {{errors.data.phone_number[0]}}</span>
+              </div>
+
+              <div class="form-row">
+                <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Driving License</label>
                   <input
                     ng-model="insurance.drivingLicense"

@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
+<% if @resource.active_zipcode? %>
 
-<p>You can confirm your account email through the link below:</p>
+  <p>Welcome <%= @resource.full_name %>!</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <p>You can confirm your account email through the link below:</p>
+
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<% else %>
+  We do not offer coverage for this zipcode
+<% end %>
