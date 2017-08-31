@@ -34,8 +34,8 @@ h3 {
 
 p {
   color: #333;
-  font-size: 18px !important;
-  line-height: 28px !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
   margin: 10px 0px;
 }
 
@@ -314,7 +314,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .footer {
-  padding: 100px 30px;
+  padding: 100px 50px;
   background: #333;
   position: relative;
   text-align: center;
@@ -365,7 +365,7 @@ body input:checked ~ nav > ul > li {
 .bg-landing {
   position: relative;
   display: block;
-  padding: 100px 0px 0px 0px;
+  padding: 100px 50px 0px 50px;
   background: #fff;
 }
 
@@ -376,7 +376,9 @@ body input:checked ~ nav > ul > li {
 .bg-landing-2 {
   text-align: center;
   display: block;
-  padding: 150px 0px;
+  width: 100%;
+  min-height: 600px;
+  margin-top: -50px;
   background: url(../img/bg-landing-2.png) no-repeat center center; 
 }
 
@@ -399,9 +401,13 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-signup {
-  padding: 100px 0px;
-  background: #8000ff;
+  padding: 150px 50px 100px 50px;
+  background: linear-gradient(to left top, #aa00ff, #8000ff 65%);
   text-align: center;
+}
+
+.bg-signup h3 {
+  color: #fff;
 }
 
 .bg-signup p {
@@ -409,24 +415,44 @@ body input:checked ~ nav > ul > li {
   margin-bottom: 30px;
 }
 
+.bg-black {
+  position: relative;
+  display: block;
+  padding: 150px 50px;
+  background: #333;
+}
+
+.bg-black h3,
+.bg-black p {
+  color: #fff;
+}
+
 .bg-white {
   position: relative;
   display: block;
-  padding: 150px 0px;
+  padding: 150px 50px;
   background: #fff;
 }
 
 .bg-gray {
   position: relative;
   display: block;
-  padding: 150px 0px;
+  padding: 150px 50px 200px 50px;
+  margin-bottom: -50px;
+  background: #f2f2f2;
+}
+
+.bg-gray-2 {
+  position: relative;
+  display: block;
+  padding: 150px 50px 150px 50px;
   background: #f2f2f2;
 }
 
 .bg-press {
   position: relative;
   display: block;
-  padding: 50px 0px;
+  padding: 50px 50px 100px 50px;
   background: #f2f2f2;
   text-align: center;
 }
@@ -556,12 +582,12 @@ md-slider:hover {
 
 .md-button.md-landing-white {
   color: #333;
-  background: #ccc;
+  background: #e6e6e6;
   transition: all 0.15s linear;
 }
 
 .md-button.md-landing-white:hover {
-  background: #fff;
+  background: #ccc;
 }
 
 .md-button.md-landing {
@@ -572,7 +598,7 @@ md-slider:hover {
 
 .md-button.md-landing:hover {
   color: #fff;
-  background: #333;
+  background: #aa00ff;
 }
 
 .md-button.md-primary {
@@ -1733,7 +1759,6 @@ md-slider .md-thumb-text {
   display: block !important;
   position: relative;
   height: 100%;
-  padding: 0px 50px;
 }
 
 .clock {
