@@ -8,15 +8,16 @@ Rails.application.routes.draw do
 
   # get 'register',  to: "home#index"
   get '/insurance/apply',  to: "insurances#apply"
-  get '/insurance/quote',  to: "insurances#apply"
-  get '/insurance/payment',  to: "insurances#apply"
-  get '/insurance/sign',  to: "insurances#apply"
+  get '/insurance/quote',  to: "insurances#quote"
+  get '/insurance/payment',  to: "insurances#quote"
+  get '/insurance/sign',  to: "insurances#quote"
   get '/insurance/confirm',  to: "insurances#confirm"
 
   get '/learn', to: 'home#learn'
   get '/blog', to: 'home#blog'
   get '/about', to: 'home#about'
   get '/confirm_email', to: 'home#confirm_email'
+  get '/insurance/coverage', to: 'home#insurance_coverage'
   get '/user_exist', to: 'home#user_exist'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

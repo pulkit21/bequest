@@ -10,7 +10,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_inactive_sign_up_path_for(resource)
-    confirm_email_path
+    if resource.active_zipcode?
+      confirm_email_path
+    else
+      insurance_coverage_path(zipcode: resource.zipcode)
+    end
   end
   
 end

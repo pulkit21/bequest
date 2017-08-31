@@ -25,10 +25,13 @@ module Bequest
     config.autoload_paths += %W(#{config.root}/app/services)
     config.filter_parameters << :password
 
-    Raven.configure do |config|
-      config.dsn = 'https://d56db32e40de46d281a4e596834757ff:73e602eb48554b8ebd76a6ab6af02517@sentry.io/204831'
+    if Rails.env.production?
+      Raven.configure do |config|
+        config.dsn = 'https://d56db32e40de46d281a4e596834757ff:73e602eb48554b8ebd76a6ab6af02517@sentry.io/204831'
+      end
     end
-
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
