@@ -26,42 +26,15 @@
                 </md-input-container>
               </div>
             </div>
-            
 
-(??)            <div class="form-row">
-(??)              <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-(??)                <%= f.label :address %>
-(??)                <%= f.text_field :address, autofocus: true %>
-(??)              </md-input-container>
-(??)            </div>
-(??)
-(??)            <div class="form-row">
-(??)              <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-(??)                <%= f.label :phone_number %>
-(??)                <%= f.text_field :phone_number, autofocus: true %>
-(??)              </md-input-container>
-(??)            </div>
-(??)
-(??)            <div class="form-row">
-(??)              <div layout="row" flex="50" flex-sm="75" flex-xs="100">
-(??)                <md-input-container layout="column" flex="70" class="md-block">
-(??)                  <%= f.label :city %>
-(??)                  <%= f.text_field :city, autofocus: true %>
-(??)                </md-input-container>
-(??)                <md-input-container layout="column" flex="30" class="md-block">
-(??)                  <%= f.select :state, "<option>NY</option>".html_safe %>
-(??)                </md-input-container>
-(??)              </div>
-(??)            </div>
-(??)
-(??)            <div class="form-row">
-(??)              <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-(??)                <%= f.label :zipcode %>
-(??)                <%= f.text_field :zipcode, autofocus: true %>
-(??)              </md-input-container>
-(??)            </div>
-(??)            <%= f.submit "Sign up", class: "md-primary md-button md-ink-ripple" %>
-(??)            <!-- <md-button type='submit' class="md-primary">Sign up</md-button>
+            <div class="form-row">
+              <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                <%= f.label :zipcode %>
+                <%= f.text_field :zipcode, autofocus: true %>
+              </md-input-container>
+            </div>
+            <%= f.submit "Sign up", class: "md-primary md-button md-ink-ripple" %>
+            <!-- <md-button type='submit' class="md-primary">Sign up</md-button>
           <% end %>
         </div>
         <div flex></div>
