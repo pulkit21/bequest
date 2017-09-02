@@ -23,5 +23,6 @@
   "onboarding/shared.js": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.js",
   "onboarding/sign/sign.js": "http://0.0.0.0:8080/assets/insurance/onboarding/sign/sign.js",
   "onboarding/support/support.js": "http://0.0.0.0:8080/assets/insurance/onboarding/support/support.js",
-  "onboarding/terms/terms.js": "http://0.0.0.0:8080/assets/insurance/onboarding/terms/terms.js"
+  "onboarding/terms/terms.js": "http://0.0.0.0:8080/assets/insurance/onboarding/terms/terms.js",
+  "bg-landing-3.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-3.png"
 }

@@ -13,7 +13,7 @@ h1 {
   font-size: 40px;
   line-height: 50px;
   color: #333333;
-  font-family: 'Metamorphous', cursive;
+  /* font-family: 'Metamorphous', cursive; */
 }
 
 h2 {
@@ -24,12 +24,12 @@ h2 {
 }
 
 h3 {
-  font-size: 25px;
-  line-height: 35px;
+  font-size: 30px;
+  line-height: 40px;
   font-weight: 300;
   color: #333;
   display: block;
-  font-family: 'Metamorphous', cursive;
+  /* font-family: 'Metamorphous', cursive; */
 }
 
 p {
@@ -102,12 +102,12 @@ body input + label span {
   margin-top: -1px;
   left: 0;
   display: block;
-  background: #8000ff;
+  background: #999;
   transition: .3s;
 }
 
 body input + label:hover span {
-  background: #333 !important;
+  background: #8000ff !important;
 }
 
 body input + label span:first-child {
@@ -209,6 +209,7 @@ body input:checked ~ nav > ul > li {
   }
 }
 
+.footer a,
 .menu a {
   position: relative;
   display: inline-block;
@@ -227,6 +228,7 @@ body input:checked ~ nav > ul > li {
   }
 }
 
+.footer a,
 .menu a {
   &::after,
   &::before {
@@ -275,7 +277,7 @@ body input:checked ~ nav > ul > li {
   right: 0;
   left: 0;
   z-index: 100;
-  border-bottom: 1px solid #f2f2f2;
+  /* border-bottom: 1px solid #f2f2f2; */
 }
 
 .header-logo {
@@ -315,9 +317,12 @@ body input:checked ~ nav > ul > li {
 
 .footer {
   padding: 100px 50px;
-  background: #333;
+  background: #f2f2f2;
   position: relative;
   text-align: center;
+  margin-top: -50px;
+  z-index: 3;
+  box-sizing: border-box;
 }
 
 .footer p {
@@ -342,7 +347,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .footer a:hover {
-  color: #fff;
+  color: #8000ff;
   cursor: pointer;
 }
 
@@ -374,17 +379,32 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-landing-2 {
-  text-align: center;
+  position: relative;
   display: block;
-  width: 100%;
-  min-height: 600px;
+  padding: 150px 50px;
   margin-top: -50px;
-  background: url(../img/bg-landing-2.png) no-repeat center center; 
+  background: url(../img/bg-landing-2.png); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  z-index: 3;
 }
 
-.bg-landing-2 h1,
+.bg-landing-2 h3,
 .bg-landing-2 p {
   color: #fff;
+}
+
+.bg-landing-3 {
+  padding: 150px 50px 250px 50px;
+  position: relative;
+  display: block;
+  margin-bottom: -50px;
+  background: url(../img/bg-landing-3.png); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  z-index: 3;
 }
 
 .bg-purple {
@@ -401,9 +421,12 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-signup {
-  padding: 150px 50px 100px 50px;
+  position: relative;
+  display: block;
+  padding: 150px 50px 150px 50px;
   background: linear-gradient(to left top, #aa00ff, #8000ff 65%);
   text-align: center;
+  z-index: 1;
 }
 
 .bg-signup h3 {
@@ -430,23 +453,26 @@ body input:checked ~ nav > ul > li {
 .bg-white {
   position: relative;
   display: block;
-  padding: 150px 50px;
-  background: #fff;
-}
-
-.bg-gray {
-  position: relative;
-  display: block;
   padding: 150px 50px 200px 50px;
-  margin-bottom: -50px;
-  background: #f2f2f2;
+  background: #fff;
+  
 }
-
 .bg-gray-2 {
   position: relative;
   display: block;
-  padding: 150px 50px 150px 50px;
+  padding: 200px 50px 150px 50px;
   background: #f2f2f2;
+  margin-top: -50px;
+  z-index: 1;
+}
+
+.bg-white-2 {
+  position: relative;
+  display: block;
+  padding: 200px 50px 150px 50px;
+  background: #fff;
+  margin-top: -50px;
+  z-index: 1;
 }
 
 .bg-press {
@@ -1553,6 +1579,24 @@ md-select {
   margin-bottom: -3px;
 }
 
+.img-family-2 {
+  width: 100%;
+  max-width: 200px;
+  margin: 30px 10px 0px 10px;
+}
+
+.img-time {
+  width: 100%;
+  max-width: 100px;
+  margin: 30px 10px 0px 10px;
+}
+
+.img-sync {
+  width: 100%;
+  max-width: 100px;
+  margin: 30px 10px 0px 10px;
+}
+
 .img-xsmall {
   width: 100%;
   max-width: 120px !important;
@@ -1644,15 +1688,31 @@ md-select {
   display: inline-block;
 }
 
+.img-footer-heart {
+  margin: 0px 5px -5px 5px;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  opacity: 0.4;
+}
+
+.img-footer-nc {
+  margin: 0px 5px -12px 5px;
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  opacity: 0.4;
+}
+
 .img-footer svg {
-  fill: #999;
+  fill: #b3b3b3;
   height: 25px;
   width: 25px;
   transition: all 0.15s linear;
 }
 
 .img-footer svg:hover {
-  fill: #fff;
+  fill: #8000ff;
   cursor: pointer;
 }
 
