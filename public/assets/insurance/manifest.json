@@ -25,5 +25,7 @@
   "onboarding/sign/sign.js": "http://0.0.0.0:8080/assets/insurance/onboarding/sign/sign.js",
   "onboarding/support/support.js": "http://0.0.0.0:8080/assets/insurance/onboarding/support/support.js",
   "onboarding/terms/terms.js": "http://0.0.0.0:8080/assets/insurance/onboarding/terms/terms.js",
-  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png"
+  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png",
+  "bg-landing-4.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-4.png",
+  "bg-landing-5.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-5.png"
 }
