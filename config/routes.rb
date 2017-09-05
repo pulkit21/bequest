@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get '/insurance/confirm',  to: "insurances#confirm"
 
   get '/learn', to: 'home#learn'
-  get '/blog', to: 'home#blog'
   get '/about', to: 'home#about'
+  get '/terms', to: 'home#terms'
+  get '/privacy', to: 'home#privacy'
   get '/confirm_email', to: 'home#confirm_email'
   get '/insurance/coverage', to: 'home#insurance_coverage'
   get '/user_exist', to: 'home#user_exist'

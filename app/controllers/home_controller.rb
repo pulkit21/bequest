@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :set_header_footer, only: [:blog, :learn, :landing, :about, :index]
+  before_action :set_header_footer, only: [:terms, :privacy, :learn, :landing, :about, :index]
 
   def index
   end
@@ -12,8 +12,12 @@ class HomeController < ApplicationController
 
   end
 
-  def blog
+  def terms
+    
+  end
 
+  def privacy
+        
   end
 
   def learn

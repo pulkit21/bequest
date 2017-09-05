@@ -1,6 +1,7 @@
 {
   "application.js": "http://0.0.0.0:8080/assets/insurance/application.js",
   "bg-landing-2.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-2.png",
+  "bg-landing-3.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-3.png",
   "onboarding/about/about.js": "http://0.0.0.0:8080/assets/insurance/onboarding/about/about.js",
   "onboarding/app.js": "http://0.0.0.0:8080/assets/insurance/onboarding/app.js",
   "onboarding/apply/apply.js": "http://0.0.0.0:8080/assets/insurance/onboarding/apply/apply.js",
@@ -24,5 +25,5 @@
   "onboarding/sign/sign.js": "http://0.0.0.0:8080/assets/insurance/onboarding/sign/sign.js",
   "onboarding/support/support.js": "http://0.0.0.0:8080/assets/insurance/onboarding/support/support.js",
   "onboarding/terms/terms.js": "http://0.0.0.0:8080/assets/insurance/onboarding/terms/terms.js",
-  "bg-landing-3.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-3.png"
+  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png"
 }

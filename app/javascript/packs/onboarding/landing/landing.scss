@@ -39,13 +39,22 @@ p {
   margin: 10px 0px;
 }
 
+ul li {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
 p a {
-  color: #ffaa00;
+  color: #8000ff;
   transition: all 0.15s linear;
 }
 
 p a:hover {
-  color: #8000ff;
+  color: #aa00ff;
+}
+
+i {
+  color: #999;
 }
 
 .bold {
@@ -322,7 +331,6 @@ body input:checked ~ nav > ul > li {
   text-align: center;
   margin-top: -50px;
   z-index: 3;
-  box-sizing: border-box;
 }
 
 .footer p {
@@ -390,6 +398,8 @@ body input:checked ~ nav > ul > li {
   z-index: 3;
 }
 
+.bg-about h3,
+.bg-about p,
 .bg-landing-2 h3,
 .bg-landing-2 p {
   color: #fff;
@@ -407,11 +417,21 @@ body input:checked ~ nav > ul > li {
   z-index: 3;
 }
 
+.bg-about {
+  padding: 150px 50px 200px 50px;
+  position: relative;
+  display: block;
+  background: url(../img/raleigh.png); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 .bg-purple {
   position: relative;
   display: block;
-  padding: 150px 0px;
-  background: #8000ff; 
+  padding: 150px 50px 80px 50px;
+  background: linear-gradient(to left top, #aa00ff, #8000ff 65%);
 }
 
 .bg-purple h1,
@@ -448,6 +468,12 @@ body input:checked ~ nav > ul > li {
 .bg-black h3,
 .bg-black p {
   color: #fff;
+}
+
+.bg-terms {
+  display: block;
+  padding: 50px 50px 150px 50px;
+  background: #fff;
 }
 
 .bg-white {
