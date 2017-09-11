@@ -9,32 +9,45 @@
 <div layout="column" flex="100">
   <div layout="row" layout-xs="column" flex="100">
 
-      <div class="form-column" layout="column" flex-offset="25" flex-offset-sm="15" flex-offset-xs="0" flex="50" flex-sm="70" flex-xs="100">
+      <div class="form-column" layout="column" flex-offset="30" flex-offset-sm="20" flex-offset-xs="0" flex="40" flex-sm="60" flex-xs="100">
         <div class="form-container">
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
               <div class="form-row">
-              <div layout="row" flex="100">
-                <md-input-container layout="column" flex="50" class="md-block">
+                <md-input-container layout="column" flex="100" class="md-block">
                   <%= f.label :first_name %>
                     <%= f.text_field :first_name, autofocus: true %>
                 </md-input-container>
-                <md-input-container layout="column" flex="50" class="md-block">
-                  <%= f.label :last_name %>
-                    <%= f.text_field :last_name, autofocus: true %>
-                </md-input-container>
-              </div>
             </div>
 
             <div class="form-row">
-              <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+            <md-input-container flex="100" class="md-block">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, autofocus: true %>
+            </md-input-container>
+            </div>
+
+            <div class="form-row">
+            <md-input-container flex="100" class="md-block">
+              <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true %>
+            </md-input-container>
+          </div>
+
+            <div class="form-row">
+              <md-input-container flex="100" class="md-block">
                 <%= f.label :zipcode %>
                 <%= f.text_field :zipcode, autofocus: true %>
               </md-input-container>
             </div>
+            
+
+            <div class="text-center">
             <%= f.submit "Sign up", class: "md-primary md-button md-ink-ripple" %>
             <!-- <md-button type='submit' class="md-primary">Sign up</md-button>
+            </div>
+
           <% end %>
         </div>
         <div flex></div>
