@@ -40,10 +40,6 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvid
       url: '/contact',
       template: `<contact></contact>`
     })
-    .state('about', {
-      url: '/about',
-      template: `<about></about>`
-    })
     .state('careers', {
       url: '/careers',
       template: `<careers></careers>`
