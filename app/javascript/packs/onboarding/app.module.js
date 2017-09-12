@@ -26,6 +26,7 @@ import confirmController from './confirm/confirm.controller';
 
 angular.module('bdi-landing', [
   uiRouter,
+  applyModule,
   quoteModule,
   // termsModule,
   // contactModule,
