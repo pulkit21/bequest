@@ -8,6 +8,10 @@ class HomeController < ApplicationController
 
   end
 
+  def design
+    
+  end
+
   def about
 
   end

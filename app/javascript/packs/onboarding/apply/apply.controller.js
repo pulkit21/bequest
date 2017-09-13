@@ -61,13 +61,13 @@ let bequestController = angular
       var premiumAmount = chart[quoteForm.coverageAge][current_amount_index];
 
       if (quoteForm.paymentFrequency === "semi") {
-        quoteForm.coveragePayment = ((10 / premiumAmount) * 100) + premiumAmount
+        quoteForm.coveragePayment = (premiumAmount * .1) + premiumAmount
       }
       else if (quoteForm.paymentFrequency === "quarterly") {
-        quoteForm.coveragePayment = ((20 / premiumAmount) * 100) + premiumAmount
+        quoteForm.coveragePayment = (premiumAmount * .2) + premiumAmount
       }
       else if (quoteForm.paymentFrequency === "monthly") {
-        quoteForm.coveragePayment = ((30 / premiumAmount) * 100) + premiumAmount
+        quoteForm.coveragePayment = (premiumAmount * .3) + premiumAmount
       }
       else {
         quoteForm.coveragePayment = premiumAmount

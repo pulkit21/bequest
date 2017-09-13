@@ -268,6 +268,11 @@ body input:checked ~ nav > ul > li {
  
 }
 
+.question-container {
+  padding: 20px 20px;
+  text-align: center;
+}
+
 .header-alt {
   padding: 20px 20px;
   text-align: center;
@@ -281,6 +286,28 @@ body input:checked ~ nav > ul > li {
 
 .header-alt img:hover {
   cursor: pointer;
+}
+
+.header-apply {
+  height: 30px;
+  padding: 10px 50px 10px 50px;
+}
+
+.header-apply-link {
+  float: right;
+  position: relative;
+  display: inline-block;
+  transition: all 0.15s linear;
+  padding: 8px 15px;
+  margin-left: 10px;
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.header-apply-link:hover {
+  color: #8000ff;
 }
 
 
@@ -375,6 +402,13 @@ body input:checked ~ nav > ul > li {
 
 .body-container {
   padding: 20px;
+  height: 100%;
+}
+
+.body-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .bg-landing {
@@ -458,8 +492,8 @@ body input:checked ~ nav > ul > li {
   text-align: center;
   position: relative;
   display: block;
-  padding: 150px 50px 200px 50px;
-  background: linear-gradient(rgba(242, 242, 242, 0.9), transparent), url(../img/castle-3.png); 
+  padding: 150px 50px 150px 50px;
+  background: #fff; 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -591,7 +625,7 @@ body input:checked ~ nav > ul > li {
 .bg-press {
   position: relative;
   display: block;
-  padding: 50px 50px 100px 50px;
+  padding: 50px 50px 50px 50px;
   background: #f2f2f2;
   text-align: center;
 }
@@ -613,28 +647,23 @@ body input:checked ~ nav > ul > li {
   padding: 50px 0px;
 }
 
-.progress-block {
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  vertical-align: middle;
-  font-size: 14px;
-  font-weight: 500;
-  color: #8000ff;
-  text-transform: uppercase;
-}
-
-.progress-block.complete {
-  text-decoration: line-through;
-}
-
-.progress-block.active {
-  background: #f2f2f2;
-}
-
 .progress-container {
-  margin-bottom: 70px;
-  margin-right: 50px;
+  margin: 0;
+  padding: 0;
+  height: 3px;
+  font-size: 0;
+  width: 100%;
+}
+
+.progress-block {
+  height: 3px;
+  background: #8000ff;
+  display: block;
+  position: relative;
+}
+
+.progress-block.progress-1 {
+  width: 10%;
 }
 
 .quote-text {
@@ -738,6 +767,26 @@ md-slider:hover {
 .md-button.md-landing:hover {
   color: #fff;
   background: #aa00ff;
+}
+
+.md-button.md-apply-secondary,
+.md-button.md-apply-primary {
+  font-size: 20px;
+  padding: 10px 40px;
+  width: 200px;
+  color: #333333;
+  background: #ccc;
+  transition: all 0.15s linear;
+}
+
+.md-button.md-apply-primary:hover {
+  background: #00e626;
+  color: #fff;
+}
+
+.md-button.md-apply-secondary:hover {
+  background: #ff0000;
+  color: #fff;
 }
 
 .md-button.md-primary {

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/insurance/sign',  to: "insurances#quote"
   get '/insurance/confirm',  to: "insurances#confirm"
 
+  get '/design', to: 'home#design'
   get '/learn', to: 'home#learn'
   get '/about', to: 'home#about'
   get '/terms', to: 'home#terms'

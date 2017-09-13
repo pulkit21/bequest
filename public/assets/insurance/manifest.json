@@ -18,6 +18,5 @@
   "onboarding/shared.css": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.css",
   "onboarding/shared.js": "http://0.0.0.0:8080/assets/insurance/onboarding/shared.js",
   "onboarding/sign/sign.js": "http://0.0.0.0:8080/assets/insurance/onboarding/sign/sign.js",
-  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png",
-  "castle-3.png": "http://0.0.0.0:8080/assets/insurance/castle-3.png"
+  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png"
 }
