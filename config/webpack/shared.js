@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Website Starter',
-      template: 'app/javascript/packs/onboarding/about/about.html',
+      // template: 'app/javascript/packs/onboarding/about/about.html',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
