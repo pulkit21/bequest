@@ -100,6 +100,7 @@
             <span ng-show="questionForm.height.$error.minlength" class="learn-more">Height is too short.</span>
             <span ng-show="questionForm.height.$error.maxlength" class="learn-more">Height is too long.</span>
           </md-input-container>
+          
           <md-input-container layout="column" flex="50" class="md-block">
             <label>Weight (Pounds)</label>
             <input ng-model="insurance.weight" ng-minlength="2" ng-maxlength="3" name="weight" type="number" min=0 max=999 required>

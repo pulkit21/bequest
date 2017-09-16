@@ -19,8 +19,8 @@ h1 {
 
 h2 {
   font-weight: 300;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 30px;
+  line-height: 40px;
   color: #333;
 }
 
@@ -269,7 +269,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .question-container {
-  padding: 20px 20px;
+  padding: 0px 20px 30px 20px;
   text-align: center;
 }
 
@@ -637,7 +637,6 @@ body input:checked ~ nav > ul > li {
   background: #fff;
   text-align: center;
 }
-
 .landing-button {
   position: relative;
   display: inline-block;
@@ -647,7 +646,24 @@ body input:checked ~ nav > ul > li {
   padding: 50px 0px;
 }
 
+.button-back {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  color: #333 !important;
+  text-transform: uppercase;
+  font-size: 10px;
+  transition: all 0.15s linear;
+  border-radius: 3px;
+}
+
+.button-back:hover {
+  background: #e6e6e6;
+}
+
 .progress-container {
+  display: block;
+  position: relative;
   margin: 0;
   padding: 0;
   height: 3px;
@@ -769,24 +785,53 @@ md-slider:hover {
   background: #aa00ff;
 }
 
-.md-button.md-apply-secondary,
-.md-button.md-apply-primary {
+.md-button[disabled]:hover {
+  cursor: not-allowed;
+}
+
+.md-button.md-apply-gray,
+.md-button.md-apply-blue,
+.md-button.md-apply-pink,
+.md-button.md-apply-purple,
+.md-button.md-apply-red,
+.md-button.md-apply-green {
+  margin: 10px;
   font-size: 20px;
-  padding: 10px 40px;
+  padding: 10px 30px;
   width: 200px;
   color: #333333;
-  background: #ccc;
+  background: #e6e6e6;
   transition: all 0.15s linear;
 }
 
-.md-button.md-apply-primary:hover {
-  background: #00e626;
+.md-button.md-apply-green:hover {
+  background: #00cc22;
   color: #fff;
 }
 
-.md-button.md-apply-secondary:hover {
+.md-button.md-apply-red:hover {
   background: #ff0000;
   color: #fff;
+}
+
+.md-button.md-apply-blue:hover {
+  background: #00aaff;
+  color: #fff;
+}
+
+.md-button.md-apply-pink:hover {
+  background: #ff4dc4;
+  color: #fff;
+}
+
+.md-button.md-apply-purple:hover {
+  background: #8000ff;
+  color: #fff;
+}
+
+.md-button.md-apply-gray:hover {
+  background: #ccc;
+  color: #333;
 }
 
 .md-button.md-primary {
@@ -823,7 +868,13 @@ md-checkbox.md-checked .md-icon {
   background-color: #00aaff;
 }
 
+md-checkbox .md-label {
+  color: #333 !important;
+}
 
+.checkbox-margin {
+  margin-left: 12px !important;
+}
 
 
 
@@ -1695,29 +1746,32 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 md-input-container:not([md-no-float]) .md-select-placeholder span:first-child,
 md-input-container label:not(.md-no-float):not(.md-container-ignore),
 md-input-container .md-placeholder {
-    font-size: 16px !important;
 }
 
 md-input-container {
-  margin: 0px 0px 0px 0px !important;
+  margin: 0px 10px 0px 10px !important;
 }
 
 md-input-container:not([md-no-float]) .md-select-placeholder span:first-child,
 md-input-container label:not(.md-no-float):not(.md-container-ignore), 
 md-input-container .md-placeholder {
-  font-size: 16px !important;
-  height: 20px;
-}
-
-md-input-container {
 }
 
 md-input-container .md-input {
   background: #8000ff;
 }
 
+md-input-container input label {
+  right: -4px !important;
+}
+
 md-select {
   margin-bottom: 20px !important;
+}
+
+.md-errors-spacer {
+  height: 0 !important;
+  min-height: 0 !important;
 }
 
 .clear {
