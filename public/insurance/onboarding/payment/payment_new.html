@@ -1,0 +1,58 @@
+<div class="progress-container">
+    <div class="progress-block" style="width: 95%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
+<div class="body-container">
+    <div class="body-center">
+        <div class="question-container">
+            <h2 class="">Payment</h2>
+        </div>
+        <form name="paymentForm" stripe-form="stripeCallback" novalidate>
+
+            <div class="margin-bottom-30" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70"
+                flex-offset-xs="0" flex-xs="100">
+                <md-input-container layout="column" flex="100">
+                    <label>Name on Card</label>
+                    <input name="cardName" ng-model="cardDetails.cardName" required>
+                </md-input-container>
+            </div>
+
+            <div class="margin-bottom-30" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70"
+                flex-offset-xs="0" flex-xs="100">
+                <md-input-container layout="column" flex="100">
+                    <label>Card number</label>
+                    <input type="text" class="input-block-level" ng-model="number" name="number" payments-validate="card" payments-format="card"
+                        payments-type-model="type" payments-length="card" ng-class="type">
+                    <span ng-show="paymentForm.cardNumber.$error.minlength" class="learn-more">Card number should be 16 digits.</span>
+                    <span ng-show="paymentForm.cardNumber.$error.maxlength" class="learn-more">Card number should be 16 digits.</span>
+                </md-input-container>
+            </div>
+
+            <div class="margin-bottom-30" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70"
+                flex-offset-xs="0" flex-xs="100">
+                <md-input-container class="margin-bottom-30" layout="column" flex="50" flex-xs="100">
+                    <label>Expiration date (MM/YY)</label>
+                    <input type="text" class="input-block-level" ng-model="expiry" name="expiry" payments-validate="expiry" payments-format="expiry">
+                </md-input-container>
+                <md-input-container class="margin-bottom-30" layout="column" flex="50" flex-xs="100">
+                    <label>Security number</label>
+                    <input type="text" class="input-block-level" ng-model="cvc" name="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type">
+                    <span ng-show="paymentForm.cardSecurity.$error.minlength" class="learn-more">Card security number should not be less than 3 digits.</span>
+                    <span ng-show="paymentForm.cardSecurity.$error.maxlength" class="learn-more">Card security number should be greater than 4 digits.</span>
+                </md-input-container>
+            </div>
+
+            <!-- put error in a toast -->
+            <span class="learn-more" ng-if="stripeErrors"> {{stripeErrors}}</span>
+
+
+            <div class="form-column text-center" layout="column" flex="100">
+                <div class="form-container">
+                    <md-button type="submit" class="md-apply-purple" ng-disabled="paymentForm.$invalid">
+                        Submit
+                    </md-button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

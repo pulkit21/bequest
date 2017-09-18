@@ -1,0 +1,31 @@
+<div class="progress-container">
+    <div class="progress-block" style="width: 80%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
+<div class="body-container">
+    <div class="body-center">
+        <div class="question-container">
+            <h2 class="">${{insurance.coverageAmount || 100000 | number : fractionSize}} Coverage</h2>
+        </div>
+        <div layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+            <md-slider-container flex="100" flex-xs="100" class="md-block">
+                <md-slider name="coverageAmount" flex step="100000" min="100000" max="2000000" ng-model="insurance.coverageAmount" ng-change="getPremium(insurance)"
+                    required>
+                </md-slider>
+            </md-slider-container>
+        </div>
+        <div class="question-container">
+            <h2 name="coveragePayment" ng-model="insurance.coveragePayment" ng-if="insurance.coveragePayment">
+                ${{insurance.coveragePayment}} Per Month
+            </h2>
+            <h2 ng-model="insurance.coveragePayment" ng-if="!insurance.coveragePayment"> $0 Per Month</h2>
+        </div>
+        <div class="form-column text-center" layout="column" flex="100">
+            <div class="form-container">
+                <md-button type="submit" class="md-apply-purple" ng-disabled="">
+                    Next
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
