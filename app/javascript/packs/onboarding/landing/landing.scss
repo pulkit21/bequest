@@ -19,8 +19,8 @@ h1 {
 
 h2 {
   font-weight: 300;
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 25px;
+  line-height: 35px;
   color: #333;
 }
 
@@ -678,10 +678,6 @@ body input:checked ~ nav > ul > li {
   position: relative;
 }
 
-.progress-block.progress-1 {
-  width: 10%;
-}
-
 .quote-text {
   font-size: 35px;
   line-height: 35px;
@@ -752,7 +748,18 @@ body input:checked ~ nav > ul > li {
   transition: all 0.15s linear;
 }
 
+md-slider .md-track {
+  background-color: #e6e6e6;
+}
 
+md-slider .md-track.md-track-fill {
+  background-color: #8000ff;
+}
+
+md-slider.md-default-theme .md-thumb:after, md-slider .md-thumb:after {
+  background-color: #8000ff;
+  border-color: #8000ff;
+}
 
 md-slider:hover {
   cursor: pointer !important;
@@ -796,9 +803,9 @@ md-slider:hover {
 .md-button.md-apply-red,
 .md-button.md-apply-green {
   margin: 10px;
-  font-size: 20px;
-  padding: 10px 30px;
-  width: 200px;
+  font-size: 14px;
+  padding: 3px 7px;
+  width: 140px;
   color: #333333;
   background: #e6e6e6;
   transition: all 0.15s linear;

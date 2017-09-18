@@ -1,0 +1,21 @@
+<div class="progress-container">
+    <div class="progress-block" style="width: 25%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
+<div class="body-container">
+    <div class="body-center">
+        <div class="question-container">
+            <h2 class="">Do your family members have a history of heart disease or cancer?</h2>
+        </div>
+        <form layout="column" flex="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
+            <div layout="row" layout-xs="column" flex="100">
+                <div class="form-column text-center" layout="column" flex="100">
+                    <div class="form-container" name="familyHistory" ng-model="insurance.familyHistory" required>
+                        <md-button type='submit' value="0" ng-selected="insurance.familyHistory" class="md-apply-red">No</md-button>
+                        <md-button type='submit' value="1" ng-selected="insurance.familyHistory" class="md-apply-green">Yes</md-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

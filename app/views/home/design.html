@@ -1,28 +1,28 @@
 <div class="progress-container">
-    <div class="progress-block progress-1"></div>
+    <div class="progress-block" style="width: 5%;"></div>
 </div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
             <h2 class="">Do you use tobacco or nicotine products?</h2>
         </div>
-        <div layout="column" flex="100">
+        <form layout="column" flex="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
             <div layout="row" layout-xs="column" flex="100">
                 <div class="form-column text-center" layout="column" flex="100">
-                    <div class="form-container">
-                        <md-button type='submit' class="md-apply-red">No</md-button>
-                        <md-button type='submit' class="md-apply-green">Yes</md-button>
+                    <div class="form-container" name="tobaccoProduct" ng-model="insurance.tobaccoProduct" required>
+                        <md-button type='submit' value="0" ng-selected="insurance.tobaccoProduct" class="md-apply-red">No</md-button>
+                        <md-button type='submit' value="1" ng-selected="insurance.tobaccoProduct" class="md-apply-green">Yes</md-button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
 
 
 <div class="progress-container">
-    <div class="progress-block progress-1"></div>
+    <div class="progress-block" style="width: 10%;"></div>
     <a class="button-back" href="/">Back</a>
 </div>
 <div class="body-container">
@@ -44,7 +44,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 15%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -64,7 +67,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 20%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -84,7 +90,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 25%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -104,7 +113,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 30%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -124,7 +136,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 35%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -144,7 +159,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 40%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -164,7 +182,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 45%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -184,7 +205,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 50%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -235,7 +259,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 55%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -272,7 +299,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 60%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -302,7 +332,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 65%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -326,6 +359,11 @@
 </div>
 
 
+
+<div class="progress-container">
+    <div class="progress-block" style="width: 70%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -350,7 +388,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 75%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -374,7 +415,10 @@
 </div>
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 80%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -404,6 +448,11 @@
 </div>
 
 
+
+<div class="progress-container">
+    <div class="progress-block" style="width: 85%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -437,6 +486,10 @@
 
 
 
+<div class="progress-container">
+    <div class="progress-block" style="width: 90%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -511,6 +564,10 @@
 
 
 
+<div class="progress-container">
+    <div class="progress-block" style="width: 95%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">
@@ -554,13 +611,6 @@
             <!-- put error in a toast -->
             <span class="learn-more" ng-if="stripeErrors"> {{stripeErrors}}</span>
 
-            <div class="margin-bottom-30" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70"
-                flex-offset-xs="0" flex-xs="100">
-                <md-checkbox class="checkbox-margin" name="termsAndServices" ng-model="insurance.termsAndServices" aria-label="" required>
-                    I agree to the terms and service.
-                </md-checkbox>
-            </div>
-
 
             <div class="form-column text-center" layout="column" flex="100">
                 <div class="form-container">
@@ -575,7 +625,10 @@
 
 
 
-
+<div class="progress-container">
+    <div class="progress-block" style="width: 100%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
 <div class="body-container">
     <div class="body-center">
         <div class="question-container">

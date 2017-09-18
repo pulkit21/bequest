@@ -1,0 +1,20 @@
+<div class="progress-container">
+    <div class="progress-block" style="width: 5%;"></div>
+</div>
+<div class="body-container">
+    <div class="body-center">
+        <div class="question-container">
+            <h2 class="">Do you use tobacco or nicotine products?</h2>
+        </div>
+        <form layout="column" flex="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
+            <div layout="row" layout-xs="column" flex="100">
+                <div class="form-column text-center" layout="column" flex="100">
+                    <div class="form-container" name="tobaccoProduct" ng-model="insurance.tobaccoProduct" required>
+                        <md-button type='submit' value="0" ng-selected="insurance.tobaccoProduct" class="md-apply-red">No</md-button>
+                        <md-button type='submit' value="1" ng-selected="insurance.tobaccoProduct" class="md-apply-green">Yes</md-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

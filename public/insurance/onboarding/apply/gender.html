@@ -1,0 +1,21 @@
+<div class="progress-container">
+    <div class="progress-block" style="width: 45%;"></div>
+    <a class="button-back" href="/">Back</a>
+</div>
+<div class="body-container">
+    <div class="body-center">
+        <div class="question-container">
+            <h2 class="">Gender</h2>
+        </div>
+        <form layout="column" flex="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
+            <div layout="row" layout-xs="column" flex="100">
+                <div class="form-column text-center" layout="column" flex="100">
+                    <div class="form-container" name="gender" ng-model="insurance.gender" required>
+                        <md-button type='submit' value="male" class="md-apply-blue">Male</md-button>
+                        <md-button type='submit' value="female" class="md-apply-pink">Female</md-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
