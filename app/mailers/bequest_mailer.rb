@@ -6,9 +6,9 @@ class BequestMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     if record.active_zipcode?
-      opts[:subject] = "Welcome #{record.full_name}, confirm your BequestLife account"
+      opts[:subject] = "Please confirm your email"
     else
-      opts[:subject] = "No Coverage for #{record.zipcode} zipcode"
+      opts[:subject] = "Coverage coming soon to your area"
     end
     super
   end

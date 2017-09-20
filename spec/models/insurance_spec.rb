@@ -21,7 +21,7 @@ RSpec.describe Insurance, type: :model do
           height: 169,
           weight: 150,
           address: Faker::Address.street_address,
-          state: "NY",
+          state: "NC",
           city: Faker::Address.city,
           phone_number: "2025550106",
           user: @user
@@ -47,7 +47,7 @@ RSpec.describe Insurance, type: :model do
           height: 169,
           weight: 150,
           address: Faker::Address.street_address,
-          state: "NY",
+          state: "NC",
           city: Faker::Address.city,
           phone_number: "2025550106",
           user: @user)
@@ -74,7 +74,7 @@ RSpec.describe Insurance, type: :model do
         height: 169,
         weight: 150,
         address: Faker::Address.street_address,
-        state: "NY",
+        state: "NC",
         city: Faker::Address.city,
         phone_number: "2025550106",
         user: @user
@@ -96,7 +96,7 @@ RSpec.describe Insurance, type: :model do
           height: 169,
           weight: 150,
           address: Faker::Address.street_address,
-          state: "NY",
+          state: "NC",
           city: Faker::Address.city,
           phone_number: "2025550106",
           user: @user)
@@ -141,7 +141,7 @@ RSpec.describe Insurance, type: :model do
         height: 169,
         weight: 150,
         address: Faker::Address.street_address,
-        state: "NY",
+        state: "NC",
         city: Faker::Address.city,
         phone_number: "2025550106",
         user: @user
@@ -159,7 +159,7 @@ RSpec.describe Insurance, type: :model do
         height: 169,
         weight: 150,
         address: Faker::Address.street_address,
-        state: "NY",
+        state: "NC",
         city: Faker::Address.city,
         phone_number: "2025550106",
         user: @user
@@ -178,7 +178,7 @@ RSpec.describe Insurance, type: :model do
         height: 169,
         weight: 150,
         address: Faker::Address.street_address,
-        state: "NY",
+        state: "NC",
         city: Faker::Address.city,
         phone_number: "2025550106",
         user: @user
@@ -216,7 +216,7 @@ RSpec.describe Insurance, type: :model do
         height: 169,
         weight: 60,
         address: Faker::Address.street_address,
-        state: "NY",
+        state: "NC",
         city: Faker::Address.city,
         phone_number: "2025550106",
         user: @user

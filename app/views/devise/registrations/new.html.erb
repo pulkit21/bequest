@@ -1,14 +1,8 @@
-<div class="header-alt">
-<a href="/" class="">
-  <%= image_tag("/insurance/onboarding/img/bequest_favicon.png")%>
-</a>
-<h3 class="">Lets confirm your email.</h3>
-</div>
-
 <div class="body-container">
-<div layout="column" flex="100">
-  <div layout="row" layout-xs="column" flex="100">
-
+  <div class="body-center">
+    <div class="question-container">
+      <h2 class="">Email Confirmation</h2>
+    </div>
       <div class="form-column" layout="column" flex-offset="30" flex-offset-sm="20" flex-offset-xs="0" flex="40" flex-sm="60" flex-xs="100">
         <div class="form-container">
 
@@ -37,7 +31,7 @@
             </md-input-container>
           </div>
 
-            <div class="form-row">
+            <div class="form-row margin-bottom-30">
               <md-input-container flex="100" class="md-block">
                 <%= f.label :zipcode %>
                 <%= f.text_field :zipcode, autofocus: true %>
@@ -45,8 +39,7 @@
             </div>
 
             <div class="text-center">
-            <%= f.submit "Sign up", class: "md-primary md-button md-ink-ripple" %>
-            <!-- <md-button type='submit' class="md-primary">Sign up</md-button>
+            <%= f.submit "Next", class: "md-apply-purple md-button md-ink-ripple" %>
             </div>
 
           <% end %>
@@ -56,5 +49,3 @@
 
     </div>
   </div>
-
-</div>

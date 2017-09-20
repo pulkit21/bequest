@@ -24,41 +24,24 @@
 
               <div class="margin-bottom-50">
                 <md-slider-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-                  <md-slider
-                    name="coverageAmount"
-                    flex step="100000"
-                    min="100000"
-                    max="2000000"
-                    ng-model="insurance.coverageAmount"
-                    ng-change="getPremium(insurance)"
-                    required
-                  >
+                  <md-slider name="coverageAmount" flex step="100000" min="100000" max="2000000" ng-model="insurance.coverageAmount" ng-change="getPremium(insurance)"
+                    required>
                   </md-slider>
                 </md-slider-container>
               </div>
 
               <div class="margin-bottom-50">
-                <h1
-                  ng-model="insurance.coverageAmount"
-                  ng-if="insurance.coverageAmount"
-                >
+                <h1 ng-model="insurance.coverageAmount" ng-if="insurance.coverageAmount">
                   ${{insurance.coverageAmount | number : fractionSize }} coverage
                 </h1>
-                <h1
-                  ng-model="insurance.coverageAmount"
-                  ng-if="!insurance.coverageAmount"
-                >
+                <h1 ng-model="insurance.coverageAmount" ng-if="!insurance.coverageAmount">
                   $100,000 coverage
                 </h1>
                 <h1 ng-model="term">{{insurance.coverageAge}} year term</h1>
 
 
                 <!-- dev note: payment will be calculated based on age, gender, and coverage only -->
-                <h1
-                  name="coveragePayment"
-                  ng-model="insurance.coveragePayment"
-                  ng-if="insurance.coveragePayment"
-                  >
+                <h1 name="coveragePayment" ng-model="insurance.coveragePayment" ng-if="insurance.coveragePayment">
                   ${{insurance.coveragePayment}} per month
                 </h1>
                 <h1 ng-model="insurance.coveragePayment" ng-if="!insurance.coveragePayment"> $0 per month</h1>
@@ -69,12 +52,7 @@
                 round to the nearest dollar. -->
                 <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
                   <label>Payment Frequency</label>
-                  <md-select
-                    name="paymentFrequency"
-                    ng-model="insurance.paymentFrequency"
-                    ng-change="getPremiumCharge(insurance)"
-                    required
-                  >
+                  <md-select name="paymentFrequency" ng-model="insurance.paymentFrequency" ng-change="getPremiumCharge(insurance)" required>
                     <md-option value="annual">Annual</md-option>
                     <md-option value="semi">Semi-Annual</md-option>
                     <md-option value="quarterly">Quarterly</md-option>

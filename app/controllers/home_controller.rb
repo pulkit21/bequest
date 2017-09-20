@@ -8,6 +8,10 @@ class HomeController < ApplicationController
 
   end
 
+  def product
+    
+  end
+
   def design
     
   end

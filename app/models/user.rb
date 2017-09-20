@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   # Check for the zipcode policy coverage
   def check_valid_zipcode
-    zip_code = State.find_by_abbr("NY").zipcodes.find_by_code(self.zipcode)
+    zip_code = State.find_by_abbr("NC").zipcodes.find_by_code(self.zipcode)
     unless zip_code.present?
       errors.add(:zipcode, "Invalid zipcode!")
       raise ActiveRecord::Rollback
@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   # def check_valid_zipcode
-  #   zip_code = State.find_by_abbr("NY").zipcodes.find_by_code(self.zipcode)
+  #   zip_code = State.find_by_abbr("NC").zipcodes.find_by_code(self.zipcode)
   #   if zip_code.present? && zip_code.inactive?
   #     errors.add(:zipcode, "Sorry, we do not offer coverage to individuals in your zip code.")
   #     raise ActiveRecord::Rollback
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   # end
 
   def active_zipcode?
-    zip = State.find_by_abbr("NY").zipcodes.find_by_code(self.zipcode)
+    zip = State.find_by_abbr("NC").zipcodes.find_by_code(self.zipcode)
     active_zip = zip.present? && zip.active?
     active_zip
   end

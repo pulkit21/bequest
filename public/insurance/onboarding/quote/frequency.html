@@ -3,19 +3,15 @@
     <a class="button-back" href="/">Back</a>
 </div>
 <div class="body-container">
-    <div class="body-center">
+    <form class="body-center" name="quoteForm" ng-submit="quoteSubmit(insurance)" novalidate>
         <div class="question-container">
             <h2 class="">Payment Frequency</h2>
         </div>
-        <div class="text-center margin-bottom-50" layout="row" layout-xs="column" flex="100">
-            <!-- name="paymentFrequency"
-                    ng-model="insurance.paymentFrequency"
-                    ng-change="getPremiumCharge(insurance)"
-                    required -->
-            <md-button type='submit' class="md-apply-blue">Annual</md-button>
-            <md-button type='submit' class="md-apply-blue">Semi-Annual</md-button>
-            <md-button type='submit' class="md-apply-blue">Quarterly</md-button>
-            <md-button type='submit' class="md-apply-blue">Monthly</md-button>
+        <div name="paymentFrequency" ng-model="insurance.paymentFrequency" ng-change="getPremiumCharge(insurance)" required class="text-center margin-bottom-50" layout="row" layout-xs="column" flex="100">
+            <md-button value="annual" type='submit' class="md-apply-blue">Annual</md-button>
+            <md-button value="semi" type='submit' class="md-apply-blue">Semi-Annual</md-button>
+            <md-button value="quarterly" type='submit' class="md-apply-blue">Quarterly</md-button>
+            <md-button value="monthly" type='submit' class="md-apply-blue">Monthly</md-button>
         </div>
         <div class="question-container">
             <h2 name="coveragePayment" ng-model="insurance.coveragePayment" ng-if="insurance.coveragePayment">
@@ -25,10 +21,10 @@
         </div>
         <div class="form-column text-center" layout="column" flex="100">
             <div class="form-container">
-                <md-button type="submit" class="md-apply-purple" ng-disabled="paymentFrequency.$invalid">
+                <md-button ng-click="quoteSubmit(insurance)" ng-disabled="quoteForm.$invalid" class="md-apply-purple">
                     Next
                 </md-button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
