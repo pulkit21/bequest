@@ -1,37 +1,21 @@
-<div layout="column" flex="100">
-
-  <div class="body-container">
-    <div layout="row" flex="100">
-
-      <div class="form-column" layout="column" flex="25" flex-xs="100">
-        <div class="progress-container">
-          <div class="progress-block complete">1. Questions</div>
-          <div class="progress-block complete">2. Coverage</div>
-          <div class="progress-block complete">3. Payment</div>
-          <div class="progress-block complete">4. Signature</div>
-          <div class="progress-block active">5. Confirmation</div>
+<div class="progress-container">
+  <div class="progress-block" style="min-width: 95%; max-width: 100%;"></div>
+</div>
+<div class="body-container">
+  <div class="body-center">
+    <div class="question-container">
+      <h2 class="">Your insured! Download your policy and live life!</h2>
+    </div>
+    <form name="confirmForm" layout="column" flex="100">
+      <div layout="row" layout-xs="column" flex="100">
+        <div class="form-column text-center" layout="column" flex="100">
+          <div class="form-container">
+            <md-button target="_self" ng-href="{{policy}}" class="md-apply-purple" download="file.pdf">
+              Download
+            </md-button>
+          </div>
         </div>
       </div>
-
-      <div layout="column" flex="75" flex-xs="100" name="confirmForm">
-        <div class="form-container">
-          <h1>The Confirmation.</h1>
-          <p>Congratulations on your new life insurance policy! You are now covered.</p>
-          <p>Your policy and related documents will be mailed to you.</p>
-          <p class="margin-bottom-50">If you have any questions, please click the <i class="bold">Contact Us</i> button below.</p>
-
-          <md-button
-            target="_self"
-            ng-href="{{policy}}"
-            class="md-primary"
-            download="file.pdf"
-          >
-            Download Policy
-          </md-button>
-          <md-button ui-sref="contact" class="md-primary">Contact Us</md-button>
-        </div>
-      </form>
-    </div>
+    </form>
   </div>
-
 </div>
