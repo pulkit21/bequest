@@ -592,6 +592,20 @@ body input:checked ~ nav > ul > li {
   padding: 30px;
 }
 
+.container-100 {
+  text-align: center;
+  padding: 100px 50px;
+}
+
+.container-50 {
+  text-align: center;
+  padding: 50px;
+}
+
+.container-0 {
+  text-align: center;
+  padding: 0px 50px;
+}
 
 
 .bg-white {
@@ -1851,6 +1865,11 @@ md-select {
 }
 
 /* FEATURES */
+
+.img-nation {
+  width: 100%;
+  max-width: 700px;
+}
 
 .img-coverage {
   width: 40px;

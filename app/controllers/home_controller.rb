@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :set_header_footer, only: [:terms, :privacy, :learn, :landing, :about, :index]
+  before_action :set_header_footer, only: [:terms, :privacy, :learn, :landing, :about, :index, :nation]
 
   def index
   end
@@ -9,6 +9,10 @@ class HomeController < ApplicationController
   end
 
   def product
+    
+  end
+
+  def nation
     
   end
 

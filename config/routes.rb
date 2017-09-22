@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/insurance/confirm',  to: "insurances#confirm"
 
   get '/design', to: 'home#design'
+  get '/nation', to: 'home#nation'
   get '/product', to: 'home#product'
   get '/learn', to: 'home#learn'
   get '/about', to: 'home#about'
