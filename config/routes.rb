@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   # get 'register',  to: "home#index"
+  get '/insurance/product',  to: "insurances#quote"
+  get '/insurance/tobacco',  to: "insurances#quote"
+  get '/insurance/tobacco',  to: "insurances#quote"
+  get '/insurance/blood',  to: "insurances#quote"
+  get '/insurance/history',  to: "insurances#quote"
   get '/insurance/apply',  to: "insurances#apply"
   get '/insurance/quote',  to: "insurances#quote"
   get '/insurance/payment',  to: "insurances#quote"

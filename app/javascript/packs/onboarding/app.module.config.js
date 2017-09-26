@@ -32,6 +32,22 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvid
       url: '/confirm',
       template: `<confirm></confirm>`
     })
+    .state('product', {
+      url: '/product',
+      template: `<product></product>`
+    })
+    .state('tobacco', {
+      url: '/tobacco',
+      template: `<tobacco></tobacco>`
+    })
+    .state('history', {
+      url: '/history',
+      template: `<history></history>`
+    })
+    .state('blood', {
+      url: '/blood',
+      template: `<blood></blood>`
+    })
 
 
 

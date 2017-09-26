@@ -2,31 +2,27 @@ class Insurance < ApplicationRecord
   include AASM
   self.inheritance_column = 'product'
 
-  belongs_to :user
+  # belongs_to :user
   has_many :beneficiaries
   accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true
+  validates_presence_of :product, if: :idle?
+  after_create :change_state_to_product, if: :idle?
 
-  validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
-  validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
-  validates :height, :weight, presence: true, numericality: true, if: :idle?
-  after_create :change_state_to_question, if: :idle?
-  validates :phone_number, phone: true, if: :idle?
-  # validates :coverage_amount, presence: true, numericality: true, if: :question?
-  # validates_presence_of :tobacco_product, :health_condition, ¡:gender, :birthday, :terms_and_services, :payment_frequency
-  # validates :height, :weight, :coverage_amount, presence: true, numericality: true
-  validate :body_mass_index, on: :create
-  validate :check_current_age, on: :create
-  validates_presence_of :terms_and_services, if: :coverage?
-  validate :check_payment_stage, on: :update, if: :coverage?
-  validate :check_coverage_stage, on: :update, if: :question?
+  # validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
+  # validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
+  # validates :height, :weight, presence: true, numericality: true, if: :idle?
+  # after_create :change_state_to_question, if: :idle?
+  # validates :phone_number, phone: true, if: :idle?
+  # # validates :coverage_amount, presence: true, numericality: true, if: :question?
+  # # validates_presence_of :tobacco_product, :health_condition, ¡:gender, :birthday, :terms_and_services, :payment_frequency
+  # # validates :height, :weight, :coverage_amount, presence: true, numericality: true
+  # validate :body_mass_index, on: :create
+  # validate :check_current_age, on: :create
+  # validates_presence_of :terms_and_services, if: :coverage?
+  # validate :check_payment_stage, on: :update, if: :coverage?
+  # validate :check_coverage_stage, on: :update, if: :question?
 
 
-  def self.products
-    [
-      'Term',
-      'Accidental'
-    ]
-  end
 
   enum gender: ["male", "female"]
   enum payment_frequency: {"annual" => 0, "semi" => 10 , "quarterly" => 20, "monthly" => 30}
@@ -35,24 +31,24 @@ class Insurance < ApplicationRecord
   # --------------------------------------------------------------------------
   aasm do
     state :idle, initial: true
-    # state :product
-    # state :tobacoo
-    # state :history
-    # state :blood
-    # state :cholesterol
-    # state :family_history
-    # state :occupation
-    # state :driving
-    # state :alcohol
-    # state :gender
-    # state :birthday
-    # state :height
-    # state :weignt
-    # state :street
-    # state :phone
-    # state :license
-    # state :frequency
-    # state :beneficiary
+    state :product
+    state :tobacoo
+    state :history
+    state :blood
+    state :cholesterol
+    state :family_history
+    state :occupation
+    state :driving
+    state :alcohol
+    state :gender
+    state :birthday
+    state :height
+    state :weignt
+    state :street
+    state :phone
+    state :license
+    state :frequency
+    state :beneficiary
     state :question
     state :coverage
     state :payment
@@ -61,78 +57,78 @@ class Insurance < ApplicationRecord
 
     after_all_transitions :log_status_change
 
-    # event :product_type do
-    #   transitions from: :idle, to: :product
-    # end
+    event :product_type do
+      transitions from: :idle, to: :product
+    end
 
-    # event :tobacoo_used do
-    #   transitions from: :product, to: :tobacoo
-    # end
+    event :tobacoo_used do
+      transitions from: :product, to: :tobacoo
+    end
 
-    # event :any_history do
-    #   transitions from: :tobacoo, to: :history
-    # end
+    event :any_history do
+      transitions from: :tobacoo, to: :history
+    end
 
-    # event :blood_type do
-    #   transitions from: :history, to: :blood
-    # end
+    event :blood_type do
+      transitions from: :history, to: :blood
+    end
 
-    # event :have_cholesterol do
-    #   transitions from: :blood, to: :cholesterol
-    # end
+    event :have_cholesterol do
+      transitions from: :blood, to: :cholesterol
+    end
 
-    # event :any_family_history do
-    #   transitions from: :cholesterol, to: :family_history
-    # end
+    event :any_family_history do
+      transitions from: :cholesterol, to: :family_history
+    end
 
-    # event :any_occupation do
-    #   transitions from: :family_history, to: :occupation
-    # end
+    event :any_occupation do
+      transitions from: :family_history, to: :occupation
+    end
 
-    # event :drive do
-    #   transitions from: :occupation, to: :driving
-    # end
+    event :drive do
+      transitions from: :occupation, to: :driving
+    end
 
-    # event :drinking do
-    #   transitions from: :driving, to: :alcohol
-    # end
+    event :drinking do
+      transitions from: :driving, to: :alcohol
+    end
 
-    # event :gender_type do
-    #   transitions from: :alcohol, to: :gender
-    # end
+    event :gender_type do
+      transitions from: :alcohol, to: :gender
+    end
 
-    # event :birth do
-    #   transitions from: :gender, to: :birthday
-    # end
+    event :birth do
+      transitions from: :gender, to: :birthday
+    end
 
-    # event user_height do
-    #   transitions from: :birthday, to: :height
-    # end
+    event user_height do
+      transitions from: :birthday, to: :height
+    end
 
-    # event :user_weight do
-    #   transitions from: :height, to: :weight
-    # end
+    event :user_weight do
+      transitions from: :height, to: :weight
+    end
 
-    # event :address do
-    #   transitions from: :weight, to: :street
-    # end
+    event :address do
+      transitions from: :weight, to: :street
+    end
 
-    # event :contact do
-    #   transitions from: :street, to: :phone
-    # end
+    event :contact do
+      transitions from: :street, to: :phone
+    end
 
-    # event :licence_number do
-    #   transitions from: :phone, to: :licence
-    # end
+    event :licence_number do
+      transitions from: :phone, to: :licence
+    end
 
 
-    # event :frequency_type do
-    #   transitions from: :licence, to: :frequency
-    # end
+    event :frequency_type do
+      transitions from: :licence, to: :frequency
+    end
 
-    # event :add_beneficiary do
-    #   transitions from: :frequency, to: :beneficiary
-    # end
+    event :add_beneficiary do
+      transitions from: :frequency, to: :beneficiary
+    end
 
     event :ques do
       transitions from: :idle, to: :question
@@ -153,6 +149,13 @@ class Insurance < ApplicationRecord
     event :confirm do
       transitions from: :signature, to: :confirmation
     end
+  end
+
+  def self.products
+    [
+      'Term',
+      'Accidental'
+    ]
   end
 
   def log_status_change
@@ -569,6 +572,11 @@ class Insurance < ApplicationRecord
   def change_state_to_question
     self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
     self.create_stripe_customer
+  end
+
+  # Clean the code above this
+  def change_state_to_product
+    self.update_columns(aasm_state: "product")
   end
 
 end
