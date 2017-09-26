@@ -1,0 +1,3 @@
+class Accident < Insurance
+
+end

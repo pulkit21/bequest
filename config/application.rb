@@ -23,6 +23,7 @@ module Bequest
     end
     config.eager_load_paths << "#{Rails.root}/lib"
     config.autoload_paths += %W(#{config.root}/app/services)
+    config.autoload_paths += %W(#{config.root}/app/models/products)
     config.filter_parameters << :password
 
     if Rails.env.production?

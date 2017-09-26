@@ -1,7 +1,10 @@
 class Insurance < ApplicationRecord
   include AASM
+  self.inheritance_column = 'product'
 
   belongs_to :user
+  has_many :beneficiaries
+  accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true
 
   validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
   validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
@@ -17,6 +20,14 @@ class Insurance < ApplicationRecord
   validate :check_payment_stage, on: :update, if: :coverage?
   validate :check_coverage_stage, on: :update, if: :question?
 
+
+  def self.products
+    [
+      'Term',
+      'Accidental'
+    ]
+  end
+
   enum gender: ["male", "female"]
   enum payment_frequency: {"annual" => 0, "semi" => 10 , "quarterly" => 20, "monthly" => 30}
   # --------------------------------------------------------------------------
@@ -24,6 +35,24 @@ class Insurance < ApplicationRecord
   # --------------------------------------------------------------------------
   aasm do
     state :idle, initial: true
+    # state :product
+    # state :tobacoo
+    # state :history
+    # state :blood
+    # state :cholesterol
+    # state :family_history
+    # state :occupation
+    # state :driving
+    # state :alcohol
+    # state :gender
+    # state :birthday
+    # state :height
+    # state :weignt
+    # state :street
+    # state :phone
+    # state :license
+    # state :frequency
+    # state :beneficiary
     state :question
     state :coverage
     state :payment
@@ -31,6 +60,79 @@ class Insurance < ApplicationRecord
     state :confirmation
 
     after_all_transitions :log_status_change
+
+    # event :product_type do
+    #   transitions from: :idle, to: :product
+    # end
+
+    # event :tobacoo_used do
+    #   transitions from: :product, to: :tobacoo
+    # end
+
+    # event :any_history do
+    #   transitions from: :tobacoo, to: :history
+    # end
+
+    # event :blood_type do
+    #   transitions from: :history, to: :blood
+    # end
+
+    # event :have_cholesterol do
+    #   transitions from: :blood, to: :cholesterol
+    # end
+
+    # event :any_family_history do
+    #   transitions from: :cholesterol, to: :family_history
+    # end
+
+    # event :any_occupation do
+    #   transitions from: :family_history, to: :occupation
+    # end
+
+    # event :drive do
+    #   transitions from: :occupation, to: :driving
+    # end
+
+    # event :drinking do
+    #   transitions from: :driving, to: :alcohol
+    # end
+
+    # event :gender_type do
+    #   transitions from: :alcohol, to: :gender
+    # end
+
+    # event :birth do
+    #   transitions from: :gender, to: :birthday
+    # end
+
+    # event user_height do
+    #   transitions from: :birthday, to: :height
+    # end
+
+    # event :user_weight do
+    #   transitions from: :height, to: :weight
+    # end
+
+    # event :address do
+    #   transitions from: :weight, to: :street
+    # end
+
+    # event :contact do
+    #   transitions from: :street, to: :phone
+    # end
+
+    # event :licence_number do
+    #   transitions from: :phone, to: :licence
+    # end
+
+
+    # event :frequency_type do
+    #   transitions from: :licence, to: :frequency
+    # end
+
+    # event :add_beneficiary do
+    #   transitions from: :frequency, to: :beneficiary
+    # end
 
     event :ques do
       transitions from: :idle, to: :question
@@ -421,6 +523,7 @@ class Insurance < ApplicationRecord
     coverage_payment = coverage_payment.round(2)
   end
 
+# TODO- Check the error status
   def check_coverage_stage
     if coverage_amount.present? && self.question? && coverage_payment.present? && payment_frequency.present?
       if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
