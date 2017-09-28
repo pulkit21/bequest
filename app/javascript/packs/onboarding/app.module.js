@@ -5,6 +5,24 @@ import quoteModule from './quote/quote.module';
 import productModule from './product/product.module';
 import tobaccoModule from './tobacco/tobacco.module';
 import historyModule from './history/history.module';
+import bloodModule from './blood/blood.module';
+import cholesterolModule from './cholesterol/cholesterol.module';
+import familyHistoryModule from './familyHistory/familyHistory.module';
+import occupationModule from './occupation/occupation.module';
+import drivingModule from './driving/driving.module';
+import alcoholModule from './alcohol/alcohol.module';
+import genderModule from './gender/gender.module';
+import birthdayModule from './birthday/birthday.module';
+import heightModule from './height/height.module';
+import weightModule from './weight/weight.module';
+import streetModule from './street/street.module';
+import phoneModule from './phone/phone.module';
+import licenseModule from './license/license.module';
+import coverageModule from './coverage/coverage.module';
+import frequencyModule from './frequency/frequency.module';
+import beneficiaryModule from './beneficiary/beneficiary.module';
+
+
 import applyModule from './apply/apply.module';
 import paymentModule from './payment/payment.module';
 import signModule from './sign/sign.module';
@@ -23,6 +41,24 @@ angular.module('bdi-landing', [
   productModule,
   tobaccoModule,
   historyModule,
+  bloodModule,
+  cholesterolModule,
+  familyHistoryModule,
+  occupationModule,
+  drivingModule,
+  alcoholModule,
+  genderModule,
+  birthdayModule,
+  heightModule,
+  weightModule,
+  streetModule,
+  phoneModule,
+  licenseModule,
+  coverageModule,
+  frequencyModule,
+  beneficiaryModule,
+
+
   paymentModule,
   signModule,
   confirmModule,

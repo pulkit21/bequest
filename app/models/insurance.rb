@@ -5,8 +5,64 @@ class Insurance < ApplicationRecord
   # belongs_to :user
   has_many :beneficiaries
   accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true
+
+
   validates_presence_of :product, if: :idle?
   after_create :change_state_to_product, if: :idle?
+
+  validate :check_premium_frequency, if: :coverage?
+
+  validate :check_coverage_stage, on: :update, if: :license?
+
+  validates_presence_of :driving_license, if: :phone?
+  validate :check_license, if: :phone?
+
+  validates :phone_number, phone: true, if: :street?
+  validate :check_phone_number, if: :street?
+
+  validates_presence_of :address, if: :weight?
+  validate :check_address, if: :weight?
+
+  validate :body_mass_index, if: :height?
+  validates_presence_of :weight, if: :height?
+  validate :check_weight, if: :height?
+
+  validates_presence_of :height, if: :birthday?
+  validate :check_height, if: :birthday?
+
+  validate :check_current_age, if: :gender?
+  validates_presence_of :birthday, if: :gender?
+  validate :check_birthday, if: :gender?
+
+  validates_presence_of :gender, if: :alcohol?
+  validate :check_gender, if: :alcohol?
+
+  validates_inclusion_of :alcohol, in: [true, false], if: :driving?
+  validate :check_alcohol_usage, on: :update, if: :driving?
+
+  validates_inclusion_of :driving, in: [true, false], if: :occupation?
+  validate :check_driving_charge, on: :update, if: :occupation?
+
+  validates_inclusion_of :occupation, in: [true, false], if: :family_history?
+  validate :check_occupation, on: :update, if: :family_history?
+
+  validates_inclusion_of :family_history, in: [true, false], if: :cholesterol?
+  validate :check_family_history, on: :update, if: :cholesterol?
+
+  validates_inclusion_of :cholesterol, in: [true, false], if: :blood?
+  validate :check_cholesterol_condition, on: :update, if: :blood?
+
+  validates_inclusion_of :blood, in: [true, false], if: :history?
+  validate :check_blood_condition, on: :update, if: :history?
+
+  validates_inclusion_of :health_condition, in: [true, false], if: :tobacco?
+  validate :check_health_condition, on: :update, if: :tobacco?
+
+  validates_inclusion_of :tobacco_product, in: [true, false], if: :product?
+  validate :check_tobacco_usage, on: :update, if: :product?
+
+
+
 
   # validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
   # validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
@@ -32,7 +88,7 @@ class Insurance < ApplicationRecord
   aasm do
     state :idle, initial: true
     state :product
-    state :tobacoo
+    state :tobacco
     state :history
     state :blood
     state :cholesterol
@@ -43,7 +99,7 @@ class Insurance < ApplicationRecord
     state :gender
     state :birthday
     state :height
-    state :weignt
+    state :weight
     state :street
     state :phone
     state :license
@@ -61,12 +117,12 @@ class Insurance < ApplicationRecord
       transitions from: :idle, to: :product
     end
 
-    event :tobacoo_used do
-      transitions from: :product, to: :tobacoo
+    event :tobacco_used do
+      transitions from: :product, to: :tobacco
     end
 
     event :any_history do
-      transitions from: :tobacoo, to: :history
+      transitions from: :tobacco, to: :history
     end
 
     event :blood_type do
@@ -101,7 +157,7 @@ class Insurance < ApplicationRecord
       transitions from: :gender, to: :birthday
     end
 
-    event user_height do
+    event :user_height do
       transitions from: :birthday, to: :height
     end
 
@@ -109,7 +165,7 @@ class Insurance < ApplicationRecord
       transitions from: :height, to: :weight
     end
 
-    event :address do
+    event :street_address_address do
       transitions from: :weight, to: :street
     end
 
@@ -117,38 +173,42 @@ class Insurance < ApplicationRecord
       transitions from: :street, to: :phone
     end
 
-    event :licence_number do
-      transitions from: :phone, to: :licence
+    event :license_number do
+      transitions from: :phone, to: :license
+    end
+
+    event :amount_coverage do
+      transitions from: :license, to: :coverage
     end
 
 
     event :frequency_type do
-      transitions from: :licence, to: :frequency
+      transitions from: :coverage, to: :frequency
     end
 
     event :add_beneficiary do
       transitions from: :frequency, to: :beneficiary
     end
 
-    event :ques do
-      transitions from: :idle, to: :question
-    end
+    # event :ques do
+    #   transitions from: :idle, to: :question
+    # end
 
-    event :cover do
-      transitions from: :question, to: :coverage
-    end
+    # event :cover do
+    #   transitions from: :question, to: :coverage
+    # end
 
-    event :pay do
-      transitions from: :coverage, to: :payment
-    end
+    # event :pay do
+    #   transitions from: :coverage, to: :payment
+    # end
 
-    event :sign do
-      transitions from: :payment , to: :signature
-    end
+    # event :sign do
+    #   transitions from: :payment , to: :signature
+    # end
 
-    event :confirm do
-      transitions from: :signature, to: :confirmation
-    end
+    # event :confirm do
+    #   transitions from: :signature, to: :confirmation
+    # end
   end
 
   def self.products
@@ -511,6 +571,136 @@ class Insurance < ApplicationRecord
     stripe_intervals
   end
 
+  def check_payment_stage
+    if terms_and_services.present? && self.coverage?
+      self.update_columns(aasm_state: "payment")
+      PolicyMailer.send_signature_link(self).deliver_now
+      self.subscribe_customer_to_a_plan
+    else
+      errors.add(:terms_and_services, "Please accept terms and services.")
+    end
+  end
+
+  # def change_state_to_question
+  #   self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
+  #   self.create_stripe_customer
+  # end
+
+  # Clean the code above this
+  def change_state_to_product
+    self.update_columns(aasm_state: "product")
+  end
+
+  def check_tobacco_usage
+    if self.product?
+      self.update_columns(aasm_state: "tobacco")
+    end
+  end
+
+  def check_health_condition
+    if self.tobacco?
+      self.update_columns(aasm_state: "history")
+    end
+  end
+
+  def check_blood_condition
+    if self.history?
+      self.update_columns(aasm_state: "blood")
+    end
+  end
+
+  def check_cholesterol_condition
+    if self.blood?
+      self.update_columns(aasm_state: "cholesterol")
+    end
+  end
+
+  def check_family_history
+    if self.cholesterol?
+      self.update_columns(aasm_state: "family_history")
+    end
+  end
+
+  def check_occupation
+    if self.family_history?
+      self.update_columns(aasm_state: "occupation")
+    end
+  end
+
+  def check_driving_charge
+    if self.occupation?
+      self.update_columns(aasm_state: "driving")
+    end
+  end
+
+  def check_alcohol_usage
+    if self.driving?
+      self.update_columns(aasm_state: "alcohol")
+    end
+  end
+
+  def check_gender
+    if self.alcohol?
+      self.update_columns(aasm_state: "gender")
+    end
+  end
+
+  def check_birthday
+    if self.gender?
+      self.update_columns(aasm_state: "birthday", coverage_age: self.coverage_term_age)
+      # self.create_stripe_customer TODO enable after adding user
+    end
+  end
+
+  def check_current_age
+    if birthday.present?
+      current_date = Time.now.utc.to_date
+      current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
+      if current_age < 18 || current_age >= 65
+        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
+      end
+    end
+  end
+
+  def check_height
+    if self.birthday?
+      self.update_columns(aasm_state: "height")
+    end
+  end
+
+  def check_weight
+    if self.height?
+      self.update_columns(aasm_state: "weight")
+    end
+  end
+
+  def body_mass_index
+    if height.present? && weight.present? && height_inches.present?
+      height_in_inches = height_inches > 9 ? height.to_f * 12 + ( height_inches* 12).to_f / 100 : height.to_f * 12 + ( height_inches * 12).to_f / 10
+      body_mass = 703 * (height_in_inches.to_f / (weight * weight))
+      if body_mass > 30
+        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
+      end
+    end
+  end
+
+  def check_address
+    if self.weight?
+      self.update_columns(aasm_state: "street")
+    end
+  end
+
+  def check_phone_number
+    if self.street?
+      self.update_columns(aasm_state: "phone")
+    end
+  end
+
+  def check_license
+    if self.phone?
+      self.update_columns(aasm_state: "license")
+    end
+  end
 
   def percentage_calculator(amount, age)
     premium_amount = PremiumChart.data(amount, age)
@@ -528,10 +718,10 @@ class Insurance < ApplicationRecord
 
 # TODO- Check the error status
   def check_coverage_stage
-    if coverage_amount.present? && self.question? && coverage_payment.present? && payment_frequency.present?
+    # if coverage_amount.present? && self.license? && coverage_payment.present? && payment_frequency.present?
+    if coverage_amount.present? && self.license? && coverage_payment.present?
       if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
         self.update_columns(aasm_state: "coverage")
-        create_stripe_plan
       else
         errors.add(:coverage_payment, "Invalide coverage percentage.")
       end
@@ -540,43 +730,11 @@ class Insurance < ApplicationRecord
     end
   end
 
-  def check_payment_stage
-    if terms_and_services.present? && self.coverage?
-      self.update_columns(aasm_state: "payment")
-      PolicyMailer.send_signature_link(self).deliver_now
-      self.subscribe_customer_to_a_plan
-    else
-      errors.add(:terms_and_services, "Please accept terms and services.")
+  def check_premium_frequency
+    if self.coverage?
+      self.update_columns(aasm_state: "frequency")
+      create_stripe_plan
     end
-  end
-
-  def body_mass_index
-    if height.present? && weight.present?
-      body_mass = 703 * (height.to_f / (weight * weight))
-      if body_mass > 30
-        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
-      end
-    end
-  end
-
-  def check_current_age
-    if birthday.present?
-      current_date = Time.now.utc.to_date
-      current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
-      if current_age < 18 || current_age >= 65
-        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
-      end
-    end
-  end
-
-  def change_state_to_question
-    self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
-    self.create_stripe_customer
-  end
-
-  # Clean the code above this
-  def change_state_to_product
-    self.update_columns(aasm_state: "product")
   end
 
 end
