@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get '/insurance/beneficiary',  to: "insurances#quote"
 
 
-  get '/insurance/apply',  to: "insurances#apply"
-  get '/insurance/quote',  to: "insurances#quote"
+  # get '/insurance/apply',  to: "insurances#apply"
+  # get '/insurance/quote',  to: "insurances#quote"
   get '/insurance/payment',  to: "insurances#quote"
   get '/insurance/sign',  to: "insurances#quote"
   get '/insurance/confirm',  to: "insurances#confirm"
