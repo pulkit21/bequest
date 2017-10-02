@@ -1,11 +1,21 @@
 <div class="header">
 
   <a href="/" class="header-logo">
-    <%= image_tag("/insurance/onboarding/img/bequest_favicon.png")%>
+    <%= image_tag("/insurance/onboarding/img/bequest_favicon_white.png")%>
   </a>
 
-  <!-- <a href="/users/sign_up" class="header-link">Log In</a>
-  <a href="/insurance/apply" class="header-link">Apply</a> -->
+  <a hide-xs href="/" class="header-link">Log In</a>
+
+  <div id="mc_embed_signup">
+    <form action="//bequestlife.us16.list-manage.com/subscribe/post?u=cd7307720bd59ec1c7e30ef79&amp;id=f478eea267" method="post"
+     id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div class="clear">
+          <md-button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="header-button">Get Early Access</md-button>
+        </div>
+     </div>
+    </form>
+  </div>
 
   <input id="menu" type="checkbox" />
 
@@ -17,10 +27,11 @@
 
   <nav class="navigation">
     <ul class="menu">
+      <li hide-gt-xs class="li"><a href="/">Log In</a></li>
       <li class="li"><a href="/about">About</a></li>
       <li class="li"><a href="https://medium.com/@bequest" target="_blank">Blog</a></li>
       <li class="li"><a href="/nation" target="_blank">Availability</a></li>
-      <!-- <li class="li"><a href="/learn">Learn</a></li> -->
+      <li class="li"><a href="/learn">Learn</a></li>
       <!-- <li class="li"><a href="/">Support</a></li> -->
       <li class="li"><a href="mailto:hello@bequestlife.com">Contact</a></li>
     </ul>

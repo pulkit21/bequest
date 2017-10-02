@@ -10,7 +10,7 @@ a {
 }
 
 h1 {
-  font-weight: 200;
+  font-weight: 300;
   font-size: 40px;
   line-height: 50px;
   color: #333333;
@@ -30,14 +30,22 @@ h3 {
   font-weight: 300;
   color: #333;
   display: block;
-  /* font-family: 'Metamorphous', cursive; */
+}
+
+h4 {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 400;
+  font-style: italic;
+  color: #333;
+  display: block;
 }
 
 p {
   color: #333;
-  font-size: 16px;
-  line-height: 26px;
-  margin: 10px 0px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 300;
 }
 
 p.small {
@@ -61,7 +69,9 @@ p a:hover {
 }
 
 i {
-  color: #999;
+  font-size: 12px;
+  color: #666;
+  font-style: normal;
 }
 
 .bold {
@@ -110,7 +120,7 @@ iframe {
 body input + label {
   position: fixed;
   top: 15px;
-  right: 50px;
+  right: 30px;
   height: 20px;
   width: 25px;
   z-index: 5;
@@ -124,12 +134,12 @@ body input + label span {
   margin-top: -1px;
   left: 0;
   display: block;
-  background: #8000ff;
+  background: #fff;
   transition: .4s;
 }
 
 body input + label:hover span {
-  background: #aa00ff !important;
+  background: #f2f2f2 !important;
 }
 
 body input + label span:first-child {
@@ -160,7 +170,7 @@ body input:checked + label span:last-child {
 }
 
 body input ~ nav {
-  background: #fff;
+  background: #8000ff;
   position: fixed;
   top: 0;
   left: 0;
@@ -231,15 +241,14 @@ body input:checked ~ nav > ul > li {
   }
 }
 
-.footer a,
-.menu a {
+.footer a {
   position: relative;
   display: inline-block;
-  color: #333;
+  color: #fff;
   transition: color .2s ease;
   
   &:hover {
-    color: #8000ff;
+    color: #fff;
      
     &::after,
     &::before {
@@ -250,7 +259,47 @@ body input:checked ~ nav > ul > li {
   }
 }
 
-.footer a,
+.footer a {
+  &::after,
+  &::before {
+    content: ''; 
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 0;
+    right: 0;
+    height: 2px;
+  }
+  
+  &::before {
+    transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
+    background: #f2f2f2;
+  }
+  
+  &::after {
+    transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
+    background: #8000ff;
+  }
+ 
+}
+
+.menu a {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  transition: color .2s ease;
+  
+  &:hover {
+    color: #f2f2f2;
+     
+    &::after,
+    &::before {
+      width: 100%;
+      left: 0;
+    }
+    
+  }
+}
+
 .menu a {
   &::after,
   &::before {
@@ -264,12 +313,12 @@ body input:checked ~ nav > ul > li {
   
   &::before {
     transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-    background: #999;
+    background: #fff;
   }
   
   &::after {
     transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-    background: #8000ff;
+    background: #f2f2f2;
   }
  
 }
@@ -318,9 +367,9 @@ body input:checked ~ nav > ul > li {
 
 
 .header {
-  background: rgba(255, 255, 255, 0.9);
+  background: #8000ff;
   height: 30px;
-  padding: 10px 100px 10px 50px;
+  padding: 10px 75px 10px 30px;
   position: fixed;
   top: 0;
   right: 0;
@@ -339,7 +388,6 @@ body input:checked ~ nav > ul > li {
 
 .header-logo img {
   height: 30px;
-  width: 30px;
 }
 
 .header-logo:hover {
@@ -353,7 +401,7 @@ body input:checked ~ nav > ul > li {
   transition: all 0.15s linear;
   padding: 8px 15px;
   margin-left: 10px;
-  color: #8000ff;
+  color: #fff;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -362,11 +410,11 @@ body input:checked ~ nav > ul > li {
 
 .header-link:hover {
   cursor: pointer;
-  color: #333;
+  color: #f2f2f2;
 }
 
 .footer {
-  padding: 100px 50px;
+  padding: 100px 0px;
   background: #f2f2f2;
   position: relative;
   text-align: center;
@@ -374,7 +422,7 @@ body input:checked ~ nav > ul > li {
 
 .footer p {
   display: inline-block;
-  color: #999;
+  color: #666;
   font-size: 12px !important;
   text-transform: uppercase;
   margin: 10px;
@@ -384,13 +432,13 @@ body input:checked ~ nav > ul > li {
 .footer a {
   box-sizing: border-box;
   display: inline-block;
-  color: #999;
+  color: #666;
   font-size: 12px;
   line-height: 30px;
   font-weight: 500;
   text-transform: uppercase;
   transition: all 0.15s linear;
-  margin: 10px 20px;
+  margin: 10px 15px;
 }
 
 .footer a:hover {
@@ -428,18 +476,25 @@ body input:checked ~ nav > ul > li {
   margin: 0px 0px 0px 0px ;
 }
 
-.bg-landing-2 {
+.bg-testimonial {
   text-align: center;
+  padding: 100px 0px;
+  background: #fff;
+}
+
+.bg-learn {
   position: relative;
   display: block;
-  padding: 100px 50px;
-  background: url(../img/bg-landing-2.png); 
+  padding: 100px 50px 50px 50px;
+  background: #8000ff;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  z-index: 3;
 }
 
+.bg-learn h1,
+.bg-learn p,
+.bg-learn h3,
 .bg-about h3,
 .bg-about p,
 .bg-landing-2 h3,
@@ -460,13 +515,13 @@ body input:checked ~ nav > ul > li {
 }
 
 
-.bg-landing-4 {
+.bg-hero {
   text-align: center;
   position: relative;
   display: block;
-  padding: 200px 50px 250px 50px;
+  padding: 200px 0px 300px 0px;
   margin-top: 50px;
-  background: linear-gradient(to left top, transparent, rgba(128, 0, 255, 0.9)), url(../img/bg-landing-4.png); 
+  background: linear-gradient(#8000ff, transparent), url(../img/bg-landing-4.png); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -484,43 +539,28 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-landing-6 {
-  text-align: center;
   position: relative;
   display: block;
-  padding: 100px 50px;
-  background: linear-gradient(to left top, rgba(128, 0, 255, 0.9), transparent), url(../img/esign.png); 
+  padding: 150px 0px 250px 0px;
+  background: linear-gradient(#8000ff, transparent), url(../img/bg-landing-4.png); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
 .bg-castle {
-  text-align: center;
   position: relative;
   display: block;
-  padding: 150px 50px 150px 50px;
-  background: #fff; 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  height: 100%;
-}
-
-.bg-learn {
-  padding: 150px 50px 100px 50px;
-  position: relative;
-  display: block;
-  background: linear-gradient(to left top, transparent, rgba(128, 0, 255, 0.9)), url(../img/library.png); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  padding: 100px 0px;
+  background: #fff;
 }
 
 .bg-about {
-  padding: 150px 50px 100px 50px;
+  margin-top: 50px;
+  padding: 50px 0px;
   position: relative;
   display: block;
-  background: linear-gradient(to left top, transparent, rgba(128, 0, 255, 0.9)), url(../img/raleigh.png); 
+  background: linear-gradient(#8000ff, transparent), url(../img/raleigh.png); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -534,18 +574,17 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-purple {
+  text-align: center;
   position: relative;
   display: block;
-  padding: 150px 50px 80px 50px;
-  background: linear-gradient(to left top, #aa00ff, #8000ff 65%);
+  padding: 50px 0px;
+  background: #8000ff;
 }
 
 .bg-landing-6 h3,
 .bg-landing-6 p,
-.bg-learn h3,
-.bg-learn p,
-.bg-landing-4 h1,
-.bg-landing-4 p,
+.bg-hero h1,
+.bg-hero p,
 .bg-purple h1,
 .bg-purple h3,
 .bg-purple p {
@@ -592,14 +631,30 @@ body input:checked ~ nav > ul > li {
   padding: 30px;
 }
 
+.faq-container {
+  padding: 20px 0px 100px 0px;
+}
+
+.faq-block {
+  padding: 30px 0px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.about-block {
+  padding: 30px 0px;
+}
+
 .container-100 {
-  text-align: center;
   padding: 100px 50px;
 }
 
 .container-50 {
   text-align: center;
   padding: 50px;
+}
+
+.container-nation {
+  padding: 0px 50px 100px 50px;
 }
 
 .container-0 {
@@ -612,7 +667,7 @@ body input:checked ~ nav > ul > li {
   text-align: center;
   position: relative;
   display: block;
-  padding: 150px 50px;
+  padding: 100px 0px;
   background: #fff;
 }
 
@@ -645,18 +700,11 @@ body input:checked ~ nav > ul > li {
 .bg-press {
   position: relative;
   display: block;
-  padding: 50px 50px 50px 50px;
+  padding: 50px;
   background: #f2f2f2;
   text-align: center;
 }
 
-.bg-testimonial {
-  position: relative;
-  display: block;
-  padding: 100px 0px;
-  background: #fff;
-  text-align: center;
-}
 .landing-button {
   position: relative;
   display: inline-block;
@@ -761,7 +809,6 @@ body input:checked ~ nav > ul > li {
 .form-container h1 {
   font-size: 35px;
   line-height: 35px;
-  font-weight: 200;
   margin: 0px 0px 50px 0px;
   color: #8000ff;
 }
@@ -831,6 +878,30 @@ md-slider:hover {
 .md-button {
   padding-left: 20px !important;
   padding-right: 20px !important;
+}
+
+#mc_embed_signup {
+  float: right;
+  position: relative;
+  display: inline-block;
+  transition: all 0.15s linear;
+}
+
+.md-button.header-button {
+  color: #fff;
+  font-size: 12px;
+  transition: all 0.15s linear;
+  min-height: 0px;
+  min-width: 0px;
+  margin: 0px;
+  line-height: 32px;
+  padding: 0px 8px !important;
+  z-index: 101 !important;
+}
+
+.md-button.header-button:hover {
+  background: transparent;
+  color: #f2f2f2;
 }
 
 .md-button.md-landing-white {
@@ -997,7 +1068,6 @@ md-checkbox .md-label {
 .pricing-table h1 {
   font-size: 18px;
   line-height: 28px;
-  font-weight: 300;
   color: #8000ff;
   text-align: center;
   margin: 0px;
@@ -1028,12 +1098,9 @@ md-checkbox .md-label {
 
 
 .feature-block {
-  font-size: 18px;
-  line-height: 28px;
-  color: #8000ff;
-  padding: 20px 10px;
-  border-bottom: 1px solid #ccc;
-  margin: 10px;
+  height: 100%;
+  padding: 50px 30px;
+  margin: 10px !important;
   display: block !important;
 }
 
@@ -1882,12 +1949,6 @@ md-select {
   text-align: center;
 }
 
-.img-castle {
-  width: 100%;
-  max-width: 300px;
-  margin-top: 30px;
-}
-
 .img-landing-icon {
   max-height: 50px;
   margin: 0px 10px 30px 10px;
@@ -1964,7 +2025,7 @@ md-select {
 .img-press {
   height: 16px;
   opacity: 0.3;
-  margin: 20px 50px 20px 0px;
+  margin: 20px ;
 }
 
 .img-icon {
@@ -1978,17 +2039,12 @@ md-select {
   width: 50px;
 }
 
-.img-footer {
-  margin: 10px 20px 10px 0px;
-  display: inline-block;
-}
-
 .img-footer-heart {
   margin: 0px 5px -4px 5px;
   display: inline-block;
   height: 18px;
-  width: 18px;
-  opacity: 0.4;
+  width: 19px;
+  opacity: 0.6;
 }
 
 .img-footer-nc {
@@ -1996,11 +2052,11 @@ md-select {
   display: inline-block;
   height: 30px;
   width: 30px;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .img-footer svg {
-  fill: #b3b3b3;
+  fill: #666;
   height: 25px;
   width: 25px;
   transition: all 0.15s linear;
@@ -2119,6 +2175,7 @@ md-slider .md-thumb-text {
   display: block !important;
   height: 100%;
   width: auto;
+  margin: 0px 50px;
 }
 
 .clock {
