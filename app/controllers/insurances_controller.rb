@@ -40,10 +40,14 @@ class InsurancesController < ApplicationController
   end
 
   def update
-    if @insurance.update(insurance_params)
-      render :show, format: :json, status: 201
-    else
-      render json: @insurance.errors, status: :unprocessable_entity
+    begin
+      if @insurance.update(insurance_params)
+        render :show, format: :json, status: 201
+      else
+        render json: @insurance.errors, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::NestedAttributes::TooManyRecords
+      render json: {error: "Can save only upto five beneficiaries"}, status: :unprocessable_entity
     end
 
   end

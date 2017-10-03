@@ -4,15 +4,19 @@ class Insurance < ApplicationRecord
 
   belongs_to :user
   has_many :beneficiaries
-  accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true
+
+  accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true, limit: 5
 
   validates_presence_of :product, if: :idle?
   after_create :change_state_to_product, if: :idle?
 
 
-  validate :check_payment_stage, on: :update, if: :frequency?
+  validate :check_payment_stage, on: :update, if: :beneficiary?
 
-  # benfeficary remains
+  validate :check_beneficiary_count, if: :frequency?
+  validate :beneficiary_allocation_percentage, if: :frequency?
+  validate :check_beneficiary, on: :update, if: :frequency?
+
 
   validate :check_premium_frequency, if: :coverage?
 
@@ -434,8 +438,26 @@ class Insurance < ApplicationRecord
     end
   end
 
-  def check_payment_stage
+  def beneficiary_allocation_percentage
+    unless self.beneficiaries.map(&:allocated_percentage).sum == 100
+      errors.add(:beneficiaries, "Allocation percentage should be hundred.")
+    end
+  end
+
+  def check_beneficiary_count
+    unless self.beneficiaries.present?
+      errors.add(:beneficiaries, "Please add atleast one beneficiary.")
+    end
+  end
+
+  def check_beneficiary
     if self.frequency?
+      self.update_columns(aasm_state: "beneficiary")
+    end
+  end
+
+  def check_payment_stage
+    if self.beneficiary?
       self.update_columns(aasm_state: "payment")
       PolicyMailer.send_signature_link(self).deliver_now
       ::StripeService.new.subscribe_customer_to_a_plan(self)

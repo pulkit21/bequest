@@ -209,7 +209,6 @@ let bequestController = angular
       }
       birthdayForm.birthday = birthdayForm.birthday.toDateString();
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -229,7 +228,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -249,7 +247,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -268,7 +265,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -287,7 +283,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -307,7 +302,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -365,7 +359,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -396,7 +389,6 @@ let bequestController = angular
         return false;
       }
       $scope.insurance.save()
-      // new InsuranceService(data).save()
       .then(
         /* success */
         function(response) {
@@ -405,25 +397,38 @@ let bequestController = angular
         },
         /* failure */
         function(error) {
-          $scope.showToastMessage(errorMsg)
+          $scope.showToastMessage(error)
       });
     }
 
-    $scope.beneficiaries = [{name: 'Beneficiary 1'}];
+    $scope.beneficiaries_attributes = [{name: 'Beneficiary 1'}];
 
     $scope.addNewBeneficiary = function() {
-      var newItemNo = $scope.beneficiaries.length+1;
-      $scope.beneficiaries.push({'name':'Beneficiary '+ newItemNo});
+      var newItemNo = $scope.beneficiaries_attributes.length+1;
+      $scope.beneficiaries_attributes.push({'name':'Beneficiary '+ newItemNo});
     };
 
     $scope.removeBeneficiary = function() {
-      var lastItem = $scope.beneficiaries.length-1;
-      $scope.beneficiaries.splice(lastItem);
+      var lastItem = $scope.beneficiaries_attributes.length-1;
+      $scope.beneficiaries_attributes.splice(lastItem);
     };
 
     $scope.beneficiarySubmit = function(beneficiaryForm) {
-      debugger
-      beneficiaryForm
+      $scope.insurance.beneficiaries_attributes = $scope.beneficiaries_attributes;
+      if (beneficiaryForm.$invalid) {
+        return false;
+      }
+      $scope.insurance.save()
+      .then(
+        /* success */
+        function(response) {
+          $location.url('/payment').search('insurance', response.id);
+          // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
+        },
+        /* failure */
+        function(error) {
+          $scope.showToastMessage(error.data.beneficiaries[0])
+      });
     }
 
     // Handeling Stripe payment

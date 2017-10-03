@@ -43,6 +43,8 @@ gem 'webpacker', '~> 2.0'
 
 # Templating
 gem 'haml-rails'
+gem "cocoon"
+
 
 
 # Authentication && Authorization
