@@ -335,7 +335,7 @@ class Insurance < ApplicationRecord
 
   def self.send_complete_form_link
     Term.where.not(aasm_state: "confirmation").where(updated_at: 24.hours.ago..Time.now).each do |insurance|
-      ReminderMailer.send_form_complete_link(insurance) if insurance.user.present?
+      ReminderMailer.send_form_complete_link(insurance).deliver_now if insurance.user.present?
     end
   end
 
@@ -512,7 +512,7 @@ class Insurance < ApplicationRecord
   def check_payment_stage
     if self.beneficiary?
       self.update_columns(aasm_state: "payment")
-      PolicyMailer.send_signature_link(self)
+      PolicyMailer.send_signature_link(self).deliver_now
       ::StripeService.new.subscribe_customer_to_a_plan(self)
     end
   end
