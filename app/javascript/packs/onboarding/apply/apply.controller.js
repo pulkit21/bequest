@@ -8,7 +8,6 @@ let bequestController = angular
     $scope.heightInchesOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     $scope.coverageTermAge = "";
     $scope.errors = [];
-    // $scope._ = _;
     $scope.stripeErrors = null;
     var chart = null;
     var insuranceId = $location.search()['insurance'];
@@ -62,6 +61,7 @@ let bequestController = angular
 
     // Select term product
     $scope.termProduct = function() {
+      $scope.insurance.user_id = $location.search().user;
       $scope.insurance.product = "Term";
       $scope.insurance.save()
       .then(
@@ -409,17 +409,22 @@ let bequestController = angular
       });
     }
 
-    $scope.choices = [{id: 'choice1'}];
+    $scope.beneficiaries = [{name: 'Beneficiary 1'}];
 
-      $scope.addNewChoice = function() {
-        var newItemNo = $scope.choices.length+1;
-        $scope.choices.push({'id':'choice'+newItemNo});
-      };
+    $scope.addNewBeneficiary = function() {
+      var newItemNo = $scope.beneficiaries.length+1;
+      $scope.beneficiaries.push({'name':'Beneficiary '+ newItemNo});
+    };
 
-      $scope.removeChoice = function() {
-        var lastItem = $scope.choices.length-1;
-        $scope.choices.splice(lastItem);
-      };
+    $scope.removeBeneficiary = function() {
+      var lastItem = $scope.beneficiaries.length-1;
+      $scope.beneficiaries.splice(lastItem);
+    };
+
+    $scope.beneficiarySubmit = function(beneficiaryForm) {
+      debugger
+      beneficiaryForm
+    }
 
     // Handeling Stripe payment
     $scope.stripeCallback = function(code, result) {

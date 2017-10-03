@@ -5,7 +5,7 @@ class ConfirmationsController < Devise::ConfirmationsController
   #######
 
   def after_confirmation_path_for(resource_name, resource)
-    insurance_apply_path(user: resource.id)
+    insurance_product_path(user: resource.id)
   end
 
 end

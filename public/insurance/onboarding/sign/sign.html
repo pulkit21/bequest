@@ -1,34 +1,19 @@
-<div layout="column" flex="100">
-
-  <div class="body-container">
-    <div layout="row" flex="100">
-
-      <div class="form-column" layout="column" flex="25" flex-xs="100">
-        <div class="progress-container">
-          <div class="progress-block complete">1. Questions</div>
-          <div class="progress-block complete">2. Coverage</div>
-          <div class="progress-block complete">3. Payment</div>
-          <div class="progress-block active">4. Signature</div>
-          <div class="progress-block">5. Confirmation</div>
-        </div>
-      </div>
-
-      <div layout="column" flex="75" flex-xs="100">
-        <div class="form-container">
-          <h1>The Signature.</h1>
-          <p>Click the <i class="bold">Sign Documents</i> button below to receive an email with a link to sign your documents.</p>
-          <p class="margin-bottom-50">Once the documents have been electronically signed, you will be directed to a confirmation page.</p>
-          <md-button
-            class="md-primary margin-bottom-50"
-            ng-click="getSignature(insurance)"
-          >
-            Sign Documents
-          </md-button>
-          <!-- dev note: the following inputs will need to be placed into a pdf or word doc contract template and sent to docusign via api with an e-sign overlay template applied and emailed:
-          first name, last name, street, city, state, zip, age, gender, height, weight, term, coverage, premium. -->
+<div class="progress-container">
+  <div class="progress-block" style="min-width: 95%; max-width: 100%;"></div>
+</div>
+<div class="body-container">
+  <div class="body-center">
+    <div class="question-container">
+      <h2 class="">Sign Policy</h2>
+    </div>
+    <div layout="column" flex="100">
+      <div layout="row" layout-xs="column" flex="100">
+        <div class="form-column text-center" layout="column" flex="100">
+          <div class="form-container">
+            <md-button ng-click="getSignature(insurance)" class="md-apply-purple">Sign now</md-button>
+          </div>
         </div>
       </div>
     </div>
-  </div>=
-
+  </div>
 </div>

@@ -21,9 +21,6 @@ import licenseModule from './license/license.module';
 import coverageModule from './coverage/coverage.module';
 import frequencyModule from './frequency/frequency.module';
 import beneficiaryModule from './beneficiary/beneficiary.module';
-
-
-import applyModule from './apply/apply.module';
 import paymentModule from './payment/payment.module';
 import signModule from './sign/sign.module';
 import confirmModule from './confirm/confirm.module';
@@ -32,6 +29,9 @@ import bequestController from './apply/apply.controller';
 import bequestInterceptor from './services/insurance.interceptor';
 import angularPayments from 'angular-payments';
 import confirmController from './confirm/confirm.controller';
+
+
+import applyModule from './apply/apply.module';
 
 
 angular.module('bdi-landing', [

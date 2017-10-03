@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   # get 'register',  to: "home#index"
-  get '/insurance/product',  to: "insurances#quote"
+  get '/insurance/product',  to: "insurances#product"
   get '/insurance/tobacco',  to: "insurances#quote"
   get '/insurance/history',  to: "insurances#quote"
   get '/insurance/blood',  to: "insurances#quote"
@@ -26,13 +26,13 @@ Rails.application.routes.draw do
   get '/insurance/coverage',  to: "insurances#quote"
   get '/insurance/frequency',  to: "insurances#quote"
   get '/insurance/beneficiary',  to: "insurances#quote"
+  get '/insurance/payment',  to: "insurances#quote"
+  get '/insurance/sign',  to: "insurances#quote"
+  get '/insurance/confirm',  to: "insurances#confirm"
 
 
   # get '/insurance/apply',  to: "insurances#apply"
   # get '/insurance/quote',  to: "insurances#quote"
-  get '/insurance/payment',  to: "insurances#quote"
-  get '/insurance/sign',  to: "insurances#quote"
-  get '/insurance/confirm',  to: "insurances#confirm"
 
   get '/design', to: 'home#design'
   get '/nation', to: 'home#nation'
