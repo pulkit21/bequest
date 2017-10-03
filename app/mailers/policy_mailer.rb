@@ -3,7 +3,7 @@ class PolicyMailer < ApplicationMailer
   def send_signature_link(insurance)
     # @user = insurance.user
     @insurance = insurance
-    mail(to: "bequest@mailinator.com", subject: "Sign your life insurance policy")
+    mail(to: insurance.user.email, subject: "Sign your life insurance policy")
   end
 
 end

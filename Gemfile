@@ -113,3 +113,6 @@ gem 'my_zipcode_gem'
 gem 'phonelib'
 
 gem 'mocha', group: :test
+
+# Jobs
+gem 'whenever', :require => false

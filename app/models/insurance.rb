@@ -269,8 +269,55 @@ class Insurance < ApplicationRecord
     end
   end
 
-  #########################################################################################################################
-  #########################################################################################################################
+  def find_current_page
+    if self.aasm_state == "product"
+      "tobacco"
+    elsif self.aasm_state == "tobacco"
+      "history"
+    elsif self.aasm_state == "history"
+      "blood"
+    elsif self.aasm_state == "blood"
+      "cholesterol"
+    elsif self.aasm_state == "cholesterol"
+      "familyHistory"
+    elsif self.aasm_state == "family_history"
+      "occupation"
+    elsif self.aasm_state == "occupation"
+      "driving"
+    elsif self.aasm_state == "driving"
+      "alcohol"
+    elsif self.aasm_state == "alcohol"
+      "gender"
+    elsif self.aasm_state == "gender"
+      "birthday"
+    elsif self.aasm_state == "birthday"
+      "height"
+    elsif self.aasm_state == "height"
+      "weight"
+    elsif self.aasm_state == "weight"
+      "street"
+    elsif self.aasm_state == "street"
+      "phone"
+    elsif self.aasm_state == "phone"
+      "license"
+    elsif self.aasm_state == "license"
+      "coverage"
+    elsif self.aasm_state == "coverage"
+      "frequency"
+    elsif self.aasm_state == "frequency"
+      "beneficiary"
+    elsif self.aasm_state == "beneficiary"
+      "payment"
+    elsif self.aasm_state == "payment"
+      "sign"
+    elsif self.aasm_state == "signature"
+      "confirmation"
+    end
+  end
+
+  def dynamic_link
+    "#{ActionMailer::Base.default_url_options[:host]}/insurance/#{self.find_current_page}?insurance=#{self.id}"
+  end
 
   def set_stripe_interval
     stripe_intervals = {}
@@ -284,6 +331,12 @@ class Insurance < ApplicationRecord
       stripe_intervals = {interval: "month", interval_count: 1}
     end
     stripe_intervals
+  end
+
+  def self.send_complete_form_link
+    Term.where.not(aasm_state: "confirmation").where(updated_at: 24.hours.ago..Time.now).each do |insurance|
+      ReminderMailer.delay.send_form_complete_link(insurance) if insurance.user.present?
+    end
   end
 
   #######
@@ -459,7 +512,7 @@ class Insurance < ApplicationRecord
   def check_payment_stage
     if self.beneficiary?
       self.update_columns(aasm_state: "payment")
-      PolicyMailer.send_signature_link(self).deliver_now
+      PolicyMailer.delay.send_signature_link(self)
       ::StripeService.new.subscribe_customer_to_a_plan(self)
     end
   end
