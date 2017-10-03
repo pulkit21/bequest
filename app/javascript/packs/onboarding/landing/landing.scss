@@ -35,12 +35,13 @@ h3 {
 h4 {
   font-size: 30px;
   line-height: 40px;
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
   color: #333;
   display: block;
 }
 
+ul li,
 p {
   color: #333;
   font-size: 20px;
@@ -49,14 +50,16 @@ p {
 }
 
 p.small {
-  font-size: 12px;
-  line-height: 18px;
-  text-align: justify;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 400;
+  margin-bottom: 50px;
 }
 
-ul li {
-  font-size: 16px !important;
-  line-height: 24px !important;
+p.small i {
+  font-size: 18px;
+  font-weight: 600;
+  color: #8000ff;
 }
 
 p a {
@@ -134,12 +137,12 @@ body input + label span {
   margin-top: -1px;
   left: 0;
   display: block;
-  background: #fff;
+  background: #333;
   transition: .4s;
 }
 
 body input + label:hover span {
-  background: #f2f2f2 !important;
+  background: #8000ff !important;
 }
 
 body input + label span:first-child {
@@ -170,7 +173,7 @@ body input:checked + label span:last-child {
 }
 
 body input ~ nav {
-  background: #8000ff;
+  background: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -285,11 +288,11 @@ body input:checked ~ nav > ul > li {
 .menu a {
   position: relative;
   display: inline-block;
-  color: #fff;
+  color: #333;
   transition: color .2s ease;
   
   &:hover {
-    color: #f2f2f2;
+    color: #8000ff;
      
     &::after,
     &::before {
@@ -313,12 +316,12 @@ body input:checked ~ nav > ul > li {
   
   &::before {
     transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-    background: #fff;
+    background: #999;
   }
   
   &::after {
     transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-    background: #f2f2f2;
+    background: #8000ff;
   }
  
 }
@@ -367,7 +370,7 @@ body input:checked ~ nav > ul > li {
 
 
 .header {
-  background: #8000ff;
+  background: #fff;
   height: 30px;
   padding: 10px 75px 10px 30px;
   position: fixed;
@@ -401,7 +404,7 @@ body input:checked ~ nav > ul > li {
   transition: all 0.15s linear;
   padding: 8px 15px;
   margin-left: 10px;
-  color: #fff;
+  color: #333;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -410,7 +413,7 @@ body input:checked ~ nav > ul > li {
 
 .header-link:hover {
   cursor: pointer;
-  color: #f2f2f2;
+  color: #8000ff;
 }
 
 .footer {
@@ -465,6 +468,25 @@ body input:checked ~ nav > ul > li {
   transform: translateY(-40%);
 }
 
+.access-block {
+  border-left: 1px solid #e6e6e6;
+}
+
+.landing-access {
+  position: relative;
+  display: block;
+  text-align: center;
+  padding: 150px 0px 100px;
+  background: #fff;
+}
+
+.bg-family {
+  position: relative;
+  display: block;
+  padding: 0px;
+  background: #fff;
+}
+
 .bg-landing {
   position: relative;
   display: block;
@@ -476,9 +498,15 @@ body input:checked ~ nav > ul > li {
   margin: 0px 0px 0px 0px ;
 }
 
+.bg-title {
+  text-align: center;
+  padding: 0px 50px 50px 50px;
+  background: #fff;
+}
+
 .bg-testimonial {
   text-align: center;
-  padding: 100px 0px;
+  padding: 150px 0px 200px 0px;
   background: #fff;
 }
 
@@ -486,15 +514,12 @@ body input:checked ~ nav > ul > li {
   position: relative;
   display: block;
   padding: 100px 50px 50px 50px;
-  background: #8000ff;
+  background: #fff;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
-.bg-learn h1,
-.bg-learn p,
-.bg-learn h3,
 .bg-about h3,
 .bg-about p,
 .bg-landing-2 h3,
@@ -514,6 +539,13 @@ body input:checked ~ nav > ul > li {
   z-index: 3;
 }
 
+.bg-landing-white {
+  text-align: center;
+  position: relative;
+  display: block;
+  padding: 250px 0px 250px 0px;
+  background: #fff;
+}
 
 .bg-hero {
   text-align: center;
@@ -888,7 +920,7 @@ md-slider:hover {
 }
 
 .md-button.header-button {
-  color: #fff;
+  color: #333;
   font-size: 12px;
   transition: all 0.15s linear;
   min-height: 0px;
@@ -901,7 +933,7 @@ md-slider:hover {
 
 .md-button.header-button:hover {
   background: transparent;
-  color: #f2f2f2;
+  color: #8000ff;
 }
 
 .md-button.md-landing-white {
@@ -1933,6 +1965,11 @@ md-select {
 
 /* FEATURES */
 
+.img-family {
+  width: 115%;
+  margin-right: -50px;
+}
+
 .img-nation {
   width: 100%;
   max-width: 700px;
@@ -2175,7 +2212,14 @@ md-slider .md-thumb-text {
   display: block !important;
   height: 100%;
   width: auto;
-  margin: 0px 50px;
+  padding: 0px 50px;
+}
+
+.block-gray {
+  background: #f2f2f2;
+  padding: 50px;
+  margin-top: -50px;
+  z-index: 3;
 }
 
 .clock {
