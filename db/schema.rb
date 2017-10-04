@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831032514) do
+ActiveRecord::Schema.define(version: 20170927130113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20170831032514) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "beneficiaries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "relation"
+    t.integer "allocated_percentage"
+    t.date "birthday"
+    t.uuid "insurance_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insurance_id"], name: "index_beneficiaries_on_insurance_id"
   end
 
   create_table "counties", force: :cascade do |t|
@@ -102,6 +114,14 @@ ActiveRecord::Schema.define(version: 20170831032514) do
     t.string "state"
     t.string "zipcode"
     t.string "phone_number"
+    t.string "product"
+    t.boolean "alcohol"
+    t.boolean "blood"
+    t.boolean "cholesterol"
+    t.boolean "driving"
+    t.boolean "family_history"
+    t.boolean "occupation"
+    t.integer "height_inches"
     t.index ["user_id"], name: "index_insurances_on_user_id"
   end
 
@@ -159,5 +179,6 @@ ActiveRecord::Schema.define(version: 20170831032514) do
     t.index ["state_id"], name: "index_zipcodes_on_state_id"
   end
 
+  add_foreign_key "beneficiaries", "insurances"
   add_foreign_key "insurances", "users"
 end

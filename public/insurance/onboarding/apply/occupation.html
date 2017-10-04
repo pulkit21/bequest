@@ -1,21 +1,21 @@
 <div class="progress-container">
-    <div class="progress-block" style="min-width: 25%; max-width: 30%;"></div>
-    <a class="button-back" href="/">Back</a>
+  <div class="progress-block" style="min-width: 25%; max-width: 30%;"></div>
+  <a class="button-back" href="/">Back</a>
 </div>
 <div class="body-container">
-    <div class="body-center">
-        <div class="question-container">
-            <h2 class="">Do you have a hazardous occupation or hobby?</h2>
-        </div>
-        <form layout="column" flex="100" name="questionForm" ng-submit="questionSubmit(insurance)" novalidate>
-            <div layout="row" layout-xs="column" flex="100">
-                <div class="form-column text-center" layout="column" flex="100">
-                    <div class="form-container" name="occupation" ng-model="insurance.occupation" required>
-                        <md-button type='submit' value="0" ng-selected="insurance.occupation" class="md-apply-red">No</md-button>
-                        <md-button type='submit' value="1" ng-selected="insurance.occupation" class="md-apply-green">Yes</md-button>
-                    </div>
-                </div>
-            </div>
-        </form>
+  <div class="body-center">
+    <div class="question-container">
+      <h2 class="">Do you have a hazardous occupation or hobby?</h2>
     </div>
+    <form layout="column" flex="100" novalidate>
+      <div layout="row" layout-xs="column" flex="100">
+        <div class="form-column text-center" layout="column" flex="100">
+          <div class="form-container" name="occupation" ng-model="insurance.occupation" required>
+            <md-button type='submit' value="0" ng-click="occupationHazard(0)" class="md-apply-red">No</md-button>
+            <md-button type='submit' value="1" ng-click="occupationHazard(1)" class="md-apply-green">Yes</md-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

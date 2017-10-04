@@ -7,11 +7,32 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   # get 'register',  to: "home#index"
-  get '/insurance/apply',  to: "insurances#apply"
-  get '/insurance/quote',  to: "insurances#quote"
+  get '/insurance/product',  to: "insurances#product"
+  get '/insurance/tobacco',  to: "insurances#quote"
+  get '/insurance/history',  to: "insurances#quote"
+  get '/insurance/blood',  to: "insurances#quote"
+  get '/insurance/cholesterol',  to: "insurances#quote"
+  get '/insurance/familyHistory',  to: "insurances#quote"
+  get '/insurance/occupation',  to: "insurances#quote"
+  get '/insurance/driving',  to: "insurances#quote"
+  get '/insurance/alcohol',  to: "insurances#quote"
+  get '/insurance/gender',  to: "insurances#quote"
+  get '/insurance/birthday',  to: "insurances#quote"
+  get '/insurance/height',  to: "insurances#quote"
+  get '/insurance/weight',  to: "insurances#quote"
+  get '/insurance/street',  to: "insurances#quote"
+  get '/insurance/phone',  to: "insurances#quote"
+  get '/insurance/license',  to: "insurances#quote"
+  get '/insurance/coverage',  to: "insurances#quote"
+  get '/insurance/frequency',  to: "insurances#quote"
+  get '/insurance/beneficiary',  to: "insurances#quote"
   get '/insurance/payment',  to: "insurances#quote"
   get '/insurance/sign',  to: "insurances#quote"
   get '/insurance/confirm',  to: "insurances#confirm"
+
+
+  # get '/insurance/apply',  to: "insurances#apply"
+  # get '/insurance/quote',  to: "insurances#quote"
 
   get '/design', to: 'home#design'
   get '/nation', to: 'home#nation'

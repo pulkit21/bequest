@@ -1,8 +1,8 @@
 class InsurancesController < ApplicationController
   before_action :set_header_footer, only: []
-  before_action :check_insurance, only: [:apply]
+  before_action :check_insurance, only: [:product]
   before_action :set_user, only: [:create]
-  before_action :set_base_path, only: [:apply, :confirm, :quote]
+  before_action :set_base_path, only: [:product, :confirm, :quote]
   before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
   def index
@@ -40,17 +40,22 @@ class InsurancesController < ApplicationController
   end
 
   def update
-    if @insurance.update(insurance_params)
-      render :show, format: :json, status: 201
-    else
-      render json: @insurance.errors, status: :unprocessable_entity
+    begin
+      if @insurance.update(insurance_params)
+        render :show, format: :json, status: 201
+      else
+        render json: @insurance.errors, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::NestedAttributes::TooManyRecords
+      render json: {error: "Can save only upto five beneficiaries"}, status: :unprocessable_entity
     end
 
   end
 
   def signature
+    @signature_link = ::DocusignService.new.sign_policy(@insurance)
     @url = {
-        url: @insurance.sign_policy
+        url: @signature_link
       }
     render json: @url, status: 200
   end
@@ -65,7 +70,7 @@ class InsurancesController < ApplicationController
   end
 
 
-  def apply
+  def product
     @user = User.find(params[:user])
     if @user.present?
       if @user.insurances.present?
@@ -83,7 +88,7 @@ class InsurancesController < ApplicationController
       @insurance = Insurance.find(params[:insurance])
       if @insurance.present?
         unless @insurance.policy.present?
-          @insurance.get_combined_document(envelope_id: params[:envelope_id], document_id: 1)
+          ::DocusignService.new.get_combined_document(@insurance, envelope_id: params[:envelope_id], document_id: 1)
           @insurance.update_columns(aasm_state: "signature")
         end
       end
@@ -117,6 +122,7 @@ class InsurancesController < ApplicationController
                               :gender,
                               :birthday,
                               :height,
+                              :height_inches,
                               :weight,
                               :coverage_amount,
                               :coverage_age,
@@ -129,7 +135,23 @@ class InsurancesController < ApplicationController
                               :city,
                               :state,
                               :zipcode,
-                              :phone_number
+                              :phone_number,
+                              :product,
+                              :alcohol,
+                              :blood,
+                              :cholesterol,
+                              :driving,
+                              :family_history,
+                              :occupation,
+                              beneficiaries_attributes: [
+                                :id,
+                                :first_name,
+                                :last_name,
+                                :relation,
+                                :allocated_percentage,
+                                :birthday,
+                                :_destroy
+                              ]
                             )
   end
 

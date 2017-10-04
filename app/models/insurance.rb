@@ -1,21 +1,73 @@
 class Insurance < ApplicationRecord
   include AASM
+  self.inheritance_column = 'product'
 
   belongs_to :user
+  has_many :beneficiaries
 
-  validates_inclusion_of :tobacco_product, :health_condition, in: [true, false], if: :idle?
-  validates_presence_of :gender, :birthday, :address, :city, :state, if: :idle?
-  validates :height, :weight, presence: true, numericality: true, if: :idle?
-  after_create :change_state_to_question, if: :idle?
-  validates :phone_number, phone: true, if: :idle?
-  # validates :coverage_amount, presence: true, numericality: true, if: :question?
-  # validates_presence_of :tobacco_product, :health_condition, ¡:gender, :birthday, :terms_and_services, :payment_frequency
-  # validates :height, :weight, :coverage_amount, presence: true, numericality: true
-  validate :body_mass_index, on: :create
-  validate :check_current_age, on: :create
-  validates_presence_of :terms_and_services, if: :coverage?
-  validate :check_payment_stage, on: :update, if: :coverage?
-  validate :check_coverage_stage, on: :update, if: :question?
+  accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true, limit: 5
+
+  validates_presence_of :product, if: :idle?
+  after_create :change_state_to_product, if: :idle?
+
+
+  validate :check_payment_stage, on: :update, if: :beneficiary?
+
+  validate :check_beneficiary_count, if: :frequency?
+  validate :beneficiary_allocation_percentage, if: :frequency?
+  validate :check_beneficiary, on: :update, if: :frequency?
+
+
+  validate :check_premium_frequency, if: :coverage?
+
+  validate :check_coverage_stage, on: :update, if: :license?
+
+  validates_presence_of :driving_license, if: :phone?
+  validate :check_license, if: :phone?
+
+  validates :phone_number, phone: true, if: :street?
+  validate :check_phone_number, if: :street?
+
+  validates_presence_of :address, if: :weight?
+  validate :check_address, if: :weight?
+
+  validate :body_mass_index, if: :height?
+  validates_presence_of :weight, if: :height?
+  validate :check_weight, if: :height?
+
+  validates_presence_of :height, if: :birthday?
+  validate :check_height, if: :birthday?
+
+  validate :check_current_age, if: :gender?
+  validates_presence_of :birthday, if: :gender?
+  validate :check_birthday, if: :gender?
+
+  validates_presence_of :gender, if: :alcohol?
+  validate :check_gender, if: :alcohol?
+
+  validates_inclusion_of :alcohol, in: [true, false], if: :driving?
+  validate :check_alcohol_usage, on: :update, if: :driving?
+
+  validates_inclusion_of :driving, in: [true, false], if: :occupation?
+  validate :check_driving_charge, on: :update, if: :occupation?
+
+  validates_inclusion_of :occupation, in: [true, false], if: :family_history?
+  validate :check_occupation, on: :update, if: :family_history?
+
+  validates_inclusion_of :family_history, in: [true, false], if: :cholesterol?
+  validate :check_family_history, on: :update, if: :cholesterol?
+
+  validates_inclusion_of :cholesterol, in: [true, false], if: :blood?
+  validate :check_cholesterol_condition, on: :update, if: :blood?
+
+  validates_inclusion_of :blood, in: [true, false], if: :history?
+  validate :check_blood_condition, on: :update, if: :history?
+
+  validates_inclusion_of :health_condition, in: [true, false], if: :tobacco?
+  validate :check_health_condition, on: :update, if: :tobacco?
+
+  validates_inclusion_of :tobacco_product, in: [true, false], if: :product?
+  validate :check_tobacco_usage, on: :update, if: :product?
 
   enum gender: ["male", "female"]
   enum payment_frequency: {"annual" => 0, "semi" => 10 , "quarterly" => 20, "monthly" => 30}
@@ -24,6 +76,24 @@ class Insurance < ApplicationRecord
   # --------------------------------------------------------------------------
   aasm do
     state :idle, initial: true
+    state :product
+    state :tobacco
+    state :history
+    state :blood
+    state :cholesterol
+    state :family_history
+    state :occupation
+    state :driving
+    state :alcohol
+    state :gender
+    state :birthday
+    state :height
+    state :weight
+    state :street
+    state :phone
+    state :license
+    state :frequency
+    state :beneficiary
     state :question
     state :coverage
     state :payment
@@ -32,25 +102,109 @@ class Insurance < ApplicationRecord
 
     after_all_transitions :log_status_change
 
-    event :ques do
-      transitions from: :idle, to: :question
+    event :product_type do
+      transitions from: :idle, to: :product
     end
 
-    event :cover do
-      transitions from: :question, to: :coverage
+    event :tobacco_used do
+      transitions from: :product, to: :tobacco
     end
 
-    event :pay do
-      transitions from: :coverage, to: :payment
+    event :any_history do
+      transitions from: :tobacco, to: :history
     end
 
-    event :sign do
-      transitions from: :payment , to: :signature
+    event :blood_type do
+      transitions from: :history, to: :blood
     end
 
-    event :confirm do
-      transitions from: :signature, to: :confirmation
+    event :have_cholesterol do
+      transitions from: :blood, to: :cholesterol
     end
+
+    event :any_family_history do
+      transitions from: :cholesterol, to: :family_history
+    end
+
+    event :any_occupation do
+      transitions from: :family_history, to: :occupation
+    end
+
+    event :drive do
+      transitions from: :occupation, to: :driving
+    end
+
+    event :drinking do
+      transitions from: :driving, to: :alcohol
+    end
+
+    event :gender_type do
+      transitions from: :alcohol, to: :gender
+    end
+
+    event :birth do
+      transitions from: :gender, to: :birthday
+    end
+
+    event :user_height do
+      transitions from: :birthday, to: :height
+    end
+
+    event :user_weight do
+      transitions from: :height, to: :weight
+    end
+
+    event :street_address_address do
+      transitions from: :weight, to: :street
+    end
+
+    event :contact do
+      transitions from: :street, to: :phone
+    end
+
+    event :license_number do
+      transitions from: :phone, to: :license
+    end
+
+    event :amount_coverage do
+      transitions from: :license, to: :coverage
+    end
+
+
+    event :frequency_type do
+      transitions from: :coverage, to: :frequency
+    end
+
+    event :add_beneficiary do
+      transitions from: :frequency, to: :beneficiary
+    end
+
+    # event :ques do
+    #   transitions from: :idle, to: :question
+    # end
+
+    # event :cover do
+    #   transitions from: :question, to: :coverage
+    # end
+
+    # event :pay do
+    #   transitions from: :coverage, to: :payment
+    # end
+
+    # event :sign do
+    #   transitions from: :payment , to: :signature
+    # end
+
+    # event :confirm do
+    #   transitions from: :signature, to: :confirmation
+    # end
+  end
+
+  def self.products
+    [
+      'Term',
+      'Accidental'
+    ]
   end
 
   def log_status_change
@@ -58,7 +212,7 @@ class Insurance < ApplicationRecord
   end
 
   def full_address
-    "#{address}, #{city}, #{state}"
+    "#{address}, #{self.user.city}, #{self.user.state}"
   end
 
   # Current Age
@@ -107,274 +261,6 @@ class Insurance < ApplicationRecord
     end
   end
 
-  #######################################################################################################################
-  #######################################################################################################################
-  # Subscription will have 3 step
-  # 1- Define a plan.
-  # 2- Create a customer.
-  # 3- Subscribe a customer to a plan.
-
-  # STEP 1: Create Plan in Stripe Dashboard
-  def create_stripe_plan
-    plan = Stripe::Plan.create(
-      name: "#{self.payment_frequency.titleize} payment $#{self.coverage_amount} for terms #{self.coverage_term_age} Plan",
-      id: self.id,
-      interval: set_stripe_interval[:interval],
-      interval_count: set_stripe_interval[:interval_count],
-      currency: "usd",
-      amount: (self.coverage_payment * 100).to_i,
-      metadata: {
-        payment_frequency: self.payment_frequency,
-        coverage_age: self.coverage_age,
-        coverage_amount: self.coverage_amount
-      }
-    )
-    self.update_columns(stripe_plan_id: plan.id, stripe_plan_response: plan)
-  end
-
-  # STEP 2: Create customer in Stripe
-  def create_stripe_customer
-    customer = Stripe::Customer.create(email: self.user.email, metadata: {age: self.current_age})
-    self.update_columns(stripe_customer: customer.id)
-  end
-
-  # STEP 3: Subscribe a customer to a plan
-  def subscribe_customer_to_a_plan
-    subscribe = Stripe::Subscription.create(
-      customer: self.stripe_customer,
-      plan: self.stripe_plan_id,
-    )
-    self.update_columns(stripe_subscription_response: subscribe)
-  end
-
-  def initialize_net_http_ssl(uri)
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    http.use_ssl = uri.scheme == 'https'
-
-    if defined?(Rails) && Rails.env.test?
-      in_rails_test_env = true
-    else
-      in_rails_test_env = false
-    end
-
-    if http.use_ssl? && !in_rails_test_env
-      # Explicitly verifies that the certificate matches the domain.
-      # Requires that we use www when calling the production DocuSign API
-      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-      http.verify_depth = 5
-    else
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-
-    http
-  end
-
-  # TODO make Docu service
-  def get_combined_document(options={})
-    headers = {
-      "X-DocuSign-Authentication"=>
-        "{\"Username\":\"19a86757-dd75-469a-a4cc-c21cf2df5b29\",\"Password\":\"B3qu3stLife2017!\",\"IntegratorKey\":\"c78e294d-b27f-42ba-bf3e-7f28e7e84da4\"
-      }",
-      "Accept"=>"json",
-      "Content-Type"=>"application/json"
-    }
-    uri = URI.parse("https://demo.docusign.net/restapi/v2/accounts/#{Rails.application.secrets.docosign_account_id}/envelopes/#{options[:envelope_id]}/documents/combined")
-
-    http = initialize_net_http_ssl(uri)
-    request = Net::HTTP::Get.new(uri.request_uri, headers)
-    response = http.request(request)
-    obj = ::AmazonS3Service.new.save_pdf(options[:envelope_id], response)
-    self.update_columns(policy: obj.key)
-    # Insurance.first.get_combined_document(envelope_id: "45bfa861-509b-4088-8e89-9de255ee6088", document_id: 1)
-  end
-
-
-  # Sign the document using
-  # TODO- Add the user specifc data
-  def sign_policy
-    client = DocusignRest::Client.new
-    file_io = open(Rails.application.secrets.document_url)
-    document_envelope_response = client.create_envelope_from_document(
-      email: {
-        subject: "Coverage Policy",
-        body: "this is the email body and it's large!"
-      },
-      signers: [
-        {
-          embedded: true,
-          name: self.user.full_name,
-          email: self.user.email,
-          role_name: 'Issuer',
-          sign_here_tabs: [
-            {
-              anchor_string: "SIGNATURE",
-              anchor_x_offset: '210',
-              anchor_y_offset: '-15'
-            }
-          ],
-          text_tabs: [
-            {
-              label: "NAME OF INSURED",
-              name: "NAME OF INSURED",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '155',
-              y_position: '132',
-              value: self.user.full_name
-            },
-            {
-              label: "ADDRESS OF INSURED",
-              name: "ADDRESS OF INSURED",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '165',
-              y_position: '156',
-              value: self.full_address
-            },
-            {
-              label: "CONTRACT NUMBER",
-              name: "CONTRACT NUMBER",
-              locked: true,
-              font_color: "Gold",
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              x_position: '160',
-              y_position: '181',
-              page_number: 2,
-              value: ActiveSupport::NumberHelper.number_to_phone(self.phone_number, country_code: 1)
-            },
-            {
-              label: "COVERAGE AMOUNT",
-              name: "COVERAGE AMOUNT",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '160',
-              y_position: '205',
-              value: "$#{add_commas_to_numbers(self.coverage_amount)}"
-            },
-            {
-              label: "PREMIUM PAYMENT",
-              name: "PREMIUM PAYMENT",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '160',
-              y_position: '229',
-              value: "$#{self.coverage_payment} #{self.payment_frequency.upcase}"
-            },
-            {
-              label: "INSURED ISSUE AGE",
-              name: "INSURED ISSUE AGE",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '155',
-              y_position: '253',
-              value: "#{self.current_age}"
-            },
-            {
-              label: "GENDER",
-              name: "GENDER",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '110',
-              y_position: '278',
-              value: "#{self.gender.capitalize}"
-            },
-            {
-              label: "PAYABLE TO",
-              name: "PAYABLE TO",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '125',
-              y_position: '303',
-              value: "AGE 65"
-            },
-            {
-              label: "EFFECTIVE DATE",
-              name: "EFFECTIVE DATE",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '140',
-              y_position: '327',
-              value: "#{self.effective_date}"
-            },
-            {
-              label: "MATURITY DATE",
-              name: "MATURITY DATE",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '140',
-              y_position: '351',
-              value: "#{self.maturity_date}"
-            },
-            {
-              label: "DATE",
-              name: "DATE",
-              locked: true,
-              page_number: 2,
-              font: "Calibri",
-              font_size: "Size10",
-              bold: true,
-              font_color: "Gold",
-              x_position: '107',
-              y_position: '470',
-              value: "#{self.current_date}"
-            }
-          ]
-        },
-      ],
-      files: [
-        {io: file_io, name: 'policy.pdf'},
-      ],
-      status: 'sent'
-    )
-    self.update_columns(docusign_response: document_envelope_response)
-    url = client.get_recipient_view(
-        envelope_id: self.docusign_response['envelopeId'],
-        name: self.user.full_name,
-        email: self.user.email,
-        return_url: "#{ActionMailer::Base.default_url_options[:host]}/insurance/confirm?insurance=#{self.id}&envelope_id=#{self.docusign_response['envelopeId']}"
-      )['url']
-    url
-  end
-
   def docs_status
     if self.aasm_state == "confirmation"
       true
@@ -383,14 +269,55 @@ class Insurance < ApplicationRecord
     end
   end
 
-  #########################################################################################################################
-  #########################################################################################################################
+  def find_current_page
+    if self.aasm_state == "product"
+      "tobacco"
+    elsif self.aasm_state == "tobacco"
+      "history"
+    elsif self.aasm_state == "history"
+      "blood"
+    elsif self.aasm_state == "blood"
+      "cholesterol"
+    elsif self.aasm_state == "cholesterol"
+      "familyHistory"
+    elsif self.aasm_state == "family_history"
+      "occupation"
+    elsif self.aasm_state == "occupation"
+      "driving"
+    elsif self.aasm_state == "driving"
+      "alcohol"
+    elsif self.aasm_state == "alcohol"
+      "gender"
+    elsif self.aasm_state == "gender"
+      "birthday"
+    elsif self.aasm_state == "birthday"
+      "height"
+    elsif self.aasm_state == "height"
+      "weight"
+    elsif self.aasm_state == "weight"
+      "street"
+    elsif self.aasm_state == "street"
+      "phone"
+    elsif self.aasm_state == "phone"
+      "license"
+    elsif self.aasm_state == "license"
+      "coverage"
+    elsif self.aasm_state == "coverage"
+      "frequency"
+    elsif self.aasm_state == "frequency"
+      "beneficiary"
+    elsif self.aasm_state == "beneficiary"
+      "payment"
+    elsif self.aasm_state == "payment"
+      "sign"
+    elsif self.aasm_state == "signature"
+      "confirmation"
+    end
+  end
 
-  #######
-  private
-  #######
-
-
+  def dynamic_link
+    "#{ActionMailer::Base.default_url_options[:host]}/insurance/#{self.find_current_page}?insurance=#{self.id}"
+  end
 
   def set_stripe_interval
     stripe_intervals = {}
@@ -406,6 +333,130 @@ class Insurance < ApplicationRecord
     stripe_intervals
   end
 
+  def self.send_complete_form_link
+    Term.where.not(aasm_state: "confirmation").where(updated_at: 24.hours.ago..Time.now).each do |insurance|
+      ReminderMailer.send_form_complete_link(insurance).deliver_now if insurance.user.present?
+    end
+  end
+
+  #######
+  private
+  #######
+
+  def change_state_to_product
+    self.update_columns(aasm_state: "product")
+  end
+
+  def check_tobacco_usage
+    if self.product?
+      self.update_columns(aasm_state: "tobacco")
+    end
+  end
+
+  def check_health_condition
+    if self.tobacco?
+      self.update_columns(aasm_state: "history")
+    end
+  end
+
+  def check_blood_condition
+    if self.history?
+      self.update_columns(aasm_state: "blood")
+    end
+  end
+
+  def check_cholesterol_condition
+    if self.blood?
+      self.update_columns(aasm_state: "cholesterol")
+    end
+  end
+
+  def check_family_history
+    if self.cholesterol?
+      self.update_columns(aasm_state: "family_history")
+    end
+  end
+
+  def check_occupation
+    if self.family_history?
+      self.update_columns(aasm_state: "occupation")
+    end
+  end
+
+  def check_driving_charge
+    if self.occupation?
+      self.update_columns(aasm_state: "driving")
+    end
+  end
+
+  def check_alcohol_usage
+    if self.driving?
+      self.update_columns(aasm_state: "alcohol")
+    end
+  end
+
+  def check_gender
+    if self.alcohol?
+      self.update_columns(aasm_state: "gender")
+    end
+  end
+
+  def check_birthday
+    if self.gender?
+      self.update_columns(aasm_state: "birthday", coverage_age: self.coverage_term_age)
+      ::StripeService.new.create_stripe_customer(self)
+    end
+  end
+
+  def check_current_age
+    if birthday.present?
+      current_date = Time.now.utc.to_date
+      current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
+      if current_age < 18 || current_age >= 65
+        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
+      end
+    end
+  end
+
+  def check_height
+    if self.birthday?
+      self.update_columns(aasm_state: "height")
+    end
+  end
+
+  def check_weight
+    if self.height?
+      self.update_columns(aasm_state: "weight")
+    end
+  end
+
+  def body_mass_index
+    if height.present? && weight.present? && height_inches.present?
+      height_in_inches = height_inches > 9 ? height.to_f * 12 + ( height_inches* 12).to_f / 100 : height.to_f * 12 + ( height_inches * 12).to_f / 10
+      body_mass = 703 * (height_in_inches.to_f / (weight * weight))
+      if body_mass > 30
+        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
+      end
+    end
+  end
+
+  def check_address
+    if self.weight?
+      self.update_columns(aasm_state: "street")
+    end
+  end
+
+  def check_phone_number
+    if self.street?
+      self.update_columns(aasm_state: "phone")
+    end
+  end
+
+  def check_license
+    if self.phone?
+      self.update_columns(aasm_state: "license")
+    end
+  end
 
   def percentage_calculator(amount, age)
     premium_amount = PremiumChart.data(amount, age)
@@ -422,10 +473,9 @@ class Insurance < ApplicationRecord
   end
 
   def check_coverage_stage
-    if coverage_amount.present? && self.question? && coverage_payment.present? && payment_frequency.present?
+    if coverage_amount.present? && self.license? && coverage_payment.present?
       if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
         self.update_columns(aasm_state: "coverage")
-        create_stripe_plan
       else
         errors.add(:coverage_payment, "Invalide coverage percentage.")
       end
@@ -434,38 +484,37 @@ class Insurance < ApplicationRecord
     end
   end
 
+  def check_premium_frequency
+    if self.coverage?
+      self.update_columns(aasm_state: "frequency")
+      ::StripeService.new.create_stripe_plan(self)
+    end
+  end
+
+  def beneficiary_allocation_percentage
+    unless self.beneficiaries.map(&:allocated_percentage).sum == 100
+      errors.add(:beneficiaries, "Allocation percentage should be hundred.")
+    end
+  end
+
+  def check_beneficiary_count
+    unless self.beneficiaries.present?
+      errors.add(:beneficiaries, "Please add atleast one beneficiary.")
+    end
+  end
+
+  def check_beneficiary
+    if self.frequency?
+      self.update_columns(aasm_state: "beneficiary")
+    end
+  end
+
   def check_payment_stage
-    if terms_and_services.present? && self.coverage?
+    if self.beneficiary?
       self.update_columns(aasm_state: "payment")
       PolicyMailer.send_signature_link(self).deliver_now
-      self.subscribe_customer_to_a_plan
-    else
-      errors.add(:terms_and_services, "Please accept terms and services.")
+      ::StripeService.new.subscribe_customer_to_a_plan(self)
     end
-  end
-
-  def body_mass_index
-    if height.present? && weight.present?
-      body_mass = 703 * (height.to_f / (weight * weight))
-      if body_mass > 30
-        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
-      end
-    end
-  end
-
-  def check_current_age
-    if birthday.present?
-      current_date = Time.now.utc.to_date
-      current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
-      if current_age < 18 || current_age >= 65
-        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
-      end
-    end
-  end
-
-  def change_state_to_question
-    self.update_columns(aasm_state: "question", coverage_age: self.coverage_term_age)
-    self.create_stripe_customer
   end
 
 end

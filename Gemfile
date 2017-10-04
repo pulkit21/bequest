@@ -43,6 +43,8 @@ gem 'webpacker', '~> 2.0'
 
 # Templating
 gem 'haml-rails'
+gem "cocoon"
+
 
 
 # Authentication && Authorization
@@ -111,3 +113,6 @@ gem 'my_zipcode_gem'
 gem 'phonelib'
 
 gem 'mocha', group: :test
+
+# Jobs
+gem 'whenever', :require => false

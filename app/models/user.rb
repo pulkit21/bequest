@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :insurances
   validates_presence_of :first_name, :last_name #, :address, :city, :state, :zipcode
 
+  before_create :populate_city_and_state
   before_create :check_valid_zipcode
 
 
@@ -17,6 +18,12 @@ class User < ApplicationRecord
       errors.add(:zipcode, "Invalid zipcode!")
       raise ActiveRecord::Rollback
     end
+  end
+
+  def populate_city_and_state
+    zipcode = Zipcode.find_by_code self.zipcode
+    self.city = zipcode.city
+    self.state = zipcode.state.name
   end
 
   # def check_valid_zipcode
@@ -31,7 +38,7 @@ class User < ApplicationRecord
   # end
 
   def active_zipcode?
-    zip = State.find_by_abbr("NC").zipcodes.find_by_code(self.zipcode)
+    zip = State.find_by_abbr("NY").zipcodes.find_by_code(self.zipcode)
     active_zip = zip.present? && zip.active?
     active_zip
   end

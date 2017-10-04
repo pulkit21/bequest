@@ -26,27 +26,27 @@ index do
   column :state
   column :zipcode
   column :gender do |user|
-    user.insurances.first.gender
+    user.insurances.first.gender if user.insurances.present? && user.insurances.first.gender.present?
   end
   column :age  do |user|
-    user.insurances.first.current_age
+    user.insurances.first.current_age if user.insurances.present? && user.insurances.first.current_age.present?
   end
   column :coverage_amount  do |user|
-    user.insurances.first.coverage_amount if user.insurances.first.coverage_amount.present?
+    user.insurances.first.coverage_amount if user.insurances.present? && user.insurances.first.coverage_amount.present?
   end
   column :payment_amount  do |user|
-    user.insurances.first.coverage_payment if user.insurances.first.coverage_payment.present?
+    user.insurances.first.coverage_payment if user.insurances.present? && user.insurances.first.coverage_payment.present?
   end
   column :payment_frequency  do |user|
-    user.insurances.first.payment_frequency.upcase if user.insurances.first.payment_frequency.present?
+    user.insurances.first.payment_frequency.upcase if user.insurances.present? && user.insurances.first.payment_frequency.present?
   end
   column :last_page_completed  do |user|
-    user.insurances.first.aasm_state
+    user.insurances.first.aasm_state if user.insurances.present? && user.insurances.first.aasm_state.present?
   end
   column :payment_received  do |user|
   end
   column :documents_signed  do |user|
-    user.insurances.first.docs_status
+    user.insurances.first.docs_status  if user.insurances.present? && user.insurances.first.docs_status.present?
   end
   # actions
   end

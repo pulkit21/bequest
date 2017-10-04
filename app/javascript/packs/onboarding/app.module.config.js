@@ -32,6 +32,82 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvid
       url: '/confirm',
       template: `<confirm></confirm>`
     })
+    .state('product', {
+      url: '/product',
+      template: `<product></product>`
+    })
+    .state('tobacco', {
+      url: '/tobacco',
+      template: `<tobacco></tobacco>`
+    })
+    .state('history', {
+      url: '/history',
+      template: `<history></history>`
+    })
+    .state('blood', {
+      url: '/blood',
+      template: `<blood></blood>`
+    })
+    .state('cholesterol', {
+      url: '/cholesterol',
+      template: `<cholesterol></cholesterol>`
+    })
+    .state('familyHistory', {
+      url: '/familyHistory',
+      template: `<family_history></family_history>`
+    })
+    .state('occupation', {
+      url: '/occupation',
+      template: `<occupation></occupation>`
+    })
+    .state('driving', {
+      url: '/driving',
+      template: `<driving></driving>`
+    })
+    .state('alcohol', {
+      url: '/alcohol',
+      template: `<alcohol></alcohol>`
+    })
+    .state('gender', {
+      url: '/gender',
+      template: `<gender></gender>`
+    })
+    .state('birthday', {
+      url: '/birthday',
+      template: `<birthday></birthday>`
+    })
+    .state('height', {
+      url: '/height',
+      template: `<height></height>`
+    })
+    .state('weight', {
+      url: '/weight',
+      template: `<weight></weight>`
+    })
+    .state('street', {
+      url: '/street',
+      template: `<street></street>`
+    })
+    .state('phone', {
+      url: '/phone',
+      template: `<phone></phone>`
+    })
+    .state('license', {
+      url: '/license',
+      template: `<license></license>`
+    })
+    .state('coverage', {
+      url: '/coverage',
+      template: `<coverage></coverage>`
+    })
+    .state('frequency', {
+      url: '/frequency',
+      template: `<frequency></frequency>`
+    })
+    .state('beneficiary', {
+      url: '/beneficiary',
+      template: `<beneficiary></beneficiary>`
+    })
 
 
 
