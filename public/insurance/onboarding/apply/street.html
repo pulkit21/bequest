@@ -1,25 +1,33 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 60%; max-width: 65%;"></div>
-  <a class="button-back" href="/">Back</a>
+  <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
   <div class="body-center">
+
     <div class="question-container">
       <h2 class="">Street Address</h2>
     </div>
-    <form name="streetForm" ng-submit="streetSubmit(insurance)" novalidate layout="row" layout-xs="column" flex-offset="25"
-        flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
-      <md-input-container class="margin-bottom-50" layout="column" flex="100">
-        <label>Street Address</label>
-        <input ng-model="insurance.address" required>
-      </md-input-container>
-      <div class="form-column text-center" layout="column" flex="100">
+
+    <form name="streetForm" ng-submit="streetSubmit(insurance)" novalidate>
+
+      <div layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+        <md-input-container class="margin-bottom-50" layout="column" flex="100">
+          <label>Street Address</label>
+          <input ng-model="insurance.address" required>
+        </md-input-container>
+      </div>
+
+      <div class="form-column text-center" layout="row" flex="100">
         <div class="form-container">
           <md-button ng-click="streetSubmit(insurance)" ng-disabled="streetForm.$invalid" class="md-apply-purple">
             Next
           </md-button>
         </div>
       </div>
+
     </form>
+
   </div>
 </div>

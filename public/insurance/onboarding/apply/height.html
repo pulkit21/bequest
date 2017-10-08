@@ -1,39 +1,45 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 50%; max-width: 55%;"></div>
-  <a class="button-back" href="/">Back</a>
+  <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
   <div class="body-center">
+
     <div class="question-container">
       <h2 class="">Height</h2>
     </div>
-    <form name="heightForm" ng-submit="heightSubmit(insurance)" novalidate layout="row" layout-xs="column" flex-offset="35"
-        flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
-      <md-input-container layout="column" flex="50" flex-xs="100">
-        <label>Feet</label>
-        <md-select name="heightFeet" ng-model="insurance.height" required>
-          <md-option value="4" ng-selected="insurance.heightFeet4">4</md-option>
-          <md-option value="5" ng-selected="insurance.heightFeet5">5</md-option>
-          <md-option value="6" ng-selected="insurance.heightFeet6">6</md-option>
-          <md-option value="7" ng-selected="insurance.heightFeet7">7</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container class="margin-bottom-50" layout="column" flex="50" flex-xs="100">
-        <label>Inches</label>
-        <md-select name="heightInches" ng-model="insurance.height_inches" required>
-          <md-option ng-value="heightInchesOption" ng-repeat="heightInchesOption in heightInchesOptions">{{heightInchesOption}}</md-option>
-        </md-select>
-      </md-input-container>
 
-      <div class="form-column text-center" layout="column" flex="100">
+    <form name="heightForm" ng-submit="heightSubmit(insurance)" novalidate>
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
+        <md-input-container layout="column" flex="50" flex-xs="100">
+          <label>Feet</label>
+          <md-select name="heightFeet" ng-model="insurance.height" required>
+            <md-option value="4" ng-selected="insurance.heightFeet4">4</md-option>
+            <md-option value="5" ng-selected="insurance.heightFeet5">5</md-option>
+            <md-option value="6" ng-selected="insurance.heightFeet6">6</md-option>
+            <md-option value="7" ng-selected="insurance.heightFeet7">7</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="margin-bottom-50" layout="column" flex="50" flex-xs="100">
+          <label>Inches</label>
+          <md-select name="heightInches" ng-model="insurance.height_inches" required>
+            <md-option ng-value="heightInchesOption" ng-repeat="heightInchesOption in heightInchesOptions">{{heightInchesOption}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+      <div class="form-column text-center" layout="row" flex="100">
         <div class="form-container">
           <md-button ng-click="heightSubmit(insurance)" ng-disabled="heightForm.$invalid" type="submit" class="md-apply-purple">
             Next
           </md-button>
         </div>
       </div>
+
     </form>
+
   </div>
 </div>
-
-

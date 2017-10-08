@@ -1,33 +1,36 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 55%; max-width: 60%;"></div>
-  <a class="button-back" href="/">Back</a>
+  <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
   <div class="body-center">
+
     <div class="question-container">
       <h2 class="">Weight</h2>
     </div>
-    <form name="weightForm" ng-submit="weightSubmit(insurance)" novalidate layout="row" layout-xs="column" flex-offset="35"
-        flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
-      <md-input-container class="margin-bottom-50" layout="column" flex="100">
-        <label>Pounds</label>
-        <md-select name="weight" ng-model="insurance.weight" required>
-         <!--  <md-option value="70" ng-selected="insurance.weight70">70</md-option>
-          <md-option value="71" ng-selected="insurance.weight71">71</md-option>
-          <md-option value="72" ng-selected="insurance.weight72">72</md-option>
-          <md-option value="73" ng-selected="insurance.weight73">73</md-option> -->
-          <md-option ng-value="weightOption" ng-repeat="weightOption in [70, 250] | toRange">{{weightOption}}</md-option>
-          <!-- need 70 - 250 pounds -->
-        </md-select>
-        <span class="learn-more" ng-if="errors.data.weight_coverage"> {{errors.data.weight_coverage[0]}}</span>
-      </md-input-container>
-      <div class="form-column text-center" layout="column" flex="100">
+
+    <form name="weightForm" ng-submit="weightSubmit(insurance)" novalidate>
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
+        <md-input-container class="margin-bottom-50" layout="column" flex="100">
+          <label>Pounds</label>
+          <md-select name="weight" ng-model="insurance.weight" required>
+            <md-option ng-value="weightOption" ng-repeat="weightOption in [70, 250] | toRange">{{weightOption}}</md-option>
+          </md-select>
+          <span class="learn-more" ng-if="errors.data.weight_coverage"> {{errors.data.weight_coverage[0]}}</span>
+        </md-input-container>
+      </div>
+
+      <div class="form-column text-center" layout="row" flex="100">
         <div class="form-container">
           <md-button ng-click="weightSubmit(insurance)" ng-disabled="questionForm.$invalid" type="submit" class="md-apply-purple">
             Next
           </md-button>
         </div>
       </div>
+
     </form>
+
   </div>
 </div>

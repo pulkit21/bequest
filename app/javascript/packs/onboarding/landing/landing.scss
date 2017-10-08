@@ -463,9 +463,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .body-center {
-  position: relative;
-  top: 40%;
-  transform: translateY(-40%);
+  margin-top: 50px;
 }
 
 .access-block {
@@ -794,7 +792,7 @@ body input:checked ~ nav > ul > li {
   background: #8000ff;
   display: block;
   position: relative;
-  animation-delay: 3s;
+  animation-delay: 0s;
   animation: progress 3s linear ;
   -webkit-animation: progress 3s linear;
 }
@@ -888,6 +886,78 @@ body input:checked ~ nav > ul > li {
   text-transform: uppercase;
   padding-left: 5px;
   transition: all 0.15s linear;
+}
+
+md-radio-group {
+  display: block;
+  height: 60px;
+  margin: 20px !important;
+}
+
+md-radio-button {
+  display: inline-block !important;
+  width: 130px !important;
+  height: 42px !important;
+  margin: 10px !important;
+}
+
+md-radio-button .md-label {
+  margin: 10px !important;
+  text-transform: uppercase;
+  transition: all 0.15s linear;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+md-radio-button:hover .md-label,
+md-radio-button.md-checked .md-label {
+  color: #fff;
+}
+
+md-radio-button .md-container {
+  width: 130px !important;
+  height: 42px !important;
+}
+
+md-radio-button .md-container .md-off {
+  width: 130px !important;
+  height: 42px !important;
+  border: none !important;
+  background: #e6e6e6;
+  border-radius: 3px !important;
+  transition: all 0.15s linear;
+}
+
+md-radio-button .md-container .md-off:hover {
+  background: #8000ff;
+}
+
+md-radio-button .md-container .md-on {
+  width: 130px !important;
+  height: 42px !important;
+  border: none !important;
+  background: #8000ff;
+  border-radius: 3px !important;
+  transition: all 0.15s linear;
+}
+
+md-radio-button.md-checked .md-on {
+  transform: none !important;
+}
+
+md-radio-button .md-container .md-ripple-container {
+  top: 0px !important;
+  bottom: 0px !important;
+  right: 0px !important;
+  left: 0px !important;
+}
+
+md-toast {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  padding: 8px !important;
 }
 
 md-slider .md-track {
@@ -1983,7 +2053,6 @@ md-select {
 
 .img-coverage-container {
   padding: 20px;
-  text-align: center;
 }
 
 .img-landing-icon {

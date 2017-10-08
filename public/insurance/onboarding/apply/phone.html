@@ -1,26 +1,34 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 65%; max-width: 70%;"></div>
-  <a class="button-back" href="/">Back</a>
+  <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
   <div class="body-center">
+
     <div class="question-container">
       <h2 class="">Phone Number</h2>
     </div>
-    <form name="phoneForm" ng-submit="phoneSubmit(insurance)" novalidate layout="row" layout-xs="column" flex-offset="25"
-        flex-offset-xs="0" flex-xs="100">
-      <md-input-container class="margin-bottom-50" layout="column" flex="100">
-        <label>Phone Number</label>
-        <input ng-model="insurance.phoneNumber" type="number" required>
-        <span class="learn-more" ng-if="errors.data.phone_number"> Phone Number {{errors.data.phone_number[0]}}</span>
-      </md-input-container>
-      <div class="form-column text-center" layout="column" flex="100">
+
+    <form name="phoneForm" ng-submit="phoneSubmit(insurance)" novalidate>
+      
+      <div layout="row" layout-xs="column" flex-offset="25" flex-offset-xs="0" flex-xs="100">
+        <md-input-container class="margin-bottom-50" layout="column" flex="100">
+          <label>Phone Number</label>
+          <input ng-model="insurance.phoneNumber" type="number" required>
+          <span class="learn-more" ng-if="errors.data.phone_number"> Phone Number {{errors.data.phone_number[0]}}</span>
+        </md-input-container>
+      </div>
+
+      <div class="form-column text-center" layout="row" flex="100">
         <div class="form-container">
           <md-button ng-click="phoneSubmit(insurance)" ng-disabled="phoneForm.$invalid" class="md-apply-purple">
             Next
           </md-button>
         </div>
       </div>
+
     </form>
+
   </div>
 </div>

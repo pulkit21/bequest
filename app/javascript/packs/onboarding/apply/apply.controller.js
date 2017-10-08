@@ -82,7 +82,7 @@ let bequestController = angular
           $location.url('/history').search('insurance', response.id);
         },
         function(error) {
-          $scope.showToastMessage("Please select do you use tobacco.")
+          $scope.showToastMessage("We are unable to offer coverage to you at this time.")
       });
     }
 

@@ -493,13 +493,13 @@ class Insurance < ApplicationRecord
 
   def beneficiary_allocation_percentage
     unless self.beneficiaries.map(&:allocated_percentage).sum == 100
-      errors.add(:beneficiaries, "Allocation percentage should be hundred.")
+      errors.add(:beneficiaries, "Allocation percentage should equal 100% between beneficiaries.")
     end
   end
 
   def check_beneficiary_count
     unless self.beneficiaries.present?
-      errors.add(:beneficiaries, "Please add atleast one beneficiary.")
+      errors.add(:beneficiaries, "Must add at least one beneficiary.")
     end
   end
 

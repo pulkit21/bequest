@@ -1,24 +1,32 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 85%; max-width: 90%;"></div>
-  <a class="button-back" href="/">Back</a>
+  <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
+
   <form class="body-center" name="beneficiaryForm" ng-submit="beneficiarySubmit(insurance)" novalidate>
-    <div  data-ng-repeat="beneficiary in beneficiaries_attributes">
+
+    <div data-ng-repeat="beneficiary in beneficiaries_attributes">
       <div class="question-container">
         <h2 class="">{{beneficiary.name}}</h2>
       </div>
-      <div class="" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
         <md-input-container class="" layout="column" flex="50" flex-xs="100">
           <label>First Name</label>
           <input ng-model="beneficiary.firstName" required>
         </md-input-container>
+      </div>
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
         <md-input-container layout="column" flex="50" flex-xs="100">
           <label>Last Name</label>
           <input ng-model="beneficiary.lastName" required>
         </md-input-container>
       </div>
-      <div layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
         <md-input-container layout="column" flex="100">
           <label>Relationship</label>
           <md-select name="beneficiaryRelation" ng-model="beneficiary.relation" required>
@@ -32,49 +40,46 @@
           </md-select>
         </md-input-container>
       </div>
-      <div layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
         <md-input-container layout="column" flex="100">
-          <label>Proceed Allocation Percentage</label>
+          <label>Allocation Percentage</label>
           <!-- sum of all beneficiary allocations must total 100% -->
           <input name="beneficiaryAllocation" ng-model="beneficiary.allocatedPercentage" type="number" min="1" max="100" ng-pattern="/^[0-9]*$/"
-              required>
+            required>
         </md-input-container>
       </div>
 
-      <div class="question-container">
-        <h2 class="">Their Birthday</h2>
-      </div>
-      <div class="margin-bottom-50" layout="row" layout-xs="column" flex-offset="25" flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0"
-          flex-xs="100">
-        <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+      <div class="margin-bottom-50" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50"
+        flex-offset-xs="0" flex-xs="100">
+        <md-input-container flex="100" class="md-block">
           <label>Birthday (YYYY-MM-DD)</label>
-          <input
-            name="beneficiaryBirthday"
-            ng-model="beneficiary.birthday"
-            type="date"
-            max="{{currentDate() | date:'yyyy-MM-dd'}}"
-            required
-          >
+          <input name="beneficiaryBirthday" ng-model="beneficiary.birthday" type="date" max="{{currentDate() | date:'yyyy-MM-dd'}}"
+            required>
         </md-input-container>
       </div>
+
       <div class="form-column text-center" layout="column" flex="100">
         <div class="form-container">
           <md-button class="md-apply-red" ng-show="$last" ng-click="removeBeneficiary()" ng-if="beneficiaries_attributes.length > 1">
             Remove
           </md-button>
+          <md-button class="md-apply-green" ng-click="addNewBeneficiary()" ng-if="beneficiaries_attributes.length <5">
+            Add
+          </md-button>
         </div>
       </div>
+
     </div>
+
     <div class="form-column text-center" layout="column" flex="100">
       <div class="form-container">
-        <!-- adds another beneficiary form, proceed allocation must total 100% -->
-        <md-button class="md-apply-green" ng-click="addNewBeneficiary()" ng-if="beneficiaries_attributes.length <5">
-          Add
-        </md-button>
         <md-button ng-click="beneficiarySubmit(insurance)" ng-disabled="beneficiaryForm.$invalid" class="md-apply-purple">
           Next
         </md-button>
       </div>
     </div>
+
   </form>
+
 </div>

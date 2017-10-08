@@ -1,43 +1,39 @@
 <div class="progress-container">
-  <div class="progress-block" style="min-width: 45%; max-width: 50%;"></div>
-  <a class="button-back" href="/">Back</a>
+    <div class="progress-block" style="min-width: 45%; max-width: 50%;"></div>
+    <a class="button-back" href="javascript:history.back()">Back</a>
 </div>
+
 <div class="body-container">
-  <div class="body-center">
-    <div class="question-container">
-      <h2 class="">Birthday</h2>
-    </div>
-    <form name="birthdayForm" ng-submit="birthdaySubmit(insurance)" novalidate layout="row" layout-xs="column" flex-offset="25"
-        flex="50" flex-offset-sm="15" flex-sm="70" flex-offset-xs="0" flex-xs="100">
+    <div class="body-center">
 
-      <div class="" layout="column" flex="100" flex-xs="100">
-        <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
-          <label>Birthday (YYYY-MM-DD)</label>
-          <input
-            name="birthday"
-            ng-model="insurance.birthday"
-            type="date"
-            max="{{currentDate() | date:'yyyy-MM-dd'}}"
-            ng-change="findCoverageAge()"
-            required
-          >
-        </md-input-container>
-        <span class="learn-more" ng-if="errors.data.age_coverage"> {{errors.data.age_coverage[0]}}</span>
-      </div>
-
-
-      <div class="question-container">
-        <h2 ng-model="term">{{coverageTermAge || 0}} Year Term</h2>
-      </div>
-      <div class="form-column text-center" layout="column" flex="100">
-        <div class="form-container">
-          <md-button ng-click="birthdaySubmit(insurance)" ng-disabled="birthdayForm.$invalid" class="md-apply-purple">
-            Next
-          </md-button>
+        <div class="question-container">
+            <h2 class="">Birthday</h2>
         </div>
-      </div>
-    </form>
-  </div>
-</div>
 
-<!-- <md-calendar ng-model="birthday"></md-calendar> -->
+        <form name="birthdayForm" ng-submit="birthdaySubmit(insurance)" novalidate>
+            <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
+                <div layout="column" flex="100">
+                    <md-input-container flex="50" flex-sm="75" flex-xs="100" class="md-block">
+                        <label>Birthday (MM-DD-YYYY)</label>
+                        <input name="birthday" ng-model="insurance.birthday" type="date" max="{{currentDate() | date:'MM-dd-yyyy'}}" ng-change="findCoverageAge()"
+                            required>
+                    </md-input-container>
+                    <span class="learn-more" ng-if="errors.data.age_coverage"> {{errors.data.age_coverage[0]}}</span>
+                </div>
+            </div>
+
+            <div class="question-container text-center" layout="row" flex="100">
+                <h2 ng-model="term">{{coverageTermAge || 0}} Year Term</h2>
+            </div>
+
+            <div class="form-column text-center" layout="row" flex="100">
+                <div class="form-container">
+                    <md-button ng-click="birthdaySubmit(insurance)" ng-disabled="birthdayForm.$invalid" class="md-apply-purple">
+                        Next
+                    </md-button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
