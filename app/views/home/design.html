@@ -1,89 +1,40 @@
 <div class="progress-container">
-        <div class="progress-block" style="min-width: 85%; max-width: 90%;"></div>
-        <a class="button-back" href="javascript:history.back()">Back</a>
-      </div>
-      
-      <div class="body-container">
-      
-        <form class="body-center" name="beneficiaryForm" ng-submit="beneficiarySubmit(insurance)" novalidate>
-      
-          <div data-ng-repeat="beneficiary in beneficiaries_attributes">
-            <div class="question-container">
-              <h2 class="">{{beneficiary.name}}</h2>
-            </div>
-      
-            <div class="" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0"
-              flex-xs="100">
-              <md-input-container class="" layout="column" flex="50" flex-xs="100">
-                <label>First Name</label>
-                <input ng-model="beneficiary.firstName" required>
-              </md-input-container>
-            </div>
-      
-            <div class="" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0">
-              <md-input-container layout="column" flex="50" flex-xs="100">
-                <label>Last Name</label>
-                <input ng-model="beneficiary.lastName" required>
-              </md-input-container>
-            </div>
-      
-            <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
-              <md-input-container layout="column" flex="100">
-                <label>Relationship</label>
-                <md-select name="beneficiaryRelation" ng-model="beneficiary.relation" required>
-                  <md-option value="Spouse" ng-selected="beneficiary.beneficiaryRelationSpouse">Spouse</md-option>
-                  <md-option value="Daughter" ng-selected="beneficiary.beneficiaryRelationDaughter">Daughter</md-option>
-                  <md-option value="Son" ng-selected="beneficiary.beneficiaryRelationSon">Son</md-option>
-                  <md-option value="Mother" ng-selected="beneficiary.beneficiaryRelationMother">Mother</md-option>
-                  <md-option value="Father" ng-selected="beneficiary.beneficiaryFather">Father</md-option>
-                  <md-option value="Sibling" ng-selected="beneficiary.beneficiarySibling">Sibling</md-option>
-                  <md-option value="Gaurdian" ng-selected="beneficiary.beneficiaryRelationGaurdian">Gaurdian</md-option>
-                </md-select>
-              </md-input-container>
-            </div>
-      
-            <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0" flex-xs="100">
-              <md-input-container layout="column" flex="100">
-                <label>Proceed Allocation Percentage</label>
-                <!-- sum of all beneficiary allocations must total 100% -->
-                <input name="beneficiaryAllocation" ng-model="beneficiary.allocatedPercentage" type="number" min="1" max="100" ng-pattern="/^[0-9]*$/"
-                  required>
-              </md-input-container>
-            </div>
-      
-            <div class="margin-bottom-50" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50"
-              flex-offset-xs="0" flex-xs="100">
-              <md-input-container flex="100" class="md-block">
-                <label>Birthday (YYYY-MM-DD)</label>
-                <input name="beneficiaryBirthday" ng-model="beneficiary.birthday" type="date" max="{{currentDate() | date:'yyyy-MM-dd'}}"
-                  required>
-              </md-input-container>
-            </div>
-      
-            <div class="form-column text-center" layout="column" flex="100">
-              <div class="form-container">
-                <md-button class="md-apply-red" ng-show="$last" ng-click="removeBeneficiary()" ng-if="beneficiaries_attributes.length > 1">
-                  Remove
-                </md-button>
-                <md-button class="md-apply-green" ng-click="addNewBeneficiary()" ng-if="beneficiaries_attributes.length <5">
-                  Add
-                </md-button>
-              </div>
-            </div>
-      
-          </div>
-      
-          <div class="form-column text-center" layout="column" flex="100">
+    <div class="progress-block" style="min-width: 80%; max-width: 85%;"></div>
+    <a class="button-back" href="javascript:history.back()">Back</a>
+</div>
+
+<div class="body-container">
+    <form class="body-center" name="frequencyForm" ng-submit="frequencySubmit(insurance)" novalidate>
+
+        <div class="question-container">
+            <h2 class="">Premium Frequency</h2>
+        </div>
+
+        <div class="form-column text-center" layout="row" flex="100">
+            <md-radio-group name="paymentFrequency" ng-model="insurance.paymentFrequency" ng-change="getPremiumCharge(insurance)" required>
+                <md-radio-button value="annual">Annual</md-radio-button>
+                <md-radio-button value="semi"> Semi-Annual </md-radio-button>
+                <md-radio-button value="quarterly"> Quarterly </md-radio-button>
+                <md-radio-button value="monthly"> Monthly </md-radio-button>
+            </md-radio-group>
+        </div>
+
+        <div class="question-container text-center" layout="row" flex="100">
+            <h2 name="coveragePayment" ng-model="insurance.coveragePayment" ng-if="insurance.coveragePayment">
+                ${{insurance.coveragePayment | number:0}} Per Month
+            </h2>
+            <h2 ng-model="insurance.coveragePayment" ng-if="!insurance.coveragePayment"> $0 Per Month</h2>
+        </div>
+
+        <div class="form-column text-center" layout="row" flex="100">
             <div class="form-container">
-              <md-button ng-click="beneficiarySubmit(insurance)" ng-disabled="beneficiaryForm.$invalid" class="md-apply-purple">
-                Next
-              </md-button>
+                <md-button ng-click="frequencySubmit(insurance)" ng-disabled="frequencyForm.$invalid" class="md-apply-purple">
+                    Next
+                </md-button>
             </div>
-          </div>
-      
-        </form>
-      
-      </div>
+        </div>
+    </form>
+</div>
 
 
 
