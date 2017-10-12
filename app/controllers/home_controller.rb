@@ -9,15 +9,15 @@ class HomeController < ApplicationController
   end
 
   def product
-    
+
   end
 
   def nation
-    
+
   end
 
   def design
-    
+
   end
 
   def about
@@ -25,11 +25,11 @@ class HomeController < ApplicationController
   end
 
   def terms
-    
+
   end
 
   def privacy
-        
+
   end
 
   def learn
@@ -45,6 +45,10 @@ class HomeController < ApplicationController
   end
 
   def user_exist
+
+  end
+
+  def coming_soon
 
   end
 

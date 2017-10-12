@@ -1,6 +1,6 @@
 <div class="progress-container">
   <div class="progress-block" style="min-width: 65%; max-width: 70%;"></div>
-  <a class="button-back" href="">Back</a>
+  <a class="button-back" href="#" ng-click="goBack()">Back</a>
 </div>
 
 <div class="body-container">
@@ -11,7 +11,7 @@
     </div>
 
     <form name="phoneForm" ng-submit="phoneSubmit(insurance)" novalidate>
-      
+
       <div layout="row" layout-xs="column" flex-offset="25" flex-offset-xs="0" flex-xs="100">
         <md-input-container class="margin-bottom-50" layout="column" flex="100">
           <label>Phone Number</label>

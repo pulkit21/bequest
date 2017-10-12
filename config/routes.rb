@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations", confirmations: "confirmations"  }
 
   root 'home#landing'
+  get 'insurance/coming_soon', to: "home#coming_soon"
 
   # get 'register',  to: "home#index"
   get '/insurance/product',  to: "insurances#product"
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
           post :stripe
           post :signature
           post :download_policy
+          put :revert_back
         end
       end
     end

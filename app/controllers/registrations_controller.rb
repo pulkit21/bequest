@@ -13,8 +13,8 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.active_zipcode?
       confirm_email_path
     else
-      insurance_coverage_path(zipcode: resource.zipcode)
+      insurance_coming_soon_path
     end
   end
-  
+
 end
