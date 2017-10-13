@@ -7,29 +7,35 @@
         <div class="form-container">
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-              <%= devise_error_messages! %>
-
+              <% if resource.errors.any? %>
+                <md-toast md-theme="default" ng-class="{'md-capsule': toast.capsule}" class="ng-scope _md md-top md-right md-default-theme" style="">
+                  <div class="md-toast-content">
+                    <span class="md-toast-text ng-binding" role="alert" aria-relevant="all" aria-atomic="true">
+                      <%= resource.errors.full_messages.first%>
+                    </span>
+                  </div>
+                </md-toast>
+              <% end %>
               <div class="form-row">
                 <md-input-container layout="column" flex="100" class="md-block">
                   <%= f.label :first_name %>
-                    <%= f.text_field :first_name, autofocus: true %>
+                  <%= f.text_field :first_name, autofocus: true %>
                 </md-input-container>
             </div>
 
             <div class="form-row">
-            <md-input-container flex="100" class="md-block">
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, autofocus: true %>
-            </md-input-container>
+              <md-input-container flex="100" class="md-block">
+                <%= f.label :last_name %>
+                <%= f.text_field :last_name, autofocus: true %>
+              </md-input-container>
             </div>
 
             <div class="form-row">
-            <md-input-container flex="100" class="md-block">
-              <%= f.label :email %>
+              <md-input-container flex="100" class="md-block">
+                <%= f.label :email %>
                 <%= f.email_field :email, autofocus: true %>
-            </md-input-container>
-          </div>
+              </md-input-container>
+            </div>
 
             <div class="form-row margin-bottom-30">
               <md-input-container flex="100" class="md-block">
@@ -39,7 +45,7 @@
             </div>
 
             <div class="text-center">
-            <%= f.submit "Next", class: "md-apply-purple md-button md-ink-ripple" %>
+              <%= f.submit "Next", class: "md-apply-purple md-button md-ink-ripple" %>
             </div>
 
           <% end %>

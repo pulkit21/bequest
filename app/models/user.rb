@@ -22,8 +22,10 @@ class User < ApplicationRecord
 
   def populate_city_and_state
     zipcode = Zipcode.find_by_code self.zipcode
-    self.city = zipcode.city
-    self.state = zipcode.state.name
+    if zipcode.present?
+      self.city = zipcode.city
+      self.state = zipcode.state.name
+    end
   end
 
   # def check_valid_zipcode
