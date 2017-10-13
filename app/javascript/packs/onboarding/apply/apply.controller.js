@@ -383,10 +383,15 @@ let bequestController = angular
 
     // Get premium for the policy amount
     $scope.getPremium = function(quoteForm) {
+
       var current_amount_index = amount.indexOf(quoteForm.coverageAmount)
 
       if(chart) {
-        $scope.insurance.coveragePayment =  chart[quoteForm.coverageAge][current_amount_index];;
+        if (quoteForm.gender == "male") {
+          $scope.insurance.coveragePayment =  chart["termMaleData"][quoteForm.coverageAge][current_amount_index];
+        } else {
+          $scope.insurance.coveragePayment =  chart["termFemaleData"][quoteForm.coverageAge][current_amount_index];
+        }
       }
       if (quoteForm.coverageAmount && quoteForm.coveragePayment && quoteForm.paymentFrequency) {
         premiumCalculator(quoteForm);
@@ -396,7 +401,11 @@ let bequestController = angular
     // Calculate the premium payment percentage
     var premiumCalculator = function(quoteForm) {
       var current_amount_index = amount.indexOf(quoteForm.coverageAmount)
-      var premiumAmount = chart[quoteForm.coverageAge][current_amount_index];
+      if (quoteForm.gender == "male") {
+        var premiumAmount =  chart["termMaleData"][quoteForm.coverageAge][current_amount_index];
+      } else {
+        var premiumAmount =  chart["termFemaleData"][quoteForm.coverageAge][current_amount_index];
+      }
 
       if (quoteForm.paymentFrequency === "semi") {
         quoteForm.coveragePayment = (premiumAmount * .1) + premiumAmount

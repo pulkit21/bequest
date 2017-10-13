@@ -483,8 +483,17 @@ class Insurance < ApplicationRecord
     end
   end
 
+  def select_premium_type(amount, age)
+    if self.male?
+      premium_date = PremiumChart.term_male_data(amount, age)
+    else
+      premium_date = PremiumChart.term_female_data(amount, age)
+    end
+    premium_date
+  end
+
   def percentage_calculator(amount, age)
-    premium_amount = PremiumChart.data(amount, age)
+    premium_amount = select_premium_type
     if self.semi?
       coverage_payment = ((10.to_f / premium_amount) * 100) + premium_amount
     elsif self.quarterly?
