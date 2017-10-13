@@ -36,8 +36,15 @@ let bequestController = angular
     }
 
     // Go back button
-    $rootScope.goBack = function() {
-      $window.history.back();
+    $rootScope.goBack = function(insurance) {
+      InsuranceService.$put('/api/v1/insurances/revert_back', {id: insurance.id}).then(
+        function (response){
+          $scope.insurance.aasmState = response.aasmState;
+          $window.history.back();
+      },
+      function(error){
+
+      });
     }
 
     // Start Toast Message
@@ -100,7 +107,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/history').search('insurance', response.id);
+          if(response.tobacco_product){
+            $location.url('/history').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("We are unable to offer coverage to you at this time.")
@@ -113,7 +124,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/blood').search('insurance', response.id);
+          if(response.health_condition){
+            $location.url('/blood').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have any health conditions.")
@@ -126,7 +141,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/cholesterol').search('insurance', response.id);
+          if(response.blood){
+            $location.url('/cholesterol').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have any blood pressure.")
@@ -139,7 +158,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/familyHistory').search('insurance', response.id);
+          if(response.cholesterol){
+            $location.url('/familyHistory').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have high cholesterol.")
@@ -153,7 +176,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/occupation').search('insurance', response.id);
+          if(response.family_history){
+            $location.url('/occupation').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have family history.")
@@ -166,7 +193,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/driving').search('insurance', response.id);
+          if(response.occupation){
+            $location.url('/driving').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have Hazardous occupation or hobby.")
@@ -179,7 +210,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/alcohol').search('insurance', response.id);
+          if(response.driving){
+            $location.url('/alcohol').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have driving charges.")
@@ -192,7 +227,11 @@ let bequestController = angular
       $scope.insurance.save()
       .then(
         function(response) {
-          $location.url('/gender').search('insurance', response.id);
+          if(response.alcohol){
+            $location.url('/gender').search('insurance', response.id);
+          } else {
+            $location.url('/denied');
+          }
         },
         function(error) {
           $scope.showToastMessage("Please select have use alcohol or drugs.")
@@ -312,7 +351,7 @@ let bequestController = angular
         },
         /* failure */
         function(error) {
-          $scope.showToastMessage(error.data.check_phone_number[0])
+          $scope.showToastMessage("Phone number " + error.data.phone_number[0])
       });
     }
 
@@ -331,7 +370,7 @@ let bequestController = angular
         },
         /* failure */
         function(error) {
-          $scope.showToastMessage(error.data.check_phone_number[0])
+          $scope.showToastMessage("Invalid license")
       });
     }
 
@@ -418,7 +457,7 @@ let bequestController = angular
         },
         /* failure */
         function(error) {
-          $scope.showToastMessage(error)
+          $scope.showToastMessage(error.data.frequency[0])
       });
     }
 

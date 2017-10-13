@@ -12,6 +12,7 @@
   "onboarding/cholesterol/cholesterol.js": "http://0.0.0.0:8080/assets/insurance/onboarding/cholesterol/cholesterol.js",
   "onboarding/confirm/confirm.js": "http://0.0.0.0:8080/assets/insurance/onboarding/confirm/confirm.js",
   "onboarding/coverage/coverage.js": "http://0.0.0.0:8080/assets/insurance/onboarding/coverage/coverage.js",
+  "onboarding/denied/denied.js": "http://0.0.0.0:8080/assets/insurance/onboarding/denied/denied.js",
   "onboarding/driving/driving.js": "http://0.0.0.0:8080/assets/insurance/onboarding/driving/driving.js",
   "onboarding/familyHistory/familyHistory.js": "http://0.0.0.0:8080/assets/insurance/onboarding/familyHistory/familyHistory.js",
   "onboarding/frequency/frequency.js": "http://0.0.0.0:8080/assets/insurance/onboarding/frequency/frequency.js",

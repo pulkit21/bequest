@@ -15,7 +15,8 @@ class StripeService
   def create_stripe_plan(insurance)
     plan = Stripe::Plan.create(
       name: "#{insurance.payment_frequency.titleize} payment $#{insurance.coverage_amount} for terms #{insurance.coverage_term_age} Plan",
-      id: insurance.id,
+      # id: insurance.id,
+      id: "#{insurance.payment_frequency.titleize}-#{insurance.id}-#{insurance.coverage_amount}",
       interval: insurance.set_stripe_interval[:interval],
       interval_count: insurance.set_stripe_interval[:interval_count],
       currency: "usd",

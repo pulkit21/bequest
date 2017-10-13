@@ -7,9 +7,6 @@ class Insurance < ApplicationRecord
 
   accepts_nested_attributes_for :beneficiaries, reject_if: :all_blank, allow_destroy: true, limit: 5
 
-  validates_presence_of :product, if: :idle?
-  after_create :change_state_to_product, if: :idle?
-
 
   validate :check_payment_stage, on: :update, if: :beneficiary?
 
@@ -68,6 +65,11 @@ class Insurance < ApplicationRecord
 
   validates_inclusion_of :tobacco_product, in: [true, false], if: :product?
   validate :check_tobacco_usage, on: :update, if: :product?
+
+  validates_presence_of :product, if: :idle?
+  after_create :change_state_to_product, if: :idle?
+  after_update :change_state_to_product, if: :idle?
+
 
   enum gender: ["male", "female"]
   enum payment_frequency: {"annual" => 0, "semi" => 10 , "quarterly" => 20, "monthly" => 30}
@@ -270,49 +272,72 @@ class Insurance < ApplicationRecord
   end
 
   def find_current_page
-    if self.aasm_state == "product"
-      "tobacco"
-    elsif self.aasm_state == "tobacco"
-      "history"
-    elsif self.aasm_state == "history"
-      "blood"
-    elsif self.aasm_state == "blood"
-      "cholesterol"
-    elsif self.aasm_state == "cholesterol"
-      "familyHistory"
-    elsif self.aasm_state == "family_history"
-      "occupation"
-    elsif self.aasm_state == "occupation"
-      "driving"
-    elsif self.aasm_state == "driving"
-      "alcohol"
-    elsif self.aasm_state == "alcohol"
-      "gender"
-    elsif self.aasm_state == "gender"
-      "birthday"
-    elsif self.aasm_state == "birthday"
-      "height"
-    elsif self.aasm_state == "height"
-      "weight"
-    elsif self.aasm_state == "weight"
-      "street"
-    elsif self.aasm_state == "street"
-      "phone"
-    elsif self.aasm_state == "phone"
-      "license"
-    elsif self.aasm_state == "license"
-      "coverage"
-    elsif self.aasm_state == "coverage"
-      "frequency"
-    elsif self.aasm_state == "frequency"
-      "beneficiary"
-    elsif self.aasm_state == "beneficiary"
-      "payment"
-    elsif self.aasm_state == "payment"
-      "sign"
-    elsif self.aasm_state == "signature"
-      "confirmation"
-    end
+    # if self.aasm_state == "product"
+    #   "tobacco"
+    # elsif self.aasm_state == "tobacco"
+    #   "history"
+    # elsif self.aasm_state == "history"
+    #   "blood"
+    # elsif self.aasm_state == "blood"
+    #   "cholesterol"
+    # elsif self.aasm_state == "cholesterol"
+    #   "familyHistory"
+    # elsif self.aasm_state == "family_history"
+    #   "occupation"
+    # elsif self.aasm_state == "occupation"
+    #   "driving"
+    # elsif self.aasm_state == "driving"
+    #   "alcohol"
+    # elsif self.aasm_state == "alcohol"
+    #   "gender"
+    # elsif self.aasm_state == "gender"
+    #   "birthday"
+    # elsif self.aasm_state == "birthday"
+    #   "height"
+    # elsif self.aasm_state == "height"
+    #   "weight"
+    # elsif self.aasm_state == "weight"
+    #   "street"
+    # elsif self.aasm_state == "street"
+    #   "phone"
+    # elsif self.aasm_state == "phone"
+    #   "license"
+    # elsif self.aasm_state == "license"
+    #   "coverage"
+    # elsif self.aasm_state == "coverage"
+    #   "frequency"
+    # elsif self.aasm_state == "frequency"
+    #   "beneficiary"
+    # elsif self.aasm_state == "beneficiary"
+    #   "payment"
+    # elsif self.aasm_state == "payment"
+    #   "sign"
+    # elsif self.aasm_state == "signature"
+    #   "confirmation"
+    # end
+    insurance_next_state
+  end
+
+  def insurance_states
+    insurance_states = Insurance.aasm.states.map{|i| i.name.to_s}
+  end
+
+  def insurance_next_state
+    current_state_index = insurance_states.index(self.aasm_state)
+    next_state_index = current_state_index + 1 if current_state_index < (insurance_states.length - 1)
+    next_insurance_state = next_state_index.present? ? insurance_states[next_state_index] : nil
+    next_insurance_state
+  end
+
+  def insurance_previous_state
+    current_state_index = insurance_states.index(self.aasm_state)
+    previous_state_index =  current_state_index - 1 if current_state_index > 0
+    previous_insurance_state = previous_state_index.present? ? insurance_states[previous_state_index] : nil
+    previous_insurance_state
+  end
+
+  def update_previous_state
+    self.update_columns(aasm_state: insurance_previous_state) if insurance_previous_state.present?
   end
 
   def dynamic_link
@@ -487,7 +512,13 @@ class Insurance < ApplicationRecord
   def check_premium_frequency
     if self.coverage?
       self.update_columns(aasm_state: "frequency")
-      ::StripeService.new.create_stripe_plan(self)
+      begin
+        ::StripeService.new.create_stripe_plan(self)
+      rescue Stripe::InvalidRequestError => e
+        errors.add(:frequency, e)
+      rescue => e
+        errors.add(:frequency, e)
+      end
     end
   end
 

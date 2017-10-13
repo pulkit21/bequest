@@ -2,7 +2,7 @@ class InsurancesController < ApplicationController
   before_action :set_header_footer, only: []
   before_action :check_insurance, only: [:product]
   before_action :set_user, only: [:create]
-  before_action :set_base_path, only: [:product, :confirm, :quote]
+  before_action :set_base_path, only: [:product, :confirm, :quote, :denied]
   before_action :set_insurance, only: [:show, :update, :destroy, :stripe, :signature, :download_policy]
 
   def index
@@ -15,7 +15,6 @@ class InsurancesController < ApplicationController
   end
 
   def create
-    @insurance = @user.insurances.new(insurance_params)
     if @insurance.save
       render :show, status: 201
     else
@@ -73,7 +72,7 @@ class InsurancesController < ApplicationController
   def product
     @user = User.find(params[:user])
     if @user.present?
-      if @user.insurances.present?
+      if @user.insurances.present? && @user.insurances.count > 1
         redirect_to user_exist_path
       end
     end
@@ -95,6 +94,19 @@ class InsurancesController < ApplicationController
     end
   end
 
+  def revert_back
+    @insurance = Insurance.find(params[:insurance][:id])
+    if @insurance.update_previous_state
+      render :show, format: :json, status: 201
+    else
+      render json: @insurance.errors, status: :unprocessable_entity
+    end
+  end
+
+  def denied
+
+  end
+
 
 
 
@@ -114,6 +126,12 @@ class InsurancesController < ApplicationController
 
   def set_user
     @user = User.find(params[:insurance][:user_id])
+    if @user.insurances.present?
+      @user.insurances.first.update(insurance_params)
+      @insurance = @user.insurances.first
+    else
+      @insurance = @user.insurances.new(insurance_params)
+    end
   end
 
   def insurance_params

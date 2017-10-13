@@ -29,6 +29,7 @@ import bequestController from './apply/apply.controller';
 import bequestInterceptor from './services/insurance.interceptor';
 import angularPayments from 'angular-payments';
 import confirmController from './confirm/confirm.controller';
+import deniedModule from './denied/denied.module';
 
 
 import applyModule from './apply/apply.module';
@@ -57,6 +58,7 @@ angular.module('bdi-landing', [
   coverageModule,
   frequencyModule,
   beneficiaryModule,
+  deniedModule,
 
 
   paymentModule,

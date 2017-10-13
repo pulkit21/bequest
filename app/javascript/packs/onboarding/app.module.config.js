@@ -108,6 +108,10 @@ function defaultModuleConfig($stateProvider, $urlRouterProvider, $locationProvid
       url: '/beneficiary',
       template: `<beneficiary></beneficiary>`
     })
+    .state('denied', {
+      url: '/denied',
+      template: `<denied></denied>`
+    })
 
 
 

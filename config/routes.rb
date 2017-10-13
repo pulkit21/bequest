@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/insurance/payment',  to: "insurances#quote"
   get '/insurance/sign',  to: "insurances#quote"
   get '/insurance/confirm',  to: "insurances#confirm"
+  get '/insurance/denied',  to: "insurances#denied"
 
 
   # get '/insurance/apply',  to: "insurances#apply"
