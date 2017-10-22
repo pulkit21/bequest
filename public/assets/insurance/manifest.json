@@ -3,6 +3,7 @@
   "bg-landing-3.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-3.png",
   "bg-landing-4.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-4.png",
   "bg-landing-5.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-5.png",
+  "bg-landing-6.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-6.png",
   "onboarding/alcohol/alcohol.js": "http://0.0.0.0:8080/assets/insurance/onboarding/alcohol/alcohol.js",
   "onboarding/app.js": "http://0.0.0.0:8080/assets/insurance/onboarding/app.js",
   "onboarding/apply/apply.js": "http://0.0.0.0:8080/assets/insurance/onboarding/apply/apply.js",
@@ -34,6 +35,5 @@
   "onboarding/street/street.js": "http://0.0.0.0:8080/assets/insurance/onboarding/street/street.js",
   "onboarding/tobacco/tobacco.js": "http://0.0.0.0:8080/assets/insurance/onboarding/tobacco/tobacco.js",
   "onboarding/weight/weight.js": "http://0.0.0.0:8080/assets/insurance/onboarding/weight/weight.js",
-  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png",
-  "bg-landing-6.png": "http://0.0.0.0:8080/assets/insurance/bg-landing-6.png"
+  "raleigh.png": "http://0.0.0.0:8080/assets/insurance/raleigh.png"
 }

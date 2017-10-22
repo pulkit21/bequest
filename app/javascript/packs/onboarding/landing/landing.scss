@@ -201,7 +201,6 @@ body input ~ nav > ul > li {
 
 body input ~ nav > ul > li > a {
   text-decoration: none;
-  text-transform: uppercase;
   padding: 10px ;
   margin: 10px;
   width: 100px;
@@ -384,7 +383,6 @@ body input:checked ~ nav > ul > li {
   display: block;
   color: #999;
   font-size: 12px !important;
-  text-transform: uppercase;
   margin: 10px;
   font-weight: 500;
 }
@@ -396,7 +394,6 @@ body input:checked ~ nav > ul > li {
   font-size: 12px;
   line-height: 30px;
   font-weight: 500;
-  text-transform: uppercase;
   transition: all 0.15s linear;
   margin: 10px;
 }
@@ -460,6 +457,7 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-testimonial {
+  display: block !important;
   height: 100%;
   padding: 100px 50px;
   background: url(../img/bg-landing-6.png);
@@ -475,6 +473,19 @@ body input:checked ~ nav > ul > li {
   background-size: cover;
   background-repeat: no-repeat;
   margin: 4px 2px 4px 4px;
+}
+
+.bg-features-purple {
+  height: 100%;
+  padding: 100px 50px;
+  background: #8000ff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 4px 2px 4px 4px;
+}
+
+.bg-features-purple p {
+  color: #fff;
 }
 
 .bg-testimonial h4 {
@@ -535,7 +546,7 @@ body input:checked ~ nav > ul > li {
   text-align: center;
   position: relative;
   display: block;
-  padding: 200px 0px 150px 0px;
+  padding: 150px 0px 100px 0px;
   background: #fff;
 }
 
@@ -2202,13 +2213,13 @@ md-select {
   display: inline-block !important;
   height: 25px;
   width: 25px;
+  transition: all 0.15s linear;
 }
 
 .img-footer svg {
   fill: #999;
   height: 25px;
   width: 25px;
-  transition: all 0.15s linear;
 }
 
 .img-footer svg:hover {
