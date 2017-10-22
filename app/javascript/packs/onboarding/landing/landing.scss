@@ -13,7 +13,7 @@ h1 {
   font-weight: 300;
   font-size: 40px;
   line-height: 50px;
-  color: #333333;
+  color: #333;
   /* font-family: 'Metamorphous', cursive; */
 }
 
@@ -33,8 +33,8 @@ h3 {
 }
 
 h4 {
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 25px;
+  line-height: 35px;
   font-weight: 300;
   font-style: italic;
   color: #333;
@@ -44,9 +44,8 @@ h4 {
 ul li,
 p {
   color: #333;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 300;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 p.small {
@@ -244,47 +243,6 @@ body input:checked ~ nav > ul > li {
   }
 }
 
-.footer a {
-  position: relative;
-  display: inline-block;
-  color: #fff;
-  transition: color .2s ease;
-
-  &:hover {
-    color: #fff;
-
-    &::after,
-    &::before {
-      width: 100%;
-      left: 0;
-    }
-
-  }
-}
-
-.footer a {
-  &::after,
-  &::before {
-    content: '';
-    position: absolute;
-    top: calc(100% + 5px);
-    width: 0;
-    right: 0;
-    height: 2px;
-  }
-
-  &::before {
-    transition: width .25s cubic-bezier(0.51, 0.18, 0, 0.88) .1s;
-    background: #f2f2f2;
-  }
-
-  &::after {
-    transition: width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
-    background: #8000ff;
-  }
-
-}
-
 .menu a {
   position: relative;
   display: inline-block;
@@ -418,14 +376,13 @@ body input:checked ~ nav > ul > li {
 
 .footer {
   padding: 100px 0px;
-  background: #f2f2f2;
+  background: #fff;
   position: relative;
-  text-align: center;
 }
 
 .footer p {
-  display: inline-block;
-  color: #666;
+  display: block;
+  color: #999;
   font-size: 12px !important;
   text-transform: uppercase;
   margin: 10px;
@@ -434,14 +391,14 @@ body input:checked ~ nav > ul > li {
 
 .footer a {
   box-sizing: border-box;
-  display: inline-block;
-  color: #666;
+  display: block;
+  color: #999;
   font-size: 12px;
   line-height: 30px;
   font-weight: 500;
   text-transform: uppercase;
   transition: all 0.15s linear;
-  margin: 10px 15px;
+  margin: 10px;
 }
 
 .footer a:hover {
@@ -503,9 +460,46 @@ body input:checked ~ nav > ul > li {
 }
 
 .bg-testimonial {
-  text-align: center;
-  padding: 150px 0px 200px 0px;
-  background: #fff;
+  height: 100%;
+  padding: 100px 50px;
+  background: url(../img/bg-landing-6.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 4px 4px 4px 2px;
+}
+
+.bg-features {
+  height: 100%;
+  padding: 100px 50px;
+  background: #f2f2f2;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 4px 2px 4px 4px;
+}
+
+.bg-testimonial h4 {
+  color: #fff;
+  font-size: 26px;
+  line-height: 36px;
+  margin: 0;
+}
+
+.bg-features h4 {
+  color: #333;
+  font-size: 40px;
+  line-height: 50px;
+  margin: 0;
+  font-style: normal;
+}
+
+.bg-features p {
+  color: #333;
+  font-size: 16px;
+}
+
+.bg-testimonial p {
+  color: #f2f2f2;
+  font-size: 16px;
 }
 
 .bg-learn {
@@ -541,7 +535,7 @@ body input:checked ~ nav > ul > li {
   text-align: center;
   position: relative;
   display: block;
-  padding: 250px 0px 250px 0px;
+  padding: 200px 0px 150px 0px;
   background: #fff;
 }
 
@@ -657,8 +651,17 @@ body input:checked ~ nav > ul > li {
   background: #fff;
 }
 
+.bg-blocks {
+  padding-bottom: 50px;
+}
+
 .landing-block {
-  padding: 30px;
+  text-align: center;
+  padding: 50px;
+}
+
+.landing-block ng-md-icon {
+  margin-bottom: 0px;
 }
 
 .faq-container {
@@ -730,8 +733,8 @@ body input:checked ~ nav > ul > li {
 .bg-press {
   position: relative;
   display: block;
-  padding: 50px;
-  background: #f2f2f2;
+  padding: 100px 50px;
+  background: #fff;
   text-align: center;
 }
 
@@ -752,7 +755,7 @@ body input:checked ~ nav > ul > li {
   text-transform: uppercase;
   font-size: 10px;
   transition: all 0.15s linear;
-  border-radius: 3px;
+  border-radius: 25px;
 }
 
 .button-back:hover {
@@ -925,7 +928,7 @@ md-radio-button .md-container .md-off {
   height: 42px !important;
   border: none !important;
   background: #e6e6e6;
-  border-radius: 3px !important;
+  border-radius: 25px !important;
   transition: all 0.15s linear;
 }
 
@@ -938,7 +941,7 @@ md-radio-button .md-container .md-on {
   height: 42px !important;
   border: none !important;
   background: #8000ff;
-  border-radius: 3px !important;
+  border-radius: 25px !important;
   transition: all 0.15s linear;
 }
 
@@ -984,27 +987,60 @@ md-slider:hover {
 }
 
 #mc_embed_signup {
-  float: right;
   position: relative;
   display: inline-block;
   transition: all 0.15s linear;
 }
 
-.md-button.header-button {
-  color: #333;
-  font-size: 12px;
-  transition: all 0.15s linear;
-  min-height: 0px;
-  min-width: 0px;
-  margin: 0px;
-  line-height: 32px;
-  padding: 0px 8px !important;
-  z-index: 101 !important;
+.md-button.hero-button {
+  color: #fff;
+  font-size: 14px;
+  margin: 15px;
+  padding: 3px 7px;
+  border-radius: 25px;
+  background: #8000ff;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.md-button.hero-button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #333;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.md-button.hero-button:hover, 
+.md-button.hero-button:focus, 
+.md-button.hero-button:active {
+  color: #fff;
 }
 
-.md-button.header-button:hover {
-  background: transparent;
-  color: #8000ff;
+.md-button.hero-button:hover:before, 
+.md-button.hero-button:focus:before, 
+.md-button.hero-button:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
 
 .md-button.md-landing-white {
@@ -1050,7 +1086,7 @@ md-slider:hover {
   font-size: 14px;
   padding: 3px 7px;
   width: 140px;
-  color: #333333;
+  color: #333;
   background: #e6e6e6;
   transition: all 0.15s linear;
 }
@@ -1217,7 +1253,7 @@ md-checkbox .md-label {
   background: #00aaff;
   padding: 20px 10px;
   transition: all 0.15s linear;
-  border-radius: 3px;
+  border-radius: 25px;
 }
 
 .title-block:hover {
@@ -2131,8 +2167,8 @@ md-select {
 
 .img-press {
   height: 16px;
-  opacity: 0.3;
-  margin: 20px ;
+  opacity: 0.2;
+  margin: 20px;
 }
 
 .img-icon {
@@ -2151,7 +2187,7 @@ md-select {
   display: inline-block;
   height: 18px;
   width: 19px;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .img-footer-nc {
@@ -2159,11 +2195,17 @@ md-select {
   display: inline-block;
   height: 30px;
   width: 30px;
-  opacity: 0.6;
+  opacity: 0.4;
+}
+
+.img-footer {
+  display: inline-block !important;
+  height: 25px;
+  width: 25px;
 }
 
 .img-footer svg {
-  fill: #666;
+  fill: #999;
   height: 25px;
   width: 25px;
   transition: all 0.15s linear;
