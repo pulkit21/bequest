@@ -437,8 +437,8 @@ class Insurance < ApplicationRecord
     if birthday.present?
       current_date = Time.now.utc.to_date
       current_age = current_date.year - birthday.year - ((current_date.month > birthday.month || (current_date.month == birthday.month && current_date.day >= birthday.day)) ? 0 : 1)
-      if current_age < 18 || current_age >= 65
-        errors.add(:age_coverage, "Sorry but we do not offer coverage to individuals of your age.")
+      if current_age < 18 || current_age >= 56
+        errors.add(:age_coverage, "We are unable to offer you coverage at this time.")
       end
     end
   end
@@ -460,7 +460,7 @@ class Insurance < ApplicationRecord
       height_in_inches = height_inches > 9 ? height.to_f * 12 + ( height_inches* 12).to_f / 100 : height.to_f * 12 + ( height_inches * 12).to_f / 10
       body_mass = 703 * (height_in_inches.to_f / (weight * weight))
       if body_mass > 30
-        errors.add(:weight_coverage, "Sorry but we do not offer coverage to individuals of your height and weight.")
+        errors.add(:weight_coverage, "We are unable to offer you coverage at this time.")
       end
     end
   end
@@ -511,10 +511,10 @@ class Insurance < ApplicationRecord
       if coverage_payment == percentage_calculator(coverage_amount, self.coverage_term_age)
         self.update_columns(aasm_state: "coverage")
       else
-        errors.add(:coverage_payment, "Invalide coverage percentage.")
+        errors.add(:coverage_payment, "Invalid coverage percentage.")
       end
     else
-      errors.add(:coverage_amount, "Invalide amount.")
+      errors.add(:coverage_amount, "Invalid amount.")
     end
   end
 
@@ -533,7 +533,7 @@ class Insurance < ApplicationRecord
 
   def beneficiary_allocation_percentage
     unless self.beneficiaries.map(&:allocated_percentage).sum == 100
-      errors.add(:beneficiaries, "Allocation percentage should equal 100% between beneficiaries.")
+      errors.add(:beneficiaries, "Allocation percentage needs to equal 100% between all beneficiaries.")
     end
   end
 

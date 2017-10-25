@@ -147,7 +147,7 @@ RSpec.describe Insurance, type: :model do
         user: @user
       )
       @insurance.valid?
-      expect(@insurance.errors.full_messages.first).to eq("Age coverage Sorry but we do not offer coverage to individuals of your age.")
+      expect(@insurance.errors.full_messages.first).to eq("Age coverage We are unable to offer coverage to you at this time.")
     end
 
     it "it should not be valid if age is equal to 65 years" do
@@ -166,7 +166,7 @@ RSpec.describe Insurance, type: :model do
       )
       @insurance.valid?
       # @insurance.errors.full_messages.should include("Age coverage Sorry but we do not offer coverage to individuals of your age.")
-      expect(@insurance.errors.full_messages.first).to eq("Age coverage Sorry but we do not offer coverage to individuals of your age.")
+      expect(@insurance.errors.full_messages.first).to eq("Age coverage We are unable to offer coverage to you at this time.")
     end
 
     it "it should not be valid if age is equal to 65 years" do
