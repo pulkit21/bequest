@@ -267,11 +267,12 @@ let bequestController = angular
       if (birthdayForm.$invalid) {
         return false;
       }
-      birthdayForm.birthday = birthdayForm.birthday.toDateString();
+      birthdayForm.birthday = birthdayForm.birthday;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/height').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -291,6 +292,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/weight').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -310,6 +312,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/street').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -328,6 +331,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/phone').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -346,6 +350,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/license').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -365,6 +370,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/coverage').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -431,6 +437,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/frequency').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -461,6 +468,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/beneficiary').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -491,6 +499,7 @@ let bequestController = angular
       .then(
         /* success */
         function(response) {
+          $mdToast.hide();
           $location.url('/payment').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
@@ -515,6 +524,7 @@ let bequestController = angular
 
         $http.post('/api/v1/insurances/stripe', data).then(function(response) {
           $scope.insurance = response.data;
+          $mdToast.hide();
           $location.path('/sign').search('insurance', response.data.id);
         }, function(response) {
           console.log('it failed! error: ' + response.data.error);
