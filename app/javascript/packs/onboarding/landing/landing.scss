@@ -766,7 +766,7 @@ body input:checked ~ nav > ul > li {
   text-transform: uppercase;
   font-size: 10px;
   transition: all 0.15s linear;
-  border-radius: 25px;
+  border-radius: 2px;
 }
 
 .button-back:hover {
@@ -939,7 +939,7 @@ md-radio-button .md-container .md-off {
   height: 42px !important;
   border: none !important;
   background: #e6e6e6;
-  border-radius: 25px !important;
+  border-radius: 2px !important;
   transition: all 0.15s linear;
 }
 
@@ -952,7 +952,7 @@ md-radio-button .md-container .md-on {
   height: 42px !important;
   border: none !important;
   background: #8000ff;
-  border-radius: 25px !important;
+  border-radius: 2px !important;
   transition: all 0.15s linear;
 }
 
@@ -1085,6 +1085,20 @@ md-slider:hover {
   cursor: not-allowed;
   background: #e6e6e6 !important;
   color: #333 !important;
+}
+
+.md-button.md-landing-button {
+  margin: 10px;
+  font-size: 14px;
+  padding: 3px 7px;
+  width: 140px;
+  color: #333;
+  background: #8000ff;
+  transition: all 0.15s linear;
+}
+
+.md-button.md-landing-button:hover {
+  background: #333;
 }
 
 .md-button.md-apply-gray,

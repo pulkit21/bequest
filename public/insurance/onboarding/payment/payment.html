@@ -20,7 +20,7 @@
         </md-input-container>
       </div> -->
 
-      <div class="" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0"
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50" flex-offset-xs="0"
         flex-xs="100">
         <md-input-container layout="column" flex="100">
           <label>Card number</label>
@@ -31,9 +31,9 @@
         </md-input-container>
       </div>
 
-      <div class="margin-bottom-50" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50"
+      <div layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50"
         flex-offset-xs="0" flex-xs="100">
-        <md-input-container class="" layout="column" flex="50" flex-xs="100">
+        <md-input-container>
           <label>Expiration (MM/YY)</label>
           <input type="text" class="input-block-level" ng-model="expiry" name="expiry" payments-validate="expiry" payments-format="expiry">
         </md-input-container>
@@ -41,7 +41,7 @@
 
       <div class="margin-bottom-50" layout="row" layout-xs="column" flex-offset="35" flex="30" flex-offset-sm="25" flex-sm="50"
         flex-offset-xs="0" flex-xs="100">
-        <md-input-container class="" layout="column" flex="50" flex-xs="100">
+        <md-input-container>
           <label>CVC</label>
           <input type="text" class="input-block-level" ng-model="cvc" name="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type">
           <span ng-show="paymentForm.cardSecurity.$error.minlength" class="learn-more">Card security number should not be less than 3 digits.</span>
