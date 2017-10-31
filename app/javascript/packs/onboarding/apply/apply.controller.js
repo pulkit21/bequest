@@ -20,7 +20,7 @@ let bequestController = angular
       $window,
       $rootScope
     ) {
-    const amount =  [25000, 50000, 75000, 100000, 125000, 150000, 175000, 200000, 225000, 250000, 275000, 300000, 325000, 350000, 375000, 400000, 425000, 450000, 475000, 500000, 525000, 550000, 575000, 600000, 625000, 650000, 675000, 700000, 725000, 750000, 775000, 800000, 825000, 850000, 875000, 900000, 925000, 950000, 975000, 1000000, 1025000, 1050000, 1075000, 1100000, 1125000, 1150000, 1175000, 1200000, 1225000, 1250000, 1275000, 1300000, 1325000, 1350000, 1375000, 1400000, 1425000, 1450000, 1475000, 1500000, 1525000, 1550000, 1575000, 1600000, 1625000, 1650000, 1675000, 1700000, 1725000, 1750000, 1775000, 1800000, 1825000, 1850000, 1875000, 1900000, 1925000, 1950000, 1975000, 2000000]
+    const amount =  [50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000, 1000000, 1050000, 1100000, 1150000, 1200000, 1250000, 1300000, 1350000, 1400000, 1450000, 1500000, 1550000, 1600000, 1650000, 1700000, 1750000, 1800000, 1850000, 1900000, 1950000, 2000000]
     $scope.heightInchesOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     $scope.coverageTermAge = "";
     $scope.errors = [];
@@ -97,7 +97,7 @@ let bequestController = angular
           $location.url('/tobacco').search('insurance', response.id);
         },
         function(error) {
-          $scope.showToastMessage("Please select the coverage type.")
+          $scope.showToastMessage("Please select a coverage type.")
       });
     };
 
@@ -131,7 +131,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have any health conditions.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -148,7 +148,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have any blood pressure.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -165,7 +165,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have high cholesterol.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -183,7 +183,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have family history.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -200,7 +200,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have Hazardous occupation or hobby.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -217,7 +217,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have driving charges.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -234,7 +234,7 @@ let bequestController = angular
           }
         },
         function(error) {
-          $scope.showToastMessage("Please select have use alcohol or drugs.")
+          $scope.showToastMessage("Please select an answer.")
       });
     }
 
@@ -247,7 +247,7 @@ let bequestController = angular
           $location.url('/birthday').search('insurance', response.id);
         },
         function(error) {
-          $scope.showToastMessage("Please select gender.")
+          $scope.showToastMessage("Please select a gender.")
       });
     }
 
