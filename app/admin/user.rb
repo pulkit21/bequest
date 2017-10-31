@@ -29,7 +29,7 @@ index do
     user.insurances.first.gender if user.insurances.present? && user.insurances.first.gender.present?
   end
   column :age  do |user|
-    user.insurances.first.current_age if user.insurances.present? && user.insurances.first.current_age.present?
+    user.insurances.first.current_age if user.insurances.present? && user.insurances.first.birthday.present?
   end
   column :coverage_amount  do |user|
     user.insurances.first.coverage_amount if user.insurances.present? && user.insurances.first.coverage_amount.present?

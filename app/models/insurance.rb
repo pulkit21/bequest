@@ -493,7 +493,7 @@ class Insurance < ApplicationRecord
   end
 
   def percentage_calculator(amount, age)
-    premium_amount = select_premium_type
+    premium_amount = select_premium_type(amount, age)
     if self.semi?
       coverage_payment = ((10.to_f / premium_amount) * 100) + premium_amount
     elsif self.quarterly?
