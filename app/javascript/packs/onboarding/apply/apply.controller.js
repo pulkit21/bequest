@@ -26,6 +26,7 @@ let bequestController = angular
     $scope.errors = [];
     $scope.stripeErrors = null;
     var chart = null;
+    $scope.isLoading = false;
     var insuranceId = $location.search()['insurance'];
     $scope.insurance = new InsuranceService({});
     $scope.cardDetails = {}
@@ -267,17 +268,20 @@ let bequestController = angular
       if (birthdayForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       birthdayForm.birthday = birthdayForm.birthday;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
           $mdToast.hide();
+          $scope.isLoading = false;
           $location.url('/height').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error.data.age_coverage[0])
           // $scope.errors = error; //Error messages
       });
@@ -288,16 +292,19 @@ let bequestController = angular
       if (heightForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/weight').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error)
           $scope.errors = error; //Error messages
       });
@@ -308,16 +315,19 @@ let bequestController = angular
       if (weightForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/street').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error.data.weight_coverage[0])
       });
     }
@@ -327,16 +337,19 @@ let bequestController = angular
       if (streetForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/phone').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error.data.weight_coverage[0])
       });
     }
@@ -346,16 +359,19 @@ let bequestController = angular
       if (phoneForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/license').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage("Phone number " + error.data.phone_number[0])
       });
     }
@@ -366,16 +382,19 @@ let bequestController = angular
       if (licenseForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/coverage').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage("Invalid license")
       });
     }
@@ -433,16 +452,19 @@ let bequestController = angular
       if (coverageForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/frequency').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           var errorMsg = error.coverage_payment != null ? error.data.coverage_payment[0] : error.data.coverage_amount[0];
           $scope.showToastMessage(errorMsg)
       });
@@ -464,16 +486,19 @@ let bequestController = angular
       if (frequencyForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/beneficiary').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error.data.frequency[0])
       });
     }
@@ -495,16 +520,19 @@ let bequestController = angular
       if (beneficiaryForm.$invalid) {
         return false;
       }
+      $scope.isLoading = true;
       $scope.insurance.save()
       .then(
         /* success */
         function(response) {
+          $scope.isLoading = false;
           $mdToast.hide();
           $location.url('/payment').search('insurance', response.id);
           // $location.path('/quote').search('insurance', response.id); // Redirect after the question form saved successfully
         },
         /* failure */
         function(error) {
+          $scope.isLoading = false;
           $scope.showToastMessage(error.data.beneficiaries[0])
       });
     }
@@ -546,7 +574,20 @@ let bequestController = angular
     }
 
     prepareData();
-  }]);
+  }])
+  .directive('loading', function() {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+          showme: '=',
+          showerror: '=',
+          errormessage: '='
+      },
+
+      templateUrl: 'onboarding/apply/loading.html',
+    }
+  })
 
 export default bequestController.name;
 
